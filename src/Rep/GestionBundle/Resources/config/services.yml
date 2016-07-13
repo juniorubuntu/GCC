@@ -1,0 +1,7 @@
+parameters:
+#    rep_gestion.example.class: Rep\GestionBundle\Example
+
+services:
+#    rep_gestion.example:
+#        class: %rep_gestion.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

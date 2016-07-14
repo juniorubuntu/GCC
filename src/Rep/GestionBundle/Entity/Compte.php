@@ -20,6 +20,10 @@ class Compte {
     function __construct() {
         
     }
+    
+    public function __toString() {
+        return $this->getLogin();
+    }
 
     
     /**

@@ -38,10 +38,24 @@ class PersonnelController extends Controller {
         if (NULL != $personnel) {
             $personnel->setNom("Le nouveau nom");
             $new = $this->update($personnel);
-            return new Response('<h1>Operation reussi!!! '.$new.' </h1>');
+            return new Response('<h1>Operation reussi!!! ' . $new . ' </h1>');
         }
         return new Response('<h1 style="color=red;">Personnel non existant!!!</h1>');
     }
+
+    public function deleteAction($id) {
+        $personnel = $this->findById($id);
+        if (NULL != $personnel) {
+            $this->delete($personnel);
+            return new Response('<h1>Operation reussi!!!</h1>');
+        }
+        return new Response('<h1 style="color=red;">Personnel non existant!!!</h1>');
+    }
+
+    //
+    //
+    //
+    // Mes fonctions 
 
     public function create(Personnel $personnel) {
         $em = $this->container->get('doctrine')->getManager();
@@ -70,4 +84,9 @@ class PersonnelController extends Controller {
         return $personnel;
     }
 
+    public function delete(Personnel $personnel) {
+        $em = $this->container->get('doctrine')->getManager();
+        $em->remove($personnel);
+        $em->flush();
+    }
 }

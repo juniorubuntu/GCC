@@ -38,7 +38,7 @@ class Categorie {
     private $nomCategorie;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="bigint")
      * @Assert\NotBlank()
      */
     private $quota;

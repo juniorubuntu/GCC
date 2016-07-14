@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Direction {
 
     function __construct() {
-        
+        $this->setDateCreation(new \DateTime());
     }
 
     public function __toString() {

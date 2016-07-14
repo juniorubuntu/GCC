@@ -2,18 +2,37 @@ rep_gestion_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: RepGestionBundle:Default:index }
 
+
+# Route pour admin
+
 add_admin:
-    pattern:  /administration/ajouter
+    pattern:  /admin/ajouter
     defaults: { _controller: RepGestionBundle:Admin:ajouter }
-    
+
 list_one_admin:
-    pattern:  /administration/list/{id}
+    pattern:  /admin/list/{codeSecret}
     defaults: { _controller: RepGestionBundle:Admin:list }
     requirements:
         id: \d+
         
+list_all_admin:
+    pattern:  /admin/listAll/
+    defaults: { _controller: RepGestionBundle:Admin:listAll }
+    
+update_admin:
+    pattern:  /admin/modifier/{id}
+    defaults: { _controller: RepGestionBundle:Admin:update }
+    requirements:
+        id: \d+
+        
+delete_admin:
+    pattern:  /admin/supprimer/{id}
+    defaults: { _controller: RepGestionBundle:Admin:delete }
+    requirements:
+        id: \d+
+        
 
-# Pour un Personnel
+# Route pour un Personnel
 
 add_personnel:
     pattern:  /personnel/ajouter
@@ -25,12 +44,138 @@ list_one_personnel:
     requirements:
         id: \d+
         
-list_one_personnel:
+list_all_personnel:
     pattern:  /personnel/listAll/
     defaults: { _controller: RepGestionBundle:Personnel:listAll }
     
 update_personnel:
     pattern:  /personnel/modifier/{id}
     defaults: { _controller: RepGestionBundle:Personnel:update }
+    requirements:
+        id: \d+
+        
+delete_personnel:
+    pattern:  /personnel/supprimer/{id}
+    defaults: { _controller: RepGestionBundle:Personnel:delete }
+    requirements:
+        id: \d+
+        
+        
+
+# Route pour une Categorie
+
+add_categorie:
+    pattern:  /categorie/ajouter/
+    defaults: { _controller: RepGestionBundle:Categorie:ajouter }
+
+list_one_categorie:
+    pattern:  /categorie/list/{id}
+    defaults: { _controller: RepGestionBundle:Categorie:list }
+    requirements:
+        id: \d+
+        
+list_all_categorie:
+    pattern:  /categorie/listAll/
+    defaults: { _controller: RepGestionBundle:Categorie:listAll }
+    
+update_categorie:
+    pattern:  /categorie/modifier/{id}
+    defaults: { _controller: RepGestionBundle:Categorie:update }
+    requirements:
+        id: \d+
+        
+delete_categorie:
+    pattern:  /categorie/supprimer/{id}
+    defaults: { _controller: RepGestionBundle:Categorie:delete }
+    requirements:
+        id: \d+
+        
+        
+        # Route pour une Compte
+
+add_compte:
+    pattern:  /compte/ajouter/
+    defaults: { _controller: RepGestionBundle:Compte:ajouter }
+
+list_one_compte:
+    pattern:  /compte/list/{id}
+    defaults: { _controller: RepGestionBundle:Compte:list }
+    requirements:
+        id: \d+
+        
+list_all_compte:
+    pattern:  /compte/listAll/
+    defaults: { _controller: RepGestionBundle:Compte:listAll }
+    
+update_compte:
+    pattern:  /compte/modifier/{id}
+    defaults: { _controller: RepGestionBundle:Compte:update }
+    requirements:
+        id: \d+
+        
+delete_compte:
+    pattern:  /compte/supprimer/{id}
+    defaults: { _controller: RepGestionBundle:Compte:delete }
+    requirements:
+        id: \d+
+        
+        
+        
+                # Route pour une Poste
+
+add_poste:
+    pattern:  /poste/ajouter/
+    defaults: { _controller: RepGestionBundle:Poste:ajouter }
+
+list_one_poste:
+    pattern:  /poste/list/{id}
+    defaults: { _controller: RepGestionBundle:Poste:list }
+    requirements:
+        id: \d+
+        
+list_all_poste:
+    pattern:  /poste/listAll/
+    defaults: { _controller: RepGestionBundle:Poste:listAll }
+    
+update_poste:
+    pattern:  /poste/modifier/{id}
+    defaults: { _controller: RepGestionBundle:Poste:update }
+    requirements:
+        id: \d+
+        
+delete_poste:
+    pattern:  /poste/supprimer/{id}
+    defaults: { _controller: RepGestionBundle:Poste:delete }
+    requirements:
+        id: \d+
+        
+        
+        
+                
+                # Route pour une Direction
+
+add_direction:
+    pattern:  /direction/ajouter/
+    defaults: { _controller: RepGestionBundle:Direction:ajouter }
+
+list_one_direction:
+    pattern:  /direction/list/{id}
+    defaults: { _controller: RepGestionBundle:Direction:list }
+    requirements:
+        id: \d+
+        
+list_all_direction:
+    pattern:  /direction/listAll/
+    defaults: { _controller: RepGestionBundle:Direction:listAll }
+    
+update_direction:
+    pattern:  /direction/modifier/{id}
+    defaults: { _controller: RepGestionBundle:Direction:update }
+    requirements:
+        id: \d+
+        
+delete_direction:
+    pattern:  /direction/supprimer/{id}
+    defaults: { _controller: RepGestionBundle:Direction:delete }
     requirements:
         id: \d+

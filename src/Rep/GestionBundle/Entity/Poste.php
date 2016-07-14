@@ -57,7 +57,6 @@ class Poste {
 
     /**
      * @ORM\Column(type="string", length=500)
-     * @Assert\NotBlank()
      */
     private $observation;
 
@@ -97,7 +96,7 @@ class Poste {
      * @param string $observation
      * @return Poste
      */
-    public function setObservation($observation) {
+    public function setObservation($observation = null) {
         $this->observation = $observation;
 
         return $this;

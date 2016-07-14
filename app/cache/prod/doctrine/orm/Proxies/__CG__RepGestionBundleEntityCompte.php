@@ -42,6 +42,12 @@ class Compte extends \Rep\GestionBundle\Entity\Compte implements \Doctrine\ORM\P
     }
 
     
+    public function __toString()
+    {
+        $this->__load();
+        return parent::__toString();
+    }
+
     public function getId()
     {
         if ($this->__isInitialized__ === false) {

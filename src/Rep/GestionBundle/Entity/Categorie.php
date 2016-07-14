@@ -16,6 +16,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Categorie {
 
+    function __construct() {
+        
+    }
+
+    public function __toString() {
+        return $this->getNomCategorie();
+    }
+
     /**
      * @ORM\GeneratedValue
      * @ORM\Id
@@ -33,16 +41,14 @@ class Categorie {
      * @ORM\Column(type="integer")
      * @Assert\NotBlank()
      */
-    private $quota;    
-
+    private $quota;
 
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -52,10 +58,9 @@ class Categorie {
      * @param string $nomCategorie
      * @return Categorie
      */
-    public function setNomCategorie($nomCategorie)
-    {
+    public function setNomCategorie($nomCategorie) {
         $this->nomCategorie = $nomCategorie;
-    
+
         return $this;
     }
 
@@ -64,8 +69,7 @@ class Categorie {
      *
      * @return string 
      */
-    public function getNomCategorie()
-    {
+    public function getNomCategorie() {
         return $this->nomCategorie;
     }
 
@@ -75,10 +79,9 @@ class Categorie {
      * @param integer $quota
      * @return Categorie
      */
-    public function setQuota($quota)
-    {
+    public function setQuota($quota) {
         $this->quota = $quota;
-    
+
         return $this;
     }
 
@@ -87,8 +90,8 @@ class Categorie {
      *
      * @return integer 
      */
-    public function getQuota()
-    {
+    public function getQuota() {
         return $this->quota;
     }
+
 }

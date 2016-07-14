@@ -1,4 +1,4 @@
 rep_gestion:
     resource: "@RepGestionBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /GCC
 

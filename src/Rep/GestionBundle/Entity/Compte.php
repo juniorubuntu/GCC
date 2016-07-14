@@ -16,6 +16,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Compte {
 
+    
+    function __construct() {
+        
+    }
+
+    
     /**
      * @ORM\GeneratedValue
      * @ORM\Id

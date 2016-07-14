@@ -15,6 +15,19 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Personnel {
 
+    function __construct() {
+        $this->setDateRecru(new \DateTime());
+    }
+
+    /**
+     * To string
+     *
+     * @return string 
+     */
+    public function __toString() {
+        return $this->getNom();
+    }
+
     /**
      * @ORM\GeneratedValue
      * @ORM\Id
@@ -62,14 +75,12 @@ class Personnel {
      */
     private $refDecision;
 
-
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -79,10 +90,9 @@ class Personnel {
      * @param string $nom
      * @return Personnel
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom) {
         $this->nom = $nom;
-    
+
         return $this;
     }
 
@@ -91,8 +101,7 @@ class Personnel {
      *
      * @return string 
      */
-    public function getNom()
-    {
+    public function getNom() {
         return $this->nom;
     }
 
@@ -102,10 +111,9 @@ class Personnel {
      * @param string $prenom
      * @return Personnel
      */
-    public function setPrenom($prenom)
-    {
+    public function setPrenom($prenom) {
         $this->prenom = $prenom;
-    
+
         return $this;
     }
 
@@ -114,8 +122,7 @@ class Personnel {
      *
      * @return string 
      */
-    public function getPrenom()
-    {
+    public function getPrenom() {
         return $this->prenom;
     }
 
@@ -125,10 +132,9 @@ class Personnel {
      * @param string $matricule
      * @return Personnel
      */
-    public function setMatricule($matricule)
-    {
+    public function setMatricule($matricule) {
         $this->matricule = $matricule;
-    
+
         return $this;
     }
 
@@ -137,8 +143,7 @@ class Personnel {
      *
      * @return string 
      */
-    public function getMatricule()
-    {
+    public function getMatricule() {
         return $this->matricule;
     }
 
@@ -148,10 +153,9 @@ class Personnel {
      * @param string $numTel
      * @return Personnel
      */
-    public function setNumTel($numTel)
-    {
+    public function setNumTel($numTel) {
         $this->numTel = $numTel;
-    
+
         return $this;
     }
 
@@ -160,8 +164,7 @@ class Personnel {
      *
      * @return string 
      */
-    public function getNumTel()
-    {
+    public function getNumTel() {
         return $this->numTel;
     }
 
@@ -171,10 +174,9 @@ class Personnel {
      * @param string $email
      * @return Personnel
      */
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
-    
+
         return $this;
     }
 
@@ -183,8 +185,7 @@ class Personnel {
      *
      * @return string 
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
 
@@ -194,10 +195,9 @@ class Personnel {
      * @param \DateTime $dateRecru
      * @return Personnel
      */
-    public function setDateRecru($dateRecru)
-    {
+    public function setDateRecru($dateRecru) {
         $this->dateRecru = $dateRecru;
-    
+
         return $this;
     }
 
@@ -206,8 +206,7 @@ class Personnel {
      *
      * @return \DateTime 
      */
-    public function getDateRecru()
-    {
+    public function getDateRecru() {
         return $this->dateRecru;
     }
 
@@ -217,10 +216,9 @@ class Personnel {
      * @param string $refDecision
      * @return Personnel
      */
-    public function setRefDecision($refDecision)
-    {
+    public function setRefDecision($refDecision) {
         $this->refDecision = $refDecision;
-    
+
         return $this;
     }
 
@@ -229,8 +227,8 @@ class Personnel {
      *
      * @return string 
      */
-    public function getRefDecision()
-    {
+    public function getRefDecision() {
         return $this->refDecision;
     }
+
 }

@@ -1,3 +1,36 @@
 rep_gestion_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: RepGestionBundle:Default:index }
+
+add_admin:
+    pattern:  /administration/ajouter
+    defaults: { _controller: RepGestionBundle:Admin:ajouter }
+    
+list_one_admin:
+    pattern:  /administration/list/{id}
+    defaults: { _controller: RepGestionBundle:Admin:list }
+    requirements:
+        id: \d+
+        
+
+# Pour un Personnel
+
+add_personnel:
+    pattern:  /personnel/ajouter
+    defaults: { _controller: RepGestionBundle:Personnel:ajouter }
+
+list_one_personnel:
+    pattern:  /personnel/list/{id}
+    defaults: { _controller: RepGestionBundle:Personnel:list }
+    requirements:
+        id: \d+
+        
+list_one_personnel:
+    pattern:  /personnel/listAll/
+    defaults: { _controller: RepGestionBundle:Personnel:listAll }
+    
+update_personnel:
+    pattern:  /personnel/modifier/{id}
+    defaults: { _controller: RepGestionBundle:Personnel:update }
+    requirements:
+        id: \d+

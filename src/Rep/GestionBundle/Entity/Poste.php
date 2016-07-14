@@ -16,6 +16,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Poste {
 
+    function __construct() {
+        
+    }
+
+    public function __toString() {
+        return $this->getNomPoste();
+    }
+
     /**
      * @ORM\GeneratedValue
      * @ORM\Id
@@ -146,17 +154,15 @@ class Poste {
         return $this->direction;
     }
 
-
     /**
      * Set occupant
      *
      * @param \Rep\GestionBundle\Entity\Personnel $occupant
      * @return Poste
      */
-    public function setOccupant(\Rep\GestionBundle\Entity\Personnel $occupant = null)
-    {
+    public function setOccupant(\Rep\GestionBundle\Entity\Personnel $occupant = null) {
         $this->occupant = $occupant;
-    
+
         return $this;
     }
 
@@ -165,8 +171,8 @@ class Poste {
      *
      * @return \Rep\GestionBundle\Entity\Personnel 
      */
-    public function getOccupant()
-    {
+    public function getOccupant() {
         return $this->occupant;
     }
+
 }

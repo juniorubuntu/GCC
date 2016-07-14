@@ -16,6 +16,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Direction {
 
+    function __construct() {
+        
+    }
+
+    public function __toString() {
+        return $this->getNomDir();
+    }
+
     /**
      * @ORM\GeneratedValue
      * @ORM\Id
@@ -46,14 +54,12 @@ class Direction {
      */
     private $observation;
 
-
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -63,10 +69,9 @@ class Direction {
      * @param string $nomDir
      * @return Direction
      */
-    public function setNomDir($nomDir)
-    {
+    public function setNomDir($nomDir) {
         $this->nomDir = $nomDir;
-    
+
         return $this;
     }
 
@@ -75,8 +80,7 @@ class Direction {
      *
      * @return string 
      */
-    public function getNomDir()
-    {
+    public function getNomDir() {
         return $this->nomDir;
     }
 
@@ -86,10 +90,9 @@ class Direction {
      * @param \DateTime $dateCreation
      * @return Direction
      */
-    public function setDateCreation($dateCreation)
-    {
+    public function setDateCreation($dateCreation) {
         $this->dateCreation = $dateCreation;
-    
+
         return $this;
     }
 
@@ -98,8 +101,7 @@ class Direction {
      *
      * @return \DateTime 
      */
-    public function getDateCreation()
-    {
+    public function getDateCreation() {
         return $this->dateCreation;
     }
 
@@ -109,10 +111,9 @@ class Direction {
      * @param string $observation
      * @return Direction
      */
-    public function setObservation($observation)
-    {
+    public function setObservation($observation) {
         $this->observation = $observation;
-    
+
         return $this;
     }
 
@@ -121,8 +122,7 @@ class Direction {
      *
      * @return string 
      */
-    public function getObservation()
-    {
+    public function getObservation() {
         return $this->observation;
     }
 
@@ -132,10 +132,9 @@ class Direction {
      * @param \Rep\GestionBundle\Entity\Direction $directionPere
      * @return Direction
      */
-    public function setDirectionPere(\Rep\GestionBundle\Entity\Direction $directionPere = null)
-    {
+    public function setDirectionPere(\Rep\GestionBundle\Entity\Direction $directionPere = null) {
         $this->directionPere = $directionPere;
-    
+
         return $this;
     }
 
@@ -144,8 +143,8 @@ class Direction {
      *
      * @return \Rep\GestionBundle\Entity\Direction 
      */
-    public function getDirectionPere()
-    {
+    public function getDirectionPere() {
         return $this->directionPere;
     }
+
 }

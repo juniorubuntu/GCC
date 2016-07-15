@@ -20,7 +20,7 @@ class DirectionController extends Controller {
         $direction->setNomDir("Direction Maintenance");
         $direction->setObservation("La direction des meilleur");
         $this->create($direction);
-        
+
         return new Response('<h1>Good!!!</h1>');
     }
 
@@ -34,6 +34,16 @@ class DirectionController extends Controller {
         $reponse = "";
         foreach ($allDirection as $direction) {
             $reponse = $reponse . '<br/>' . $direction;
+        }
+        return new Response($reponse);
+    }
+
+    public function listSousDirAction($id) {
+        $direction = $this->findById($id);
+        $listSousDir = $this->listSousDir($direction);
+        $reponse = '';
+        foreach ($listSousDir as $SousDir) {
+            $reponse = $reponse . '<br/>' . $SousDir;
         }
         return new Response($reponse);
     }
@@ -93,6 +103,13 @@ class DirectionController extends Controller {
         $em = $this->container->get('doctrine')->getManager();
         $em->remove($direction);
         $em->flush();
+    }
+
+    public function listSousDir(Direction $direction) {
+        $sousDir = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Direction')
+                ->findBy(array('directionPere' => $direction->getId()));
+        return $sousDir;
     }
 
 }

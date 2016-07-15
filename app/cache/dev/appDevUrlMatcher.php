@@ -135,8 +135,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         if (0 === strpos($pathinfo, '/GCC')) {
             // rep_gestion_homepage
-            if (0 === strpos($pathinfo, '/GCC/hello') && preg_match('#^/GCC/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'rep_gestion_homepage')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DefaultController::indexAction',));
+            if (rtrim($pathinfo, '/') === '/GCC') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'rep_gestion_homepage');
+                }
+
+                return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\StartController::indexAction',  '_route' => 'rep_gestion_homepage',);
+            }
+
+            // rep_gestion_login
+            if ($pathinfo === '/GCC/login') {
+                return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\LoginController::indexAction',  '_route' => 'rep_gestion_login',);
             }
 
             if (0 === strpos($pathinfo, '/GCC/admin')) {

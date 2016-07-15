@@ -1,6 +1,10 @@
 rep_gestion_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: RepGestionBundle:Default:index }
+    pattern:  /
+    defaults: { _controller: RepGestionBundle:Start:index }
+    
+rep_gestion_login:
+    pattern:  /login
+    defaults: { _controller: RepGestionBundle:Login:index }
 
 
 # Route pour admin

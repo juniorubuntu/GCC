@@ -179,3 +179,9 @@ delete_direction:
     defaults: { _controller: RepGestionBundle:Direction:delete }
     requirements:
         id: \d+
+        
+list_sous_direction:
+    pattern:  /direction/listSousDirection/{id}
+    defaults: { _controller: RepGestionBundle:Direction:listSousDir }
+    requirements:
+        id: \d+

@@ -366,6 +366,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'delete_direction')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::deleteAction',));
                 }
 
+                // list_sous_direction
+                if (0 === strpos($pathinfo, '/GCC/direction/listSousDirection') && preg_match('#^/GCC/direction/listSousDirection/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'list_sous_direction')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::listSousDirAction',));
+                }
+
             }
 
         }

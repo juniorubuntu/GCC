@@ -6,9 +6,22 @@
         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}" type="text/css" />
         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-theme.css') }}" type="text/css" />
         <title>{% block title %}GCC_Camtel{% endblock %}</title>
+        <style>
+            .test>div{
+                margin-top: 10px;
+                font-family: constantia;
+            }
+        </style>
     </head>
-    <body style="background: #304154">
-        {% block body %}
-        {% endblock %}
+    <body style="background: #304154; height: auto">
+        <div style="height: 650px">
+            {% block body %}
+            {% endblock %}
+        </div>
+        <footer class="col-md-8 col-md-offset-2 panel-footer page-header" style="padding: 0px; font: 18px constantia">
+            <center>Dévellopé par: {{webmaster}}; Tous droits réservés Camtel 2016</center>
+        </footer>
+        <script type="text/javascript" src="{{ asset('javascript/animation.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('javascript/jquery.min.js') }}"></script>
     </body>
 </html>

@@ -47,21 +47,31 @@ class __TwigTemplate_46a9be858a1a679b4ad7f7499e13d9a393416982c3be328380459652f84
         </div>
     </div>
     <div class=\"col-md-7\" style=\"height: 100px;\">
-        
+
     </div>
     <div class=\"langue col-md-6 col-md-offset-3\">
-        <button type=\"button\" class=\"col-md-4 col-md-offset-1 btn btn-info\" 
-                style=\"height: 65px;
-                border-radius: 60px;
-                font: 32px constantia bolder;
-                color: #021082;\"
-                ><span class=\"glyphicon glyphicon-ok-sign\"></span>Welcome</button>
-        <button type=\"button\" class=\"col-md-4 col-md-offset-1 btn btn-primary\"
-                style=\"height: 65px;
-                border-radius: 60px;
-                font: 32px constantia bolder;
-                color: #021082;\"
-                ><span class=\"glyphicon glyphicon-ok-sign\"></span>Bienvenue</button>
+        <a href=\"";
+        // line 17
+        echo $this->env->getExtension('routing')->getPath("rep_gestion_login");
+        echo "\">
+            <button type=\"button\" class=\"col-md-4 col-md-offset-1 btn btn-info\" 
+                    style=\"height: 65px;
+                    border-radius: 60px;
+                    font: 32px constantia bolder;
+                    color: #021082;\"
+                    ><span class=\"glyphicon glyphicon-ok-sign\"></span>Welcome</button>
+        </a>
+        <a href=\"";
+        // line 25
+        echo $this->env->getExtension('routing')->getPath("rep_gestion_login");
+        echo "\">
+            <button type=\"button\" class=\"col-md-4 col-md-offset-1 btn btn-primary\"
+                    style=\"height: 65px;
+                    border-radius: 60px;
+                    font: 32px constantia bolder;
+                    color: #021082;\"
+                    ><span class=\"glyphicon glyphicon-ok-sign\"></span>Bienvenue</button>
+        </a>
     </div>
 ";
     }
@@ -78,6 +88,6 @@ class __TwigTemplate_46a9be858a1a679b4ad7f7499e13d9a393416982c3be328380459652f84
 
     public function getDebugInfo()
     {
-        return array (  39 => 5,  36 => 4,  29 => 2,);
+        return array (  66 => 25,  55 => 17,  39 => 5,  36 => 4,  29 => 2,);
     }
 }

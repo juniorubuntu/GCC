@@ -1,0 +1,84 @@
+{% extends "RepGestionBundle:Rep:accueil.html.twig" %}
+{% block title %}{{ parent() }} - Detail{% endblock %}
+
+{% block detail %}
+    <div class="col-md-7 panel-primary active">
+        <div class="panel panel-heading col-md-12" style="
+             margin-left: -15px;
+             margin-right: -25px;">
+            <strong style="font-size: 18px"><u>Détails sur la branche sélectionnée</u></strong>
+            <button type="button" class="btn btn-primary active pull-right"><span class="glyphicon glyphicon-print"></span> Exporter les données</button>
+        </div>
+        <scroll class="well col-md-12" style="
+                color: #04101b;
+                font-size: 16px;
+                margin-left: -15px;
+                margin-right: -25px;
+                margin-top: -15px;
+                margin-bottom: 2px;">
+            <marquee><h2><b>{{ aDetailler }}</b></h2></marquee>
+            <div class="poste">
+                {% block poste %}
+                    <table class="col-md-12 table table-bordered">
+                        <h2 class="col-md-12">Postes et occupants</h2>
+                        <thead class="panel panel-primary active panel-heading">
+                            <tr>
+                                <th>Postes</th>
+                                <th>Occupants</th>
+                                <th>Quotas mensuel</th>
+                                <th>Modifier</th>
+                                <th>Supprimer</th>
+                                <th>Informer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for poste in listPoste %}
+                                <tr>
+                                    <td><b>{{ poste }}</b></td>
+                                    <td><b>{{ poste.occupant }}</b></td>
+                                    <td style="color: blue"><b>{{ poste.categorie.quota }}</b></td>
+                                    <td><a><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit">Modifier</span></button></a></td>
+                                    <td><a><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash">Supprimer</span></button></a></td>
+                                    <td><a><button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-send"> Mail</span></button></a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <a><button type="button" class="btn btn-primary col-md-3"><span class="glyphicon glyphicon-plus">Ajouter un poste</span></button></a>
+                {% endblock %}
+                {% block branche%}
+                    <table class="col-md-12 table table-bordered">
+                        <h2 class="col-md-12">Démenbrements directs</h2>
+                        <thead class="panel panel-info active panel-heading">
+                            <tr>
+                                <th>Démembrements</th>
+                                <th>Modifier</th>
+                                <th>Détacher de cette branche</th>
+                                <th>Supprimer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for sousDir in listSousDir %}
+                                <tr>
+                                    <td><b>{{ sousDir }}</b></td>
+                                    <td><a><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit">Modifier</span></button></a></td>
+                                    <td><a><button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-minus">Détacher</span></button></a></td>
+                                    <td><a><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash">Supprimer</span></button></a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <a><button type="button" class="btn btn-primary col-md-4"><span class="glyphicon glyphicon-plus">Ajouter un démembrement</span></button></a>
+                {% endblock%}
+            </div>
+            <div class="retour">
+
+            </div>
+        </scroll>
+        <div class="panel-footer col-md-12" style="
+             margin-left: -15px;
+             margin-right: -25px;">
+            <b>Les informations ci-dessus sont modifiables. N'oubliez pas d'enregistrer en sortant sinon elle seront toutes perdues!</b>
+        </div>
+    </div>
+{% endblock %}

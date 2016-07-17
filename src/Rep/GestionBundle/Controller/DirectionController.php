@@ -14,6 +14,16 @@ use Rep\GestionBundle\Entity\Direction;
 
 class DirectionController extends Controller {
 
+    private $treeDir = '';
+
+    public function getTreeDir() {
+        return $this->treeDir;
+    }
+
+    public function setTreeDir($treeDir) {
+        $this->treeDir .= $treeDir;
+    }
+
     public function ajouterAction() {
 
         $direction = new Direction();
@@ -67,6 +77,33 @@ class DirectionController extends Controller {
         return new Response('<h1 style="color=red;">Direction non existant!!!</h1>');
     }
 
+    public function builTreeAction() {
+        $direction = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Direction')
+                ->findOneBy(array('directionPere' => NULL));
+        $this->generate_tree_list($direction);
+        return $this->render('RepGestionBundle:Rep:accueil.html.twig', array('arbreDirection' => $this->getTreeDir()));
+    }
+
+    public function detailAction($id) {
+        $aDetailler = $this->findById($id);
+
+        $listPoste = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Poste')
+                ->findBy(array('direction' => $aDetailler));
+
+        $sousDir = $this->listSousDir($aDetailler);
+
+        $direction = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Direction')
+                ->findOneBy(array('directionPere' => NULL));
+        $this->generate_tree_list($direction);
+        return $this->render('RepGestionBundle:Rep:detail.html.twig', array('arbreDirection' => $this->getTreeDir(),
+                    'aDetailler' => $aDetailler,
+                    'listPoste' => $listPoste,
+                    'listSousDir' => $sousDir));
+    }
+
     //
     //
     //
@@ -110,6 +147,41 @@ class DirectionController extends Controller {
                 ->getRepository('RepGestionBundle:Direction')
                 ->findBy(array('directionPere' => $direction->getId()));
         return $sousDir;
+    }
+
+    public function listDirPosteAndOccupant(Direction $direction) {
+        
+    }
+
+    public function generate_tree_list($direction, $parent = NULL) {
+        $allSousDir = $this->listSousDir($direction);
+        $nbre = count($allSousDir);
+        if ($nbre >= 1) {
+            $this->setTreeDir('<ul style=" color: #efa35c; border-left: 1px solid rgba(222, 212, 205, 0.14);" id="id_' . $direction->getId() . '" class= "expd pere_' . $parent . '">'
+                    . '<li type="button" style=" list-style: none; margin-left: -48px;">'
+                    . '<span onclick="expanNode(' . $direction->getId() . ')" class="list_' . $direction->getId() . ' glyphicon glyphicon-minus-sign" style="margin-left: 25px;"> </span>'
+                    . '<a href="http://localhost/GCC/web/app_dev.php/GCC/direction/detail/' . $direction->getId() . '">'
+                    . '<b><nav style= "border: solid 1px white; border-radius: 5px; display: inline-table; padding: 2px; margin-top: 2px; cursor: pointer; color:antiquewhite;">' . $direction . ''
+                    . '</b></nav>'
+                    . ''
+                    . '</li>'
+                    . '</a>');
+        } else {
+            $this->setTreeDir('<ul style="color: #efa35c; border-left: 1px solid rgba(222, 212, 205, 0.14);" id="id_' . $direction->getId() . '" class= "expd pere_' . $parent . '">'
+                    . '<li type="button" style="list-style: none; margin-left: -48px;">'
+                    . '<span onclick="expanNode(' . $direction->getId() . ')" class="list_' . $direction->getId() . ' glyphicon glyphicon-triangle-right" style="margin-left: 25px;"> </span>'
+                    . '<a href="http://localhost/GCC/web/app_dev.php/GCC/direction/detail/' . $direction->getId() . '">'
+                    . '<b><nav style= "border: solid 1px white; border-radius: 5px; display: inline-table; padding: 2px; margin-top: 2px; cursor: pointer; color: #100101;">' . $direction . ''
+                    . '</b></nav>'
+                    . ''
+                    . '</li>'
+                    . '</a>');
+        }
+        $sousDir = new Direction();
+        foreach ($allSousDir as $sousDir) {
+            $this->generate_tree_list($sousDir, $direction->getId());
+        }
+        $this->setTreeDir('</ul>');
     }
 
 }

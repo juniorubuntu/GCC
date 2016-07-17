@@ -2008,6 +2008,10 @@
         <argument>app</argument>
         <argument type="service" id="templating.globals"/>
       </call>
+      <call method="addGlobal">
+        <argument>webmaster</argument>
+        <argument>Atemgoua Brumel, juniorubuntu@gmail.com</argument>
+      </call>
     </service>
     <service id="twig.translation.extractor" class="Symfony\Bridge\Twig\Translation\TwigExtractor">
       <tag name="translation.extractor" alias="twig"/>

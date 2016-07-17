@@ -47,9 +47,16 @@ class __TwigTemplate_684a3aeec87146b58d6779b18cb13416148a1f5858e5af11514d3ecec8c
         </div>
     </div>
     <div class=\"login well col-md-4 col-md-offset-4\"
-         style=\"border-radius: 50px 50px 50px 50px;
-         font-family: fantasy;\">
-        <center><h3><u>Authentification</u></h3></center>
+         style=\"border-radius: 100px 100px 100px 100px;
+         font-family: fantasy;
+         background: rgba(255, 255, 255, 0.23);\">
+        <center>
+            <img src=\"";
+        // line 18
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/login.png"), "html", null, true);
+        echo "\"/>
+            <h3><u>Authentification</u></h3>
+        </center>
         <form class=\"form-horizontal\">
             <div class=\"form-group\">
                 <label for=\"login\" class=\"col-sm-4 control-label\">Login</label>
@@ -64,16 +71,26 @@ class __TwigTemplate_684a3aeec87146b58d6779b18cb13416148a1f5858e5af11514d3ecec8c
                 </div>
             </div>
             <div>
-                <button type=\"button\" class=\"col-md-3 col-md-offset-3 btn btn-default\" 
-                        style=\"border-radius: 10px;
-                        font: 18px constantia;
-                        color: #090e2f;\"
-                        ><span class=\"glyphicon glyphicon-remove\"></span>Annuler</button>
-                <button type=\"button\" class=\"col-md-3 col-md-offset-1 btn btn-primary\"
-                        style=\"border-radius: 10px;
-                        font: 18px constantia;
-                        color: #090e2f;\"
-                        ><span class=\"glyphicon glyphicon-ok-sign\"></span>Valider</button>
+                <a href=\"";
+        // line 35
+        echo $this->env->getExtension('routing')->getPath("rep_gestion_homepage");
+        echo "\">
+                    <button type=\"button\" class=\"col-md-3 col-md-offset-3 btn btn-default\" 
+                            style=\"border-radius: 10px;
+                            font: 14px constantia;
+                            color: #090e2f;\"
+                            ><span class=\"glyphicon glyphicon-remove\"></span>Annuler</button>
+                </a>
+                <a href=\"";
+        // line 42
+        echo $this->env->getExtension('routing')->getPath("list_tree_direction");
+        echo "\">
+                    <button type=\"button\" class=\"col-md-3 col-md-offset-1 btn btn-primary\"
+                            style=\"border-radius: 10px;
+                            font: 14px constantia;
+                            color: #090e2f;\"
+                            ><span class=\"glyphicon glyphicon-ok-sign\"></span>Connecter</button>
+                </a>
             </div>
         </form>
     </div>
@@ -92,6 +109,6 @@ class __TwigTemplate_684a3aeec87146b58d6779b18cb13416148a1f5858e5af11514d3ecec8c
 
     public function getDebugInfo()
     {
-        return array (  39 => 5,  36 => 4,  29 => 2,);
+        return array (  86 => 42,  76 => 35,  56 => 18,  39 => 5,  36 => 4,  29 => 2,);
     }
 }

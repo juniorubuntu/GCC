@@ -148,37 +148,45 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\LoginController::indexAction',  '_route' => 'rep_gestion_login',);
             }
 
-            if (0 === strpos($pathinfo, '/GCC/admin')) {
-                // add_admin
-                if ($pathinfo === '/GCC/admin/ajouter') {
-                    return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\AdminController::ajouterAction',  '_route' => 'add_admin',);
+            if (0 === strpos($pathinfo, '/GCC/a')) {
+                // rep_gestion_accueil
+                if ($pathinfo === '/GCC/accueil') {
+                    return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\AccueilController::indexAction',  '_route' => 'rep_gestion_accueil',);
                 }
 
-                if (0 === strpos($pathinfo, '/GCC/admin/list')) {
-                    // list_one_admin
-                    if (preg_match('#^/GCC/admin/list/(?P<codeSecret>[^/]++)$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'list_one_admin')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\AdminController::listAction',));
+                if (0 === strpos($pathinfo, '/GCC/admin')) {
+                    // add_admin
+                    if ($pathinfo === '/GCC/admin/ajouter') {
+                        return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\AdminController::ajouterAction',  '_route' => 'add_admin',);
                     }
 
-                    // list_all_admin
-                    if (rtrim($pathinfo, '/') === '/GCC/admin/listAll') {
-                        if (substr($pathinfo, -1) !== '/') {
-                            return $this->redirect($pathinfo.'/', 'list_all_admin');
+                    if (0 === strpos($pathinfo, '/GCC/admin/list')) {
+                        // list_one_admin
+                        if (preg_match('#^/GCC/admin/list/(?P<codeSecret>[^/]++)$#s', $pathinfo, $matches)) {
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'list_one_admin')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\AdminController::listAction',));
                         }
 
-                        return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\AdminController::listAllAction',  '_route' => 'list_all_admin',);
+                        // list_all_admin
+                        if (rtrim($pathinfo, '/') === '/GCC/admin/listAll') {
+                            if (substr($pathinfo, -1) !== '/') {
+                                return $this->redirect($pathinfo.'/', 'list_all_admin');
+                            }
+
+                            return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\AdminController::listAllAction',  '_route' => 'list_all_admin',);
+                        }
+
                     }
 
-                }
+                    // update_admin
+                    if (0 === strpos($pathinfo, '/GCC/admin/modifier') && preg_match('#^/GCC/admin/modifier/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'update_admin')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\AdminController::updateAction',));
+                    }
 
-                // update_admin
-                if (0 === strpos($pathinfo, '/GCC/admin/modifier') && preg_match('#^/GCC/admin/modifier/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'update_admin')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\AdminController::updateAction',));
-                }
+                    // delete_admin
+                    if (0 === strpos($pathinfo, '/GCC/admin/supprimer') && preg_match('#^/GCC/admin/supprimer/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'delete_admin')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\AdminController::deleteAction',));
+                    }
 
-                // delete_admin
-                if (0 === strpos($pathinfo, '/GCC/admin/supprimer') && preg_match('#^/GCC/admin/supprimer/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'delete_admin')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\AdminController::deleteAction',));
                 }
 
             }
@@ -363,6 +371,20 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                         return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::listAllAction',  '_route' => 'list_all_direction',);
                     }
 
+                }
+
+                // list_tree_direction
+                if (rtrim($pathinfo, '/') === '/GCC/direction/arbre') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'list_tree_direction');
+                    }
+
+                    return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::builTreeAction',  '_route' => 'list_tree_direction',);
+                }
+
+                // list_detail_direction
+                if (0 === strpos($pathinfo, '/GCC/direction/detail') && preg_match('#^/GCC/direction/detail/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'list_detail_direction')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::detailAction',));
                 }
 
                 // update_direction

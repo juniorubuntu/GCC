@@ -14,6 +14,10 @@ use Rep\GestionBundle\Entity\Poste;
 
 class PosteController extends Controller {
 
+    function __construct() {
+        
+    }
+
     public function ajouterAction() {
 
         return new Response('<h1>Good!!!</h1>');
@@ -77,6 +81,25 @@ class PosteController extends Controller {
                 ->getRepository('RepGestionBundle:Poste')
                 ->find($id);
         return $poste;
+    }
+
+    public function findByOcupant(\Rep\GestionBundle\Entity\Personnel $personnel) {
+        $poste = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Poste')
+                ->findOneBy(array('occupant' => $personnel));
+        return $poste;
+    }
+
+    public function findByDirection(\Rep\GestionBundle\Entity\Direction $direction) {
+        $listPoste = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Poste')
+                ->findBy(array('direction' => $direction));
+        return $listPoste;
+    }
+
+    public function linkPosteToOccupant(\Rep\GestionBundle\Entity\Direction $direction) {
+        $poste_occupant = array('poste', 'occupant');
+        $listPoste = $this->findByDirection($direction);
     }
 
     public function findAll() {

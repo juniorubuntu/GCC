@@ -2817,6 +2817,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addExtension(new \Doctrine\Bundle\DoctrineBundle\Twig\DoctrineExtension());
         $instance->addExtension($this->get('twig.extension.acme.demo'));
         $instance->addGlobal('app', $this->get('templating.globals'));
+        $instance->addGlobal('webmaster', 'Atemgoua Brumel, juniorubuntu@gmail.com');
 
         return $instance;
     }

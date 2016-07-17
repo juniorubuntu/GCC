@@ -5,6 +5,10 @@ rep_gestion_homepage:
 rep_gestion_login:
     pattern:  /login
     defaults: { _controller: RepGestionBundle:Login:index }
+    
+rep_gestion_accueil:
+    pattern:  /accueil
+    defaults: { _controller: RepGestionBundle:Accueil:index }
 
 
 # Route pour admin
@@ -171,6 +175,16 @@ list_one_direction:
 list_all_direction:
     pattern:  /direction/listAll/
     defaults: { _controller: RepGestionBundle:Direction:listAll }
+    
+list_tree_direction:
+    pattern:  /direction/arbre/
+    defaults: { _controller: RepGestionBundle:Direction:builTree }
+    
+list_detail_direction:
+    pattern:  /direction/detail/{id}
+    defaults: { _controller: RepGestionBundle:Direction:detail }
+    requirements:
+        id: \d+
     
 update_direction:
     pattern:  /direction/modifier/{id}

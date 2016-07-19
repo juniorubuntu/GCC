@@ -28,5 +28,16 @@ function afficheDate() {
 
 function cacheDate() {
     $('.date-choose-aff').show();
+    document.getElementsByClassName('date-choose-aff')[0].value = document.getElementsByClassName('date-choose')[0].value;
     $('.date-choose').addClass("hide");
+}
+
+function afficheMenu() {
+    if ($('.compte').hasClass('ok')) {
+        $('.compte').removeClass('ok');
+        $('.compte').hide("slow");
+    } else {
+        $('.compte').show("slow");
+        $('.compte').addClass('ok');
+    }
 }

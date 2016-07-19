@@ -18,7 +18,9 @@
             <label for="categorie" class="col-md-4">Categorie <span style="color: red">*</span></label>
             <b><select class="form-control" style="font-size: 16px;">
                     <option value="categorie.id" class="form-control" selected >{% if update == 1 %} {{posted.categorie }} {% else %}Choisir sa categorie {% endif %}</option>
-                    <option value="categorie.id" class="form-control" >Categorie</option>
+                    {% for categorie in listCategorie %}
+                        <option value="categorie.id" class="form-control" style="font-size: 16px; font-weight: bold; color: black;">{{categorie}}</option>
+                    {% endfor %}
                 </select></b>
             <a href="{{ path('add_categorie') }}" style="font-size: 16px; cursor: pointer; margin-left: 20px" class=""><span class="glyphicon glyphicon-exclamation-sign"><u><b>Catégorie inexistante</b></u></span></a>
         </div>
@@ -27,7 +29,9 @@
             <label for="poste" class="col-md-4">Occupant <span style="color: red">*</span></label>
             <b><select class="form-control" style="font-size: 16px;">
                     <option value="occupant.id" class="form-control" selected>{% if update == 1 %} {{posted.occupant }} {% else %} Choisir l'occupant {% endif %}</option>
-                    <option value="occupant.id" class="form-control">occupant</option>
+                    {% for occupant in listOccupant %}
+                        <option value="categorie.id" class="form-control" style="font-size: 16px; font-weight: bold; color: black;">{{occupant}}</option>
+                    {% endfor %}
                 </select>
             </b>
             <a href="{{ path('add_personnel') }}" style="font-size: 16px; cursor: pointer; margin-left: 20px" class=""><span class="glyphicon glyphicon-plus-sign"><u><b>Nouveau personnel</b></u></span></a>

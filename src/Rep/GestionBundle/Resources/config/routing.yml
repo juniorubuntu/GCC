@@ -104,7 +104,7 @@ delete_categorie:
 
 add_compte:
     pattern:  /compte/ajouter/
-    defaults: { _controller: RepGestionBundle:Compte:ajouter }
+    defaults: { _controller: RepGestionBundle:Direction:addCompte }
 
 list_one_compte:
     pattern:  /compte/list/{id}
@@ -114,17 +114,17 @@ list_one_compte:
         
 list_all_compte:
     pattern:  /compte/listAll/
-    defaults: { _controller: RepGestionBundle:Compte:listAll }
+    defaults: { _controller: RepGestionBundle:Direction:listAllCompte }
     
 update_compte:
     pattern:  /compte/modifier/{id}
-    defaults: { _controller: RepGestionBundle:Compte:update }
+    defaults: { _controller: RepGestionBundle:Direction:updateCompte }
     requirements:
         id: \d+
         
 delete_compte:
     pattern:  /compte/supprimer/{id}
-    defaults: { _controller: RepGestionBundle:Compte:delete }
+    defaults: { _controller: RepGestionBundle:Direction:deleteCompte }
     requirements:
         id: \d+
         

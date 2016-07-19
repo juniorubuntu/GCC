@@ -1,0 +1,38 @@
+{% extends "RepGestionBundle:Rep:accueil.html.twig" %}
+{% block title %}{{ parent() }} - Comptes{% endblock %}
+
+{% block detail %}
+
+    <div class="col-md-7  well panel-primary active">
+        <div class="panel panel-heading col-md-12" style="
+             margin-left: -15px;
+             margin-right: -25px;">
+            <strong style="font-size: 18px"><u>Gestion des comptes</u></strong>
+        </div>
+        {% block poste %}
+            <table class="col-md-12 table table-bordered">
+                <h2 class="col-md-12">Titulaires des différents comptes</h2>
+                <thead class="panel panel-primary active panel-heading">
+                    <tr>
+                        <th>Titulaires</th>
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for compte in comptes %}
+                        <tr>
+                            <td><b>{{ compte.personnel }}</b></td>
+                            <td><a href="{{ path('update_compte', {'id': compte.id}) }}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit">Modifier</span></button></a></td>
+                            <td><a href="{{ path('delete_compte', {'id': compte.id}) }}"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash">Supprimer</span></button></a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{{ path('list_tree_direction') }}"><button type="button" class="btn btn-primary col-md-3"><span class="glyphicon glyphicon-arrow-left"> Retour à l'accueil</span></button></a>
+        {% endblock %}
+        <div class="panel panel-primary col-md-12" style="color: red; margin-top: 20px">
+            <b><u>NB:</u> Les actions sur les informations ci-dessus sont irréversibles. Soyez prudent lors des sélections.</b>
+        </div>
+    </div>
+{% endblock %}

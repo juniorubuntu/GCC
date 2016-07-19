@@ -13,15 +13,30 @@
             </span>
             <img class="pull-right" src="{{ asset('images/logoAccD.png') }}" style="height: 79px;"/>
         </div>
-        <div class="pull-right">
-            <a href="{{ path('rep_gestion_homepage')}}">
-                <div class="col-md-12 ll" 
-                     style="border-radius: 10px;
-                     font: 18px constantia;
-                     color: #286090;
-                     font-weight: bold;"
-                     ><u>Déconnexion</u></div>
-            </a>
+        <div class="pull-right col-md-2">
+
+            <div class="col-md-12 ll" 
+                 style="border-radius: 10px;
+                 font: 14px constantia;
+                 color: #286090;
+                 font-weight: bold;"
+                 ><a href="#" onclick="afficheMenu();"><u style="padding: 2px; font-size: 16px;">Gestion des comptes</u></a>
+                <div class="row col-md-12" style="
+                     position: absolute;
+                     z-index: 1;
+                     opacity: 1;">
+                    <div class="col-md-12 dropdown-menu compte well" style="
+                         margin-top: 2px;
+                         background: rgba(0, 0, 0, 0.82);
+                         border-radius: 22px;">
+                        <a href="{{ path('add_compte')}}"><button class="btn btn-primary btn-sm col-md-11" style="text-align: left; margin-bottom: 5px; margin-top: -10px;"><span class="glyphicon glyphicon-plus-sign">Créer un nouveau</span></button></a>
+                        <a href="{{ path('list_all_compte')}}"><button class="btn btn-info btn-sm col-md-6" style="text-align: left; margin-bottom: 5px;"><span class="glyphicon glyphicon-edit">Modifier</span></button></a>
+                        <a href="{{ path('list_all_compte')}}"<button class="btn btn-danger btn-sm col-md-7" style="text-align: left; margin-bottom: 10px;"><span class="glyphicon glyphicon-remove-sign">Supprimer</span></button></a>
+                        <a href="{{ path('rep_gestion_homepage')}}" class="col-md-12"><u style="border: 1px solid wheat; padding: 2px; border-radius: 5px;">Vous déconnecter</u></a>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="col-md-12 test">
             <div class="panel-primary col-md-5">

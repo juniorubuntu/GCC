@@ -273,7 +273,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                             return $this->redirect($pathinfo.'/', 'add_compte');
                         }
 
-                        return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\CompteController::ajouterAction',  '_route' => 'add_compte',);
+                        return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::addCompteAction',  '_route' => 'add_compte',);
                     }
 
                     if (0 === strpos($pathinfo, '/GCC/compte/list')) {
@@ -288,19 +288,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                                 return $this->redirect($pathinfo.'/', 'list_all_compte');
                             }
 
-                            return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\CompteController::listAllAction',  '_route' => 'list_all_compte',);
+                            return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::listAllCompteAction',  '_route' => 'list_all_compte',);
                         }
 
                     }
 
                     // update_compte
                     if (0 === strpos($pathinfo, '/GCC/compte/modifier') && preg_match('#^/GCC/compte/modifier/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'update_compte')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\CompteController::updateAction',));
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'update_compte')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::updateCompteAction',));
                     }
 
                     // delete_compte
                     if (0 === strpos($pathinfo, '/GCC/compte/supprimer') && preg_match('#^/GCC/compte/supprimer/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'delete_compte')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\CompteController::deleteAction',));
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'delete_compte')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::deleteCompteAction',));
                     }
 
                 }

@@ -13,13 +13,21 @@
             }
         </style>
     </head>
-    <body style="background: #304154; height: auto">
+    <body style="background: #384546; height: auto">
         <div style="height: 650px">
             {% block body %}
             {% endblock %}
         </div>
-        <footer class="col-md-8 col-md-offset-2 panel-footer page-header" style="padding: 0px; font: 18px constantia">
-            <center>Dévellopé par: {{webmaster}}; Tous droits réservés Camtel 2016</center>
+        <footer class="col-md-12"
+                style="position: fixed;
+                bottom: 0;
+                height: 30px;
+                background: #3175b0;
+                color: white;
+                border-top: 1px solid;
+                padding: 0px;
+                font-size: 18px;">
+            Dévellopé par: {{webmaster}}; Tous droits réservés Camtel 2016, dirigé par: M. Bayonmbong Clément
         </footer>
         <script type="text/javascript" src="{{ asset('javascript/animation.js') }}"></script>
         <script type="text/javascript" src="{{ asset('javascript/jquery.min.js') }}"></script>

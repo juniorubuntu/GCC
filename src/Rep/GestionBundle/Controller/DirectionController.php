@@ -114,6 +114,14 @@ class DirectionController extends Controller {
                 ->getRepository('RepGestionBundle:Poste')
                 ->findBy(array('direction' => $aDetailler));
 
+        $listCategorie = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Categorie')
+                ->findAll();
+
+        $listOccupant = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Personnel')
+                ->findAll();
+
         $sousDir = $this->listSousDir($aDetailler);
 
         $direction = $this->getDoctrine()
@@ -124,7 +132,9 @@ class DirectionController extends Controller {
                     'arbreDirection' => $this->getTreeDir(),
                     'aDetailler' => $aDetailler,
                     'listPoste' => $listPoste,
-                    'listSousDir' => $sousDir));
+                    'listSousDir' => $sousDir,
+                    'listCategorie' => $listCategorie,
+                    'listOccupant' => $listOccupant));
     }
 
     public function updatePosteAction($id, $idPoste) {
@@ -138,6 +148,14 @@ class DirectionController extends Controller {
                 ->getRepository('RepGestionBundle:Poste')
                 ->find($idPoste);
 
+        $listCategorie = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Categorie')
+                ->findAll();
+
+        $listOccupant = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Personnel')
+                ->findAll();
+
         $sousDir = $this->listSousDir($aDetailler);
 
         $direction = $this->getDoctrine()
@@ -150,6 +168,8 @@ class DirectionController extends Controller {
                     'listPoste' => $listPoste,
                     'listSousDir' => $sousDir,
                     'posted' => $poste,
+                    'listCategorie' => $listCategorie,
+                    'listOccupant' => $listOccupant
         ));
     }
 
@@ -170,55 +190,6 @@ class DirectionController extends Controller {
         return $this->render('RepGestionBundle:Rep:addCategorie.html.twig', array(
                     'arbreDirection' => $this->getTreeDir()));
     }
-
-    /*
-      public function addPosteAction($id) {
-      $aDetailler = $this->findById($id);
-
-      $listPoste = $this->getDoctrine()
-      ->getRepository('RepGestionBundle:Poste')
-      ->findBy(array('direction' => $aDetailler));
-
-      $sousDir = $this->listSousDir($aDetailler);
-      $direction = $this->getDoctrine()
-      ->getRepository('RepGestionBundle:Direction')
-      ->findOneBy(array('directionPere' => NULL));
-      $this->generate_tree_list($direction);
-
-      // creation du formulaire
-
-      $poste = new Poste();
-      $poste->setDirection($aDetailler);
-
-      $formBuilder = $this->createFormBuilder($poste);
-      $formBuilder
-      ->add('nomPoste', 'text')
-      ->add('categorie', new \Rep\GestionBundle\Form\Type\CategorieType())
-      ->add('observation', 'textarea');
-
-      $form = $formBuilder->getForm();
-
-
-      $request = $this->get('request');
-
-      if ($request->getMethod() == 'POST') {
-      $form->bind($request);
-      if ($form->isValid()) {
-      $em = $this->getDoctrine()->getManager();
-      $em->persist($poste);
-      $em->flush();
-      return $this->render('RepGestionBundle:Rep:detail.html.twig', array('arbreDirection' => $this->getTreeDir(),
-      'aDetailler' => $aDetailler,
-      'listPoste' => $listPoste,
-      'listSousDir' => $sousDir));
-      }
-      }
-      return $this->render('RepGestionBundle::test.html.twig', array('arbreDirection' => $this->getTreeDir(),
-      'aDetailler' => $aDetailler,
-      'listPoste' => $listPoste,
-      'listSousDir' => $sousDir,
-      'form' => $form->createView()));
-      } */
 
     public function addBrancheAction($id) {
         $aDetailler = $this->findById($id);
@@ -250,7 +221,7 @@ class DirectionController extends Controller {
         $branche = $this->getDoctrine()
                 ->getRepository('RepGestionBundle:Direction')
                 ->find($idDir);
-        
+
 
         $sousDir = $this->listSousDir($aDetailler);
 
@@ -345,6 +316,60 @@ class DirectionController extends Controller {
             $this->generate_tree_list($sousDir, $direction->getId());
         }
         $this->setTreeDir('</ul>');
+    }
+
+    public function addCompteAction() {
+        $direction = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Direction')
+                ->findOneBy(array('directionPere' => NULL));
+
+        $listOccupant = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Personnel')
+                ->findAll();
+
+        $this->generate_tree_list($direction);
+        return $this->render('RepGestionBundle:Rep:addCompte.html.twig', array(
+                    'arbreDirection' => $this->getTreeDir(),
+                    'listOccupant' => $listOccupant));
+    }
+
+    public function updateCompteAction($id) {
+        $direction = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Direction')
+                ->findOneBy(array('directionPere' => NULL));
+
+        $compte = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Compte')
+                ->find($id);
+
+        $listOccupant = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Personnel')
+                ->findAll();
+
+        $this->generate_tree_list($direction);
+        return $this->render('RepGestionBundle:Rep:addCompte.html.twig', array(
+                    'arbreDirection' => $this->getTreeDir(),
+                    'compte' => $compte,
+                    'listOccupant' => $listOccupant));
+    }
+
+    public function listAllCompteAction() {
+        $direction = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Direction')
+                ->findOneBy(array('directionPere' => NULL));
+
+        $comptes = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Compte')
+                ->findAll();
+
+        $this->generate_tree_list($direction);
+        return $this->render('RepGestionBundle:Rep:listCompte.html.twig', array(
+                    'arbreDirection' => $this->getTreeDir(),
+                    'comptes' => $comptes));
+    }
+
+    public function deleteCompteAction() {
+        
     }
 
 }

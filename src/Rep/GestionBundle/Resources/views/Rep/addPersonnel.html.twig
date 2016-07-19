@@ -2,6 +2,10 @@
 {% block title %}Ajout d'un Personnel{% endblock %}
 
 {% block detail %}
+    {% set update = 0 %}
+    {% if branched is defined %}
+        {% set update = 1 %}
+    {% endif %}
     <div class="col-md-7 panel-primary active">
         <div class="panel panel-heading col-md-12" style="
              margin-left: -15px;
@@ -40,7 +44,8 @@
             <div class="col-md-12"
                  style="margin-top: 5px;">
                 <label for="poste" class="col-md-4">Date Recrutement <span style="color: red">*</span></label>
-                <b><input type="date" class="form-control" id="poste.id" placeholder="Nom du poste" style="font-size: 16px;"></b>
+                <b><input type="date" class="form-control date-choose hide" id="poste.id" style="font-size: 16px;" onblur="cacheDate();"></b>
+                <b><input {% if update == 1 %} value="{{branched.dateCreation | date("m/d/Y") }}" {% endif %} type="text" placeholder="Date de recrutement" class="form-control date-choose-aff" onfocus="afficheDate();" id="poste.id" style="font-size: 16px;"></b>
             </div>
             <div class="col-md-12"
                  style="margin-top: 5px;">

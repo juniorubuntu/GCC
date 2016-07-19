@@ -12,11 +12,21 @@ function expanNode(id) {
 
 
 function changeGyphicon(test, num) {
-    if(test){
+    if (test) {
         $('.list_' + num + '').removeClass('glyphicon-plus-sign');
         $('.list_' + num + '').addClass('glyphicon-minus-sign');
-    }else{
+    } else {
         $('.list_' + num + '').addClass('glyphicon-plus-sign');
         $('.list_' + num + '').removeClass('glyphicon-minus-sign');
     }
+}
+
+function afficheDate() {
+    $('.date-choose').removeClass("hide");
+    $('.date-choose-aff').hide();
+}
+
+function cacheDate() {
+    $('.date-choose-aff').show();
+    $('.date-choose').addClass("hide");
 }

@@ -251,9 +251,6 @@ class DirectionController extends Controller {
                 ->getRepository('RepGestionBundle:Direction')
                 ->find($idDir);
         
-        $date = $branche->getDateCreation()->format('d/m/Y');
-        
-        $branche->setDateCreation($date);
 
         $sousDir = $this->listSousDir($aDetailler);
 

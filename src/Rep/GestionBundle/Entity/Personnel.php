@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Personnel {
 
     function __construct() {
-        $this->setDateRecru(new \DateTime());
+        $this->setDateRecru(date("Y-m-d"));
     }
 
     /**

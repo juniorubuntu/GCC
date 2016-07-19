@@ -1,0 +1,54 @@
+{% extends "RepGestionBundle:Rep:detail.html.twig" %}
+{% block title %}Ajout d'un Personnel{% endblock %}
+
+{% block detail %}
+    <div class="col-md-7 panel-primary active">
+        <div class="panel panel-heading col-md-12" style="
+             margin-left: -15px;
+             margin-right: -25px;">
+            <strong style="font-size: 18px"><u>Ajout d'un nouveau personnel</u></strong>
+        </div>
+        <form class="col-md-12 form-inline panel panel-primary panel-body"
+              style="
+              margin-left: -15px;
+              margin-right: -25px;">
+            <div class="col-md-12"
+                 style="margin-top: 5px;">
+                <label for="poste" class="col-md-4">Nom: <span style="color: red">*</span></label>
+                <b><input type="text" class="form-control" id="poste.id" placeholder="Nom du personnel" style="font-size: 16px;"></b>
+            </div>
+            <div class="col-md-12" 
+                 style="margin-top: 5px;">
+                <label for="poste" class="col-md-4">Prénom <span style="color: red">*</span></label>
+                <b><input type="text" class="form-control" id="poste.id" placeholder="Nom du prénom" style="font-size: 16px;"></b>
+            </div>
+            <div class="col-md-12" 
+                 style="margin-top: 5px;">
+                <label for="poste" class="col-md-4">Matricule <span style="color: red">*</span></label>
+                <b><input type="text" class="form-control" id="poste.id" placeholder="Matricule" style="font-size: 16px;"></b>
+            </div>
+            <div class="col-md-12"
+                 style="margin-top: 5px;">
+                <label for="poste" class="col-md-4">Téléphone <span style="color: red">*</span></label>
+                <b><input type="text" class="form-control" id="poste.id" placeholder="Téléphone" style="font-size: 16px;"></b>
+            </div>
+            <div class="col-md-12"
+                 style="margin-top: 5px;">
+                <label for="poste" class="col-md-4">Email <span style="color: red">*</span></label>
+                <b><input type="text" class="form-control" id="exampleInputAmount" placeholder="juniorubuntu@gmail.com"></b>
+            </div>
+            <div class="col-md-12"
+                 style="margin-top: 5px;">
+                <label for="poste" class="col-md-4">Date Recrutement <span style="color: red">*</span></label>
+                <b><input type="date" class="form-control" id="poste.id" placeholder="Nom du poste" style="font-size: 16px;"></b>
+            </div>
+            <div class="col-md-12"
+                 style="margin-top: 5px;">
+                <label for="poste" class="col-md-4">Décison <span style="color: red">*</span></label>
+                <b><input type="text" class="form-control" id="poste.id" placeholder="Décision d'admission" style="font-size: 16px;"></b>
+            </div>
+        </form>
+        <a href="{{ path('list_tree_direction') }}"><button type="button" class="btn btn-success active col-md-2 col-md-offset-6"><span class="glyphicon glyphicon-remove-circle">Annuler</span></button></a>
+        <a><button type="button" class="btn btn-primary col-md-2 col-md-offset-1"><span class="glyphicon glyphicon-plus-sign">Ajouter</span></button></a>
+    </div>
+{% endblock %}

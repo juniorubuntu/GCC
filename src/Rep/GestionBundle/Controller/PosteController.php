@@ -20,7 +20,7 @@ class PosteController extends Controller {
 
     public function ajouterAction() {
 
-        return new Response('<h1>Good!!!</h1>');
+        return $this->render('RepGestionBundle:Rep:addPoste.html.twig');
     }
 
     public function listAction($id) {

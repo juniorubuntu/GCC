@@ -37,16 +37,23 @@
                                     <td><b>{{ poste }}</b></td>
                                     <td><b>{{ poste.occupant }}</b></td>
                                     <td style="color: blue"><b>{{ poste.categorie.quota }}</b></td>
-                                    <td><a><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit">Modifier</span></button></a></td>
+                                    <td><a href="{{ path('update_poste', {'id': aDetailler.id, 'idPoste': poste.id}) }}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit">Modifier</span></button></a></td>
                                     <td><a><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash">Supprimer</span></button></a></td>
                                     <td><a><button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-send"> Mail</span></button></a></td>
                                 </tr>
                             {% endfor %}
                         </tbody>
                     </table>
-                    <a><button type="button" class="btn btn-primary col-md-3"><span class="glyphicon glyphicon-plus">Ajouter un poste</span></button></a>
+                    <a href="{{ path('add_poste', {'id': aDetailler.id}) }}"><button type="button" class="btn btn-primary col-md-3"><span class="glyphicon glyphicon-plus">Ajouter un poste</span></button></a>
                 {% endblock %}
-                {% block branche%}
+                <hr class="col-md-11" style="
+                    background: #1d2db9;
+                    height: 2px;">
+                <hr class="col-md-11" style="
+                    background: #1d2db9;
+                    height: 2px;
+                    margin-top: -1%;">
+                {% block branche %}
                     <table class="col-md-12 table table-bordered">
                         <h2 class="col-md-12">Démenbrements directs</h2>
                         <thead class="panel panel-info active panel-heading">
@@ -61,14 +68,14 @@
                             {% for sousDir in listSousDir %}
                                 <tr>
                                     <td><b>{{ sousDir }}</b></td>
-                                    <td><a><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit">Modifier</span></button></a></td>
+                                    <td><a href="{{ path('update_direction', {'id':aDetailler.id, 'idDir':sousDir.id }) }}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit">Modifier</span></button></a></td>
                                     <td><a><button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-minus">Détacher</span></button></a></td>
                                     <td><a><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash">Supprimer</span></button></a></td>
                                 </tr>
                             {% endfor %}
                         </tbody>
                     </table>
-                    <a><button type="button" class="btn btn-primary col-md-4"><span class="glyphicon glyphicon-plus">Ajouter un démembrement</span></button></a>
+                    <a href="{{ path('add_branche', {'id': aDetailler.id}) }}"><button type="button" class="btn btn-primary col-md-4"><span class="glyphicon glyphicon-plus">Ajouter un démembrement</span></button></a>
                 {% endblock%}
             </div>
             <div class="retour">

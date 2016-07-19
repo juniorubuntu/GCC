@@ -3304,7 +3304,7 @@ class appDevDebugProjectContainer extends Container
             'kernel.root_dir' => '/var/www/html/GCC/app',
             'kernel.environment' => 'dev',
             'kernel.debug' => true,
-            'kernel.name' => 'app',
+            'kernel.name' => 'ap_',
             'kernel.cache_dir' => '/var/www/html/GCC/app/cache/dev',
             'kernel.logs_dir' => '/var/www/html/GCC/app/logs',
             'kernel.bundles' => array(

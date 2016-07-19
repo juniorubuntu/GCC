@@ -1,1 +1,37 @@
-{# empty Twig template #}
+{% extends "RepGestionBundle:Rep:detail.html.twig" %}
+{% block title %}Ajout d'un nouveau démembrement{% endblock %}
+
+{% block branche %}
+    {% set update = 0 %}
+    {% if branched is defined %}
+        {% set update = 1 %}
+    {% endif %}
+    <form class="col-md-12 form-inline panel panel-primary panel-body">
+        <h4 class="col-md-12"><b><u>{% if update == 1 %} Modification d'un démembrement {% else %}Ajout d'un nouveau démembrement {% endif %}</u></b></h4>
+        <div class="col-md-12"
+             style="margin-top: 5px;">
+            <label for="poste" class="col-md-4">Nom: <span style="color: red">*</span></label>
+            <b><input {% if update == 1 %} value="{{branched }}" {% endif %} type="text" class="form-control" id="poste.id" placeholder="Nom du démembrement" style="font-size: 16px;"></b>
+        </div>
+        <div class="col-md-12"
+             style="margin-top: 5px;">
+            <label for="poste" class="col-md-4">Date Création <span style="color: red">*</span></label>
+            <b><input {% if update == 1 %} value="{{branched.dateCreation | date("m/d/Y") }}" {% endif %} type="text" class="form-control" id="poste.id" style="font-size: 16px;"></b>
+        </div>
+        <div class="col-md-12"
+             style="margin-top: 5px;">
+            <label for="poste" class="col-md-4">Observation</label>
+            <textarea type="" class="form-control" id="poste.id" placeholder="Observations" style="
+                      margin: 0px; 
+                      width: 240px; 
+                      height: 151px;">{% if update == 1 %} {{branched.observation }} {% else %} Observations{% endif %}</textarea>
+        </div>
+        <div class="col-md-12"
+             style="margin-top: 5px;">
+            <label for="poste" class="col-md-4">Rataché à: <span style="color: red">*</span></label>
+            <nav type="" class="form-control" id="poste.id" style="font-size: 16px;"><b>{{aDetailler}}</b></nav>
+        </div>
+    </form>
+    <a href="{{ path('list_detail_direction', {'id': aDetailler.id}) }}"><button type="button" class="btn btn-success active col-md-2 col-md-offset-6"><span class="glyphicon glyphicon-remove-circle">Annuler</span></button></a>
+    <a><button type="button" class="btn btn-primary col-md-2 col-md-offset-2"><span class="glyphicon glyphicon-plus-sign">Ajouter</span></button></a>
+{% endblock %}

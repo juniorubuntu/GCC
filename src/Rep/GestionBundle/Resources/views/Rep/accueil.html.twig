@@ -42,8 +42,10 @@
                     <button class="btn btn-primary"><span class="glyphicon glyphicon-save"> Importer des données</span></button>
                 </div>
             </div>
-
-            {% block detail %}
+            {% if aDetailler is defined %}
+                <nav class="hide">{{ aDetailler.id }}</nav>
+                {%  endif %}
+                {% block detail %}
                 <div class="col-md-7 panel-primary active">
                     <div class="panel panel-heading col-md-12" style="
                          margin-left: -15px;

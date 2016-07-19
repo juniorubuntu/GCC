@@ -1,35 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Testons l'arbre</title>
-        <script src="{{ asset('bootstrap/js/jquery.min.js') }}" type="text/javascript" ></script>
-        <script src="{{ asset('bootstrap/js/funcs.js') }}" type="text/javascript" ></script>
-    </head>
-    <body>
-        <ul>
-            <li>Pays</li>
-            <ul>
-                <li>Organisation</li>
-                <ul>
-                    <li>Regions</li>
-                    <ul>
-                        <li>Ouest</li>
-                        <li>Littoral</li>
-                        <li>Centre</li>
-                    </ul>
-                </ul>
-                <li>Administration</li>
-                <ul>
-                    <li>Ministeres</li>
-                    <ul>
-                        <li>MINESUP</li>
-                        <li>MINFOPRA</li>
-                        <li>MINFI</li>
-                        <li>MINPOSTEL</li>
-                    </ul>
-                </ul>
-            </ul>
-        </ul>
-        {{arbreDirection | raw }}
-    </body>
-</html>
+{% extends "RepGestionBundle:Rep:detail.html.twig" %}
+{% block title %}Ajout d'un nouveau poste{% endblock %}
+
+{% block poste %}
+    <h4 class="col-md-12"><b><u>Ajout d'un nouveau poste</u></b></h4>
+    <div class="well col-md-12">
+        <form method="post" {{ form_enctype(form) }} class="col-md-12">
+            {{ form_widget(form) }}
+            <a><button type="button" class="btn btn-success active col-md-2 "><span class="glyphicon glyphicon-remove-circle">Annuler</span></button></a>
+            <a><button type="submit" class="btn btn-primary col-md-2 col-md-offset-2"><span class="glyphicon glyphicon-plus-sign">Ajouter</span></button></a>
+        </form>
+    </div>
+{% endblock %}

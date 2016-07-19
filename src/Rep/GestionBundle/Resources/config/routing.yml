@@ -42,9 +42,10 @@ delete_admin:
 
 # Route pour un Personnel
 
+
 add_personnel:
     pattern:  /personnel/ajouter
-    defaults: { _controller: RepGestionBundle:Personnel:ajouter }
+    defaults: { _controller: RepGestionBundle:Direction:addPersonnel }
 
 list_one_personnel:
     pattern:  /personnel/list/{id}
@@ -74,7 +75,7 @@ delete_personnel:
 
 add_categorie:
     pattern:  /categorie/ajouter/
-    defaults: { _controller: RepGestionBundle:Categorie:ajouter }
+    defaults: { _controller: RepGestionBundle:Direction:addCategorie }
 
 list_one_categorie:
     pattern:  /categorie/list/{id}
@@ -132,8 +133,10 @@ delete_compte:
                 # Route pour une Poste
 
 add_poste:
-    pattern:  /poste/ajouter/
-    defaults: { _controller: RepGestionBundle:Poste:ajouter }
+    pattern:  /poste/ajouterAlaDirection/{id}
+    defaults: { _controller: RepGestionBundle:Direction:addPoste }
+    requirements:
+        id: \d+
 
 list_one_poste:
     pattern:  /poste/list/{id}
@@ -146,10 +149,11 @@ list_all_poste:
     defaults: { _controller: RepGestionBundle:Poste:listAll }
     
 update_poste:
-    pattern:  /poste/modifier/{id}
-    defaults: { _controller: RepGestionBundle:Poste:update }
+    pattern:  /poste/modifier/{id}/{idPoste}
+    defaults: { _controller: RepGestionBundle:Direction:updatePoste }
     requirements:
         id: \d+
+        idPoste: \d+
         
 delete_poste:
     pattern:  /poste/supprimer/{id}
@@ -161,6 +165,7 @@ delete_poste:
         
                 
                 # Route pour une Direction
+                
 
 add_direction:
     pattern:  /direction/ajouter/
@@ -187,10 +192,11 @@ list_detail_direction:
         id: \d+
     
 update_direction:
-    pattern:  /direction/modifier/{id}
-    defaults: { _controller: RepGestionBundle:Direction:update }
+    pattern:  /direction/modifier/{id}/{idDir}
+    defaults: { _controller: RepGestionBundle:Direction:updateBranche }
     requirements:
         id: \d+
+        idDir: \d+
         
 delete_direction:
     pattern:  /direction/supprimer/{id}
@@ -201,5 +207,11 @@ delete_direction:
 list_sous_direction:
     pattern:  /direction/listSousDirection/{id}
     defaults: { _controller: RepGestionBundle:Direction:listSousDir }
+    requirements:
+        id: \d+
+        
+add_branche:
+    pattern:  /branche/ajouterAlaDirection/{id}
+    defaults: { _controller: RepGestionBundle:Direction:addBranche }
     requirements:
         id: \d+

@@ -194,7 +194,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             if (0 === strpos($pathinfo, '/GCC/personnel')) {
                 // add_personnel
                 if ($pathinfo === '/GCC/personnel/ajouter') {
-                    return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\PersonnelController::ajouterAction',  '_route' => 'add_personnel',);
+                    return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::addPersonnelAction',  '_route' => 'add_personnel',);
                 }
 
                 if (0 === strpos($pathinfo, '/GCC/personnel/list')) {
@@ -234,7 +234,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                             return $this->redirect($pathinfo.'/', 'add_categorie');
                         }
 
-                        return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\CategorieController::ajouterAction',  '_route' => 'add_categorie',);
+                        return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::addCategorieAction',  '_route' => 'add_categorie',);
                     }
 
                     if (0 === strpos($pathinfo, '/GCC/categorie/list')) {
@@ -309,12 +309,8 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             if (0 === strpos($pathinfo, '/GCC/poste')) {
                 // add_poste
-                if (rtrim($pathinfo, '/') === '/GCC/poste/ajouter') {
-                    if (substr($pathinfo, -1) !== '/') {
-                        return $this->redirect($pathinfo.'/', 'add_poste');
-                    }
-
-                    return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\PosteController::ajouterAction',  '_route' => 'add_poste',);
+                if (0 === strpos($pathinfo, '/GCC/poste/ajouterAlaDirection') && preg_match('#^/GCC/poste/ajouterAlaDirection/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'add_poste')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::addPosteAction',));
                 }
 
                 if (0 === strpos($pathinfo, '/GCC/poste/list')) {
@@ -335,8 +331,8 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 }
 
                 // update_poste
-                if (0 === strpos($pathinfo, '/GCC/poste/modifier') && preg_match('#^/GCC/poste/modifier/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'update_poste')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\PosteController::updateAction',));
+                if (0 === strpos($pathinfo, '/GCC/poste/modifier') && preg_match('#^/GCC/poste/modifier/(?P<id>\\d+)/(?P<idPoste>\\d+)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'update_poste')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::updatePosteAction',));
                 }
 
                 // delete_poste
@@ -388,8 +384,8 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 }
 
                 // update_direction
-                if (0 === strpos($pathinfo, '/GCC/direction/modifier') && preg_match('#^/GCC/direction/modifier/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'update_direction')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::updateAction',));
+                if (0 === strpos($pathinfo, '/GCC/direction/modifier') && preg_match('#^/GCC/direction/modifier/(?P<id>\\d+)/(?P<idDir>\\d+)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'update_direction')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::updateBrancheAction',));
                 }
 
                 // delete_direction
@@ -402,6 +398,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'list_sous_direction')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::listSousDirAction',));
                 }
 
+            }
+
+            // add_branche
+            if (0 === strpos($pathinfo, '/GCC/branche/ajouterAlaDirection') && preg_match('#^/GCC/branche/ajouterAlaDirection/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'add_branche')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::addBrancheAction',));
             }
 
         }

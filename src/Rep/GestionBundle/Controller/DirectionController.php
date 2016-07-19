@@ -11,6 +11,9 @@ namespace Rep\GestionBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Rep\GestionBundle\Entity\Direction;
+use Rep\GestionBundle\Entity\Poste;
+use Symfony\Component\Form\FormBuilder;
+use Rep\GestionBundle\Form\Type;
 
 class DirectionController extends Controller {
 
@@ -102,6 +105,169 @@ class DirectionController extends Controller {
                     'aDetailler' => $aDetailler,
                     'listPoste' => $listPoste,
                     'listSousDir' => $sousDir));
+    }
+
+    public function addPosteAction($id) {
+        $aDetailler = $this->findById($id);
+
+        $listPoste = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Poste')
+                ->findBy(array('direction' => $aDetailler));
+
+        $sousDir = $this->listSousDir($aDetailler);
+
+        $direction = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Direction')
+                ->findOneBy(array('directionPere' => NULL));
+        $this->generate_tree_list($direction);
+        return $this->render('RepGestionBundle:Rep:addPoste.html.twig', array(
+                    'arbreDirection' => $this->getTreeDir(),
+                    'aDetailler' => $aDetailler,
+                    'listPoste' => $listPoste,
+                    'listSousDir' => $sousDir));
+    }
+
+    public function updatePosteAction($id, $idPoste) {
+        $aDetailler = $this->findById($id);
+
+        $listPoste = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Poste')
+                ->findBy(array('direction' => $aDetailler));
+
+        $poste = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Poste')
+                ->find($idPoste);
+
+        $sousDir = $this->listSousDir($aDetailler);
+
+        $direction = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Direction')
+                ->findOneBy(array('directionPere' => NULL));
+        $this->generate_tree_list($direction);
+        return $this->render('RepGestionBundle:Rep:addPoste.html.twig', array(
+                    'arbreDirection' => $this->getTreeDir(),
+                    'aDetailler' => $aDetailler,
+                    'listPoste' => $listPoste,
+                    'listSousDir' => $sousDir,
+                    'posted' => $poste,
+        ));
+    }
+
+    public function addPersonnelAction() {
+        $direction = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Direction')
+                ->findOneBy(array('directionPere' => NULL));
+        $this->generate_tree_list($direction);
+        return $this->render('RepGestionBundle:Rep:addPersonnel.html.twig', array(
+                    'arbreDirection' => $this->getTreeDir()));
+    }
+
+    public function addCategorieAction() {
+        $direction = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Direction')
+                ->findOneBy(array('directionPere' => NULL));
+        $this->generate_tree_list($direction);
+        return $this->render('RepGestionBundle:Rep:addCategorie.html.twig', array(
+                    'arbreDirection' => $this->getTreeDir()));
+    }
+
+    /*
+      public function addPosteAction($id) {
+      $aDetailler = $this->findById($id);
+
+      $listPoste = $this->getDoctrine()
+      ->getRepository('RepGestionBundle:Poste')
+      ->findBy(array('direction' => $aDetailler));
+
+      $sousDir = $this->listSousDir($aDetailler);
+      $direction = $this->getDoctrine()
+      ->getRepository('RepGestionBundle:Direction')
+      ->findOneBy(array('directionPere' => NULL));
+      $this->generate_tree_list($direction);
+
+      // creation du formulaire
+
+      $poste = new Poste();
+      $poste->setDirection($aDetailler);
+
+      $formBuilder = $this->createFormBuilder($poste);
+      $formBuilder
+      ->add('nomPoste', 'text')
+      ->add('categorie', new \Rep\GestionBundle\Form\Type\CategorieType())
+      ->add('observation', 'textarea');
+
+      $form = $formBuilder->getForm();
+
+
+      $request = $this->get('request');
+
+      if ($request->getMethod() == 'POST') {
+      $form->bind($request);
+      if ($form->isValid()) {
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($poste);
+      $em->flush();
+      return $this->render('RepGestionBundle:Rep:detail.html.twig', array('arbreDirection' => $this->getTreeDir(),
+      'aDetailler' => $aDetailler,
+      'listPoste' => $listPoste,
+      'listSousDir' => $sousDir));
+      }
+      }
+      return $this->render('RepGestionBundle::test.html.twig', array('arbreDirection' => $this->getTreeDir(),
+      'aDetailler' => $aDetailler,
+      'listPoste' => $listPoste,
+      'listSousDir' => $sousDir,
+      'form' => $form->createView()));
+      } */
+
+    public function addBrancheAction($id) {
+        $aDetailler = $this->findById($id);
+
+        $listPoste = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Poste')
+                ->findBy(array('direction' => $aDetailler));
+
+        $sousDir = $this->listSousDir($aDetailler);
+
+        $direction = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Direction')
+                ->findOneBy(array('directionPere' => NULL));
+        $this->generate_tree_list($direction);
+        return $this->render('RepGestionBundle:Rep:addBranche.html.twig', array('arbreDirection' => $this->getTreeDir(),
+                    'aDetailler' => $aDetailler,
+                    'listPoste' => $listPoste,
+                    'listSousDir' => $sousDir));
+    }
+
+    public function updateBrancheAction($id, $idDir) {
+        $aDetailler = $this->findById($id);
+
+        $listPoste = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Poste')
+                ->findBy(array('direction' => $aDetailler));
+
+        $branche = new Direction();
+        $branche = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Direction')
+                ->find($idDir);
+        
+        $date = $branche->getDateCreation()->format('d/m/Y');
+        
+        $branche->setDateCreation($date);
+
+        $sousDir = $this->listSousDir($aDetailler);
+
+        $direction = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Direction')
+                ->findOneBy(array('directionPere' => NULL));
+        $this->generate_tree_list($direction);
+        return $this->render('RepGestionBundle:Rep:addBranche.html.twig', array(
+                    'arbreDirection' => $this->getTreeDir(),
+                    'aDetailler' => $aDetailler,
+                    'listPoste' => $listPoste,
+                    'listSousDir' => $sousDir,
+                    'branched' => $branche
+        ));
     }
 
     //

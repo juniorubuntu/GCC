@@ -353,6 +353,36 @@ class DirectionController extends Controller {
                     'listOccupant' => $listOccupant));
     }
 
+    public function updatePersonnelAction($id) {
+        $direction = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Direction')
+                ->findOneBy(array('directionPere' => NULL));
+
+        $personnel = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Personnel')
+                ->find($id);
+
+        $this->generate_tree_list($direction);
+        return $this->render('RepGestionBundle:Rep:addPersonnel.html.twig', array(
+                    'arbreDirection' => $this->getTreeDir(),
+                    'personnel' => $personnel));
+    }
+
+    public function listAllPersonnelAction() {
+        $direction = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Direction')
+                ->findOneBy(array('directionPere' => NULL));
+
+        $personnels = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Personnel')
+                ->findAll();
+
+        $this->generate_tree_list($direction);
+        return $this->render('RepGestionBundle:Rep:listPersonnel.html.twig', array(
+                    'arbreDirection' => $this->getTreeDir(),
+                    'personnels' => $personnels));
+    }
+
     public function listAllCompteAction() {
         $direction = $this->getDoctrine()
                 ->getRepository('RepGestionBundle:Direction')

@@ -209,14 +209,14 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                             return $this->redirect($pathinfo.'/', 'list_all_personnel');
                         }
 
-                        return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\PersonnelController::listAllAction',  '_route' => 'list_all_personnel',);
+                        return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::listAllPersonnelAction',  '_route' => 'list_all_personnel',);
                     }
 
                 }
 
                 // update_personnel
                 if (0 === strpos($pathinfo, '/GCC/personnel/modifier') && preg_match('#^/GCC/personnel/modifier/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'update_personnel')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\PersonnelController::updateAction',));
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'update_personnel')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::updatePersonnelAction',));
                 }
 
                 // delete_personnel

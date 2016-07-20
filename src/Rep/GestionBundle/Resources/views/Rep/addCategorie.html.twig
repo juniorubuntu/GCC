@@ -12,18 +12,18 @@
               style="
               margin-left: -15px;
               margin-right: -25px;">
-            <div class="col-md-12"
+            <div class="col-md-12 form-group nomCP"
                  style="margin-top: 5px;">
-                <label for="poste" class="col-md-4">Nom: <span style="color: red">*</span></label>
-                <b><input type="text" class="form-control" id="poste.id" placeholder="Intitule de la categorie" style="font-size: 16px;"></b>
+                <label for="poste" class="col-md-4 control-label">Nom: <span style="color: red">*</span></label>
+                <b><input type="text" onfocus="editerFocus('nomCP', 'nom');" class="form-control" id="nomP" placeholder="Intitule de la categorie" style="font-size: 16px;"><span class="glyphicon glyphicon-remove form-control-feedback hide nom "></b>
             </div>
-            <div class="col-md-12"
+            <div class="col-md-12 form-group preCP"
                  style="margin-top: 5px;">
-                <label for="poste" class="col-md-4">Quota par mois <span style="color: red">*</span></label>
-                <b><input type="text" class="form-control" id="poste.id" placeholder="Quota du crédit par mois" style="font-size: 16px;"></b>
+                <label for="poste" class="col-md-4 control-label">Quota par mois <span style="color: red">*</span></label>
+                <b><input onfocus="editerFocus('preCP', 'pren');" type="text" class="form-control" id="prenP" placeholder="Quota du crédit par mois" style="font-size: 16px;"><span class="glyphicon glyphicon-remove form-control-feedback hide pren "></b>
             </div>
         </form>
         <a href="{{ path('list_tree_direction') }}"><button type="button" class="btn btn-success active col-md-2 col-md-offset-6"><span class="glyphicon glyphicon-remove-circle">Annuler</span></button></a>
-        <a><button type="button" class="btn btn-primary col-md-2 col-md-offset-1"><span class="glyphicon glyphicon-plus-sign">Ajouter</span></button></a>
+        <a><button onclick="validationCategorie();" type="button" class="btn btn-primary col-md-2 col-md-offset-1"><span class="glyphicon glyphicon-plus-sign">Ajouter</span></button></a>
     </div>
 {% endblock %}

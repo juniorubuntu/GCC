@@ -8,35 +8,34 @@
     {% endif %}
     <h4 class="col-md-12"><b><u>{% if update == 1 %} Modification d'un poste {% else %}Ajout d'un nouveau poste {% endif %}</u></b></h4>
     <form class="col-md-12 form-inline panel panel-primary panel-body">
-        <div class="col-md-12" 
+        <div class="col-md-12 form-group nomCP" 
              style="margin-top: 5px;">
-            <label for="poste" class="col-md-4">Nom du poste <span style="color: red">*</span></label>
-            <b><input {% if update == 1 %} value="{{posted }}" {% endif %} type="text" class="form-control poste-class" id="posteid" placeholder="Nom du poste" style="font-size: 16px;"></b>
+            <label for="poste" class="col-md-4 control-label">Nom du poste <span style="color: red">*</span></label>
+            <b><input onfocus="editerFocus('nomCP', 'nom');" {% if update == 1 %} value="{{posted }}" {% endif %} type="text" class="form-control poste-class" id="nomP" placeholder="Nom du poste" style="font-size: 16px;"><span class="glyphicon glyphicon-remove form-control-feedback hide nom "></b>
         </div>
-        <div class="col-md-12"
+        <div class="col-md-12 form-group preCP"
              style="margin-top: 5px;">
-            <label for="categorie" class="col-md-4">Categorie <span style="color: red">*</span></label>
-            <b><select class="form-control" style="font-size: 16px;">
-                    <option value="categorie.id" class="form-control" selected >{% if update == 1 %} {{posted.categorie }} {% else %}Choisir sa categorie {% endif %}</option>
+            <label for="categorie" class="col-md-4 control-label">Categorie <span style="color: red">*</span></label>
+            <b><select onfocus="editerFocus('preCP', 'pren');" id="prenP" class="form-control" style="font-size: 16px;">
+                    <option value="" class="form-control" selected >{% if update == 1 %} {{posted.categorie }} {% else %}Choisir sa categorie {% endif %}</option>
                     {% for categorie in listCategorie %}
                         <option value="categorie.id" class="form-control" style="font-size: 16px; font-weight: bold; color: black;">{{categorie}}</option>
                     {% endfor %}
-                </select></b>
+                </select><span class="glyphicon glyphicon-remove form-control-feedback hide pren "></b>
             <a href="{{ path('add_categorie') }}" style="font-size: 16px; cursor: pointer; margin-left: 20px" class=""><span class="glyphicon glyphicon-exclamation-sign"><u><b>Catégorie inexistante</b></u></span></a>
         </div>
-        <div class="col-md-12"
+        <div class="col-md-12 form-group matCP"
              style="margin-top: 5px;">
-            <label for="poste" class="col-md-4">Occupant <span style="color: red">*</span></label>
-            <b><select class="form-control" style="font-size: 16px;">
-                    <option value="occupant.id" class="form-control" selected>{% if update == 1 %} {{posted.occupant }} {% else %} Choisir l'occupant {% endif %}</option>
+            <label for="poste" class="col-md-4 control-label">Occupant <span style="color: red">*</span></label>
+            <b><select onfocus="editerFocus('matCP', 'mat');" id="matP" class="form-control" style="font-size: 16px;">
+                    <option value="" class="form-control" selected>{% if update == 1 %} {{posted.occupant }} {% else %} Choisir l'occupant {% endif %}</option>
                     {% for occupant in listOccupant %}
                         <option value="categorie.id" class="form-control" style="font-size: 16px; font-weight: bold; color: black;">{{occupant}}</option>
                     {% endfor %}
-                </select>
-            </b>
+                </select><span class="glyphicon glyphicon-remove form-control-feedback hide mat "></b>
             <a href="{{ path('add_personnel') }}" style="font-size: 16px; cursor: pointer; margin-left: 20px" class=""><span class="glyphicon glyphicon-plus-sign"><u><b>Nouveau personnel</b></u></span></a>
         </div>
-        <div class="col-md-12"
+        <div class="col-md-12 form-group"
              style="margin-top: 5px;">
             <label for="poste" class="col-md-4">Observation</label>
             <textarea type="" class="form-control" id="poste.id" placeholder="Observations" style="
@@ -45,12 +44,12 @@
                       font-size: 16px;
                       height: 151px;"> {% if update == 1 %} {{posted.observation }} {% else %} Observations{% endif %} </textarea>
         </div>
-        <div class="col-md-12"
+        <div class="col-md-12 form-group"
              style="margin-top: 5px;">
             <label for="poste" class="col-md-4">Rataché à: <span style="color: red">*</span></label>
             <nav type="" class="form-control" id="poste.id" style="font-size: 16px;"><b>{{aDetailler}}</b></nav>
         </div>
     </form>
     <a href="{{ path('list_detail_direction', {'id': aDetailler.id}) }}"><button type="button" class="btn btn-success active col-md-2 col-md-offset-6"><span class="glyphicon glyphicon-remove-circle">Annuler</span></button></a>
-    <a><button type="button" class="btn btn-primary col-md-2 col-md-offset-2"><span class="glyphicon glyphicon-plus-sign">Ajouter</span></button></a>
+    <a><button onclick="validationFormPoste();" type="button" class="btn btn-primary col-md-2 col-md-offset-2"><span class="glyphicon glyphicon-plus-sign">Ajouter</span></button></a>
 {% endblock %}

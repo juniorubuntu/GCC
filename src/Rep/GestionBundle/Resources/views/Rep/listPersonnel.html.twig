@@ -1,0 +1,55 @@
+{% extends "RepGestionBundle:Rep:accueil.html.twig" %}
+{% block title %} Gestion - Personnels (Liste){% endblock %}
+
+{% block detail %}
+
+    <div class="col-md-7  well panel-primary active">
+        <div class="panel panel-heading col-md-12" style="
+             margin-left: -15px;
+             margin-right: -25px;">
+            <strong style="font-size: 18px"><u>Gestion du Personnel</u></strong>
+        </div>
+        {% block poste %}
+            <table class="col-md-12 table table-bordered" style="
+                   margin-left: -15px;
+                   margin-right: -25px;">
+                <div class="form-group col-md-12">
+                    <u class="col-md-12" style="
+                         font-weight: bold;
+                         font-size: 28px; ">Personnel travaillant à la Camtel</u>
+                    <input type="text" class="has-success" style="border-radius: 5px; font-size: 18px; height: 30px;" placeholder="Rechercher"/>
+                </div>
+                <thead class="panel panel-primary active panel-heading">
+                    <tr>
+                        <th>Noms et prénoms</th>
+                        <th>Matricules</th>
+                        <th>Contacts</th>
+                        <th>Emails</th>
+                        <th>Dates d'entrée</th>
+                        <th>Decisions</th>
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for personnel in personnels %}
+                        <tr>
+                            <td><b>{{ personnel }}</b></td>
+                            <td><b>{{ personnel.matricule }}</b></td>
+                            <td><b>{{ personnel.numTel }}</b></td>
+                            <td><b>{{ personnel.email }}</b></td>
+                            <td><b>{{ personnel.dateRecru | date("m/d/Y") }}</b></td>
+                            <td><b>{{ personnel.refDecision }}</b></td>
+                            <td><a href="{{ path('update_personnel', {'id': personnel.id}) }}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button></a></td>
+                            <td><a href="{{ path('delete_personnel', {'id': personnel.id}) }}"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{{ path('list_tree_direction') }}"><button type="button" class="btn btn-primary col-md-3"><span class="glyphicon glyphicon-arrow-left"> Retour à l'accueil</span></button></a>
+        {% endblock %}
+        <div class="panel panel-primary col-md-12" style="color: red; margin-top: 20px">
+            <b><u>NB:</u> Les actions sur les informations ci-dessus sont irréversibles. Soyez prudent lors des sélections.</b>
+        </div>
+    </div>
+{% endblock %}

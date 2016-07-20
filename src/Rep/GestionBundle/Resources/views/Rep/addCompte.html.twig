@@ -16,30 +16,30 @@
               style="
               margin-left: -15px;
               margin-right: -25px;">
-            <div class="col-md-12"
+            <div class="col-md-12 form-group preCP"
                  style="margin-top: 5px;">
                 <label for="poste" class="col-md-4">Titulaire <span style="color: red">*</span></label>
-                <b><select class="form-control" style="font-size: 16px;">
-                        <option value="occupant.id" class="form-control" selected>{% if update == 1 %} {{ compte.personnel }} {% else %} Choisir le titulaire {% endif %}</option>
+                <b><select onfocus="editerFocus('preCP', 'pren');" id="prenP" class="form-control" style="font-size: 16px;">
+                        <option value="" class="form-control" selected>{% if update == 1 %} {{ compte.personnel }} {% else %} Choisir le titulaire {% endif %}</option>
                         {% for occupant in listOccupant %}
                             <option value="categorie.id" class="form-control" style="font-size: 16px; font-weight: bold; color: black;">{{occupant}}</option>
                         {% endfor %}
-                    </select>
+                    </select><span class="glyphicon glyphicon-remove form-control-feedback hide pren ">
                 </b>
                 <a href="{{ path('add_personnel') }}" style="font-size: 16px; cursor: pointer; margin-left: 20px" class=""><span class="glyphicon glyphicon-plus-sign"><u><b>Titulaire innexistant</b></u></span></a>
             </div>
-            <div class="col-md-12"
+            <div class="col-md-12 form-group matCP"
                  style="margin-top: 5px;">
-                <label for="poste" class="col-md-4">Login <span style="color: red">*</span></label>
-                <b><input type="text" {% if update == 1 %} value="{{ compte.login }}" {% endif %}class="form-control" id="poste.id" placeholder="Login du compte" style="font-size: 16px;"></b>
+                <label for="poste" class="col-md-4 control-label">Login <span style="color: red">*</span></label>
+                <b><input onfocus="editerFocus('matCP', 'mat');" type="text" {% if update == 1 %} value="{{ compte.login }}" {% endif %}class="form-control" id="matP" placeholder="Login du compte" style="font-size: 16px;"><span class="glyphicon glyphicon-remove form-control-feedback hide mat "></b>
             </div>
-            <div class="col-md-12"
+            <div class="col-md-12 form-group telCP"
                  style="margin-top: 5px;">
                 <label for="poste" class="col-md-4">Mot de passe <span style="color: red">*</span></label>
-                <b><input type="text" {% if update == 1 %} value="{{ compte.motPasse }}" {% endif %} class="form-control" id="poste.id" placeholder="Mot de passe" style="font-size: 16px;"></b>
+                <b><input onfocus="editerFocus('telCP', 'tel');" type="text" {% if update == 1 %} value="{{ compte.motPasse }}" {% endif %} class="form-control" id="telP" placeholder="Mot de passe" style="font-size: 16px;"><span class="glyphicon glyphicon-remove form-control-feedback hide tel "></b>
             </div>
         </form>
         <a href="{{ path('list_tree_direction') }}"><button type="button" class="btn btn-success active col-md-2 col-md-offset-6"><span class="glyphicon glyphicon-remove-circle">Annuler</span></button></a>
-        <a><button type="button" class="btn btn-primary col-md-2 col-md-offset-1"><span class="glyphicon glyphicon-plus-sign">{% if update == 1 %}Modifier{% else %}Ajouter{% endif %}</span></button></a>
+        <a><button onclick="validationCompte();" type="button" class="btn btn-primary col-md-2 col-md-offset-1"><span class="glyphicon glyphicon-plus-sign">{% if update == 1 %}Modifier{% else %}Ajouter{% endif %}</span></button></a>
     </div>
 {% endblock %}

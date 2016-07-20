@@ -37,9 +37,9 @@
                                     <td><b>{{ poste }}</b></td>
                                     <td><b>{{ poste.occupant }}</b></td>
                                     <td style="color: blue"><b>{{ poste.categorie.quota }}</b></td>
-                                    <td><a href="{{ path('update_poste', {'id': aDetailler.id, 'idPoste': poste.id}) }}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit">Modifier</span></button></a></td>
-                                    <td><a><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash">Supprimer</span></button></a></td>
-                                    <td><a><button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-send"> Mail</span></button></a></td>
+                                    <td><a href="{{ path('update_poste', {'id': aDetailler.id, 'idPoste': poste.id}) }}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button></a></td>
+                                    <td><a><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a></td>
+                                    <td><a><button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-send"></span></button></a></td>
                                 </tr>
                             {% endfor %}
                         </tbody>
@@ -60,7 +60,7 @@
                             <tr>
                                 <th>Démembrements</th>
                                 <th>Modifier</th>
-                                <th>Détacher de cette branche</th>
+                                <th>Détacher</th>
                                 <th>Supprimer</th>
                             </tr>
                         </thead>
@@ -68,9 +68,9 @@
                             {% for sousDir in listSousDir %}
                                 <tr>
                                     <td><b>{{ sousDir }}</b></td>
-                                    <td><a href="{{ path('update_direction', {'id':aDetailler.id, 'idDir':sousDir.id }) }}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit">Modifier</span></button></a></td>
-                                    <td><a><button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-minus">Détacher</span></button></a></td>
-                                    <td><a><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash">Supprimer</span></button></a></td>
+                                    <td><a href="{{ path('update_direction', {'id':aDetailler.id, 'idDir':sousDir.id }) }}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button></a></td>
+                                    <td><a><button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-minus"></span></button></a></td>
+                                    <td><a><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a></td>
                                 </tr>
                             {% endfor %}
                         </tbody>

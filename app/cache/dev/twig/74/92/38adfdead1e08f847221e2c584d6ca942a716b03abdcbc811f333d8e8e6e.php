@@ -125,9 +125,9 @@ class __TwigTemplate_749238adfdead1e08f847221e2c584d6ca942a716b03abdcbc811f333d8
                                     <td><a href=\"";
             // line 40
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("update_poste", array("id" => $this->getAttribute((isset($context["aDetailler"]) ? $context["aDetailler"] : $this->getContext($context, "aDetailler")), "id"), "idPoste" => $this->getAttribute((isset($context["poste"]) ? $context["poste"] : $this->getContext($context, "poste")), "id"))), "html", null, true);
-            echo "\"><button type=\"button\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-edit\">Modifier</span></button></a></td>
-                                    <td><a><button type=\"button\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-trash\">Supprimer</span></button></a></td>
-                                    <td><a><button type=\"button\" class=\"btn btn-warning\"><span class=\"glyphicon glyphicon-send\"> Mail</span></button></a></td>
+            echo "\"><button type=\"button\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-edit\"></span></button></a></td>
+                                    <td><a><button type=\"button\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-trash\"></span></button></a></td>
+                                    <td><a><button type=\"button\" class=\"btn btn-warning\"><span class=\"glyphicon glyphicon-send\"></span></button></a></td>
                                 </tr>
                             ";
         }
@@ -154,7 +154,7 @@ class __TwigTemplate_749238adfdead1e08f847221e2c584d6ca942a716b03abdcbc811f333d8
                             <tr>
                                 <th>Démembrements</th>
                                 <th>Modifier</th>
-                                <th>Détacher de cette branche</th>
+                                <th>Détacher</th>
                                 <th>Supprimer</th>
                             </tr>
                         </thead>
@@ -173,9 +173,9 @@ class __TwigTemplate_749238adfdead1e08f847221e2c584d6ca942a716b03abdcbc811f333d8
                                     <td><a href=\"";
             // line 71
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("update_direction", array("id" => $this->getAttribute((isset($context["aDetailler"]) ? $context["aDetailler"] : $this->getContext($context, "aDetailler")), "id"), "idDir" => $this->getAttribute((isset($context["sousDir"]) ? $context["sousDir"] : $this->getContext($context, "sousDir")), "id"))), "html", null, true);
-            echo "\"><button type=\"button\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-edit\">Modifier</span></button></a></td>
-                                    <td><a><button type=\"button\" class=\"btn btn-warning\"><span class=\"glyphicon glyphicon-minus\">Détacher</span></button></a></td>
-                                    <td><a><button type=\"button\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-trash\">Supprimer</span></button></a></td>
+            echo "\"><button type=\"button\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-edit\"></span></button></a></td>
+                                    <td><a><button type=\"button\" class=\"btn btn-warning\"><span class=\"glyphicon glyphicon-minus\"></span></button></a></td>
+                                    <td><a><button type=\"button\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-trash\"></span></button></a></td>
                                 </tr>
                             ";
         }

@@ -55,11 +55,11 @@ list_one_personnel:
         
 list_all_personnel:
     pattern:  /personnel/listAll/
-    defaults: { _controller: RepGestionBundle:Personnel:listAll }
+    defaults: { _controller: RepGestionBundle:Direction:listAllPersonnel }
     
 update_personnel:
     pattern:  /personnel/modifier/{id}
-    defaults: { _controller: RepGestionBundle:Personnel:update }
+    defaults: { _controller: RepGestionBundle:Direction:updatePersonnel }
     requirements:
         id: \d+
         

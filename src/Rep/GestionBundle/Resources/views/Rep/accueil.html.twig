@@ -53,8 +53,9 @@
                 </scroll>
                 <div class="panel-footer col-md-12" style="
                      margin-left: -15px;
-                     margin-right: -25px;">
-                    <button class="btn btn-primary"><span class="glyphicon glyphicon-save"> Importer des données</span></button>
+                     margin-right: -25px;
+                     font-size: 16px;">
+                    <a href="{{ path('list_all_personnel') }}"><button class="btn btn-primary"><span class="glyphicon glyphicon-user"><b> Gérer le personnel</b></span></button></a>
                 </div>
             </div>
             {% if aDetailler is defined %}

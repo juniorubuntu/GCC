@@ -84,6 +84,7 @@
   'RepGestionBundle:Rep:Start.html.twig' => '/var/www/html/GCC/src/Rep/GestionBundle/Resources/views/Rep/Start.html.twig',
   'RepGestionBundle:Rep:listCompte.html.twig' => '/var/www/html/GCC/src/Rep/GestionBundle/Resources/views/Rep/listCompte.html.twig',
   'RepGestionBundle:Rep:addBranche.html.twig' => '/var/www/html/GCC/src/Rep/GestionBundle/Resources/views/Rep/addBranche.html.twig',
+  'RepGestionBundle:Rep:listPersonnel.html.twig' => '/var/www/html/GCC/src/Rep/GestionBundle/Resources/views/Rep/listPersonnel.html.twig',
   'RepGestionBundle:Rep:addCompte.html.twig' => '/var/www/html/GCC/src/Rep/GestionBundle/Resources/views/Rep/addCompte.html.twig',
   'RepGestionBundle:Rep:accueil.html.twig' => '/var/www/html/GCC/src/Rep/GestionBundle/Resources/views/Rep/accueil.html.twig',
   'RepGestionBundle:Rep:addCategorie.html.twig' => '/var/www/html/GCC/src/Rep/GestionBundle/Resources/views/Rep/addCategorie.html.twig',

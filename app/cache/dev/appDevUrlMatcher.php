@@ -400,9 +400,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             }
 
-            // add_branche
-            if (0 === strpos($pathinfo, '/GCC/branche/ajouterAlaDirection') && preg_match('#^/GCC/branche/ajouterAlaDirection/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'add_branche')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::addBrancheAction',));
+            if (0 === strpos($pathinfo, '/GCC/branche')) {
+                // add_branche
+                if (0 === strpos($pathinfo, '/GCC/branche/ajouterAlaDirection') && preg_match('#^/GCC/branche/ajouterAlaDirection/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'add_branche')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::addBrancheAction',));
+                }
+
+                // export_data_branche
+                if (0 === strpos($pathinfo, '/GCC/branche/export-Donnees') && preg_match('#^/GCC/branche/export\\-Donnees/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'export_data_branche')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::exportDirectionDataAction',));
+                }
+
             }
 
         }

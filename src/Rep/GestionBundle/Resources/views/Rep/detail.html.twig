@@ -7,7 +7,7 @@
              margin-left: -15px;
              margin-right: -25px;">
             <strong style="font-size: 18px"><u>Détails sur la branche sélectionnée</u></strong>
-            <button type="button" class="btn btn-primary active pull-right"><span class="glyphicon glyphicon-print"></span> Exporter les données</button>
+            <a href="{{ path('export_data_branche', {'id': aDetailler.id}) }}"><button type="button" class="btn btn-primary active pull-right"><span class="glyphicon glyphicon-print"></span> Exporter les données</button></a>
         </div>
         <scroll class="well col-md-12" style="
                 color: #04101b;

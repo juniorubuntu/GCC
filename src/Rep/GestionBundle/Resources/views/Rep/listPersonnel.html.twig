@@ -21,20 +21,20 @@
                 </div>
                 <thead class="panel panel-primary active panel-heading">
                     <tr>
-                        <th>Noms et prénoms</th>
+                        <th style="font-size: 18px;">Noms et prénoms</th>
                         <th>Matricules</th>
                         <th>Contacts</th>
                         <th>Emails</th>
                         <th>Dates d'entrée</th>
                         <th>Decisions</th>
                         <th>Modifier</th>
-                        <th>Supprimer</th>
+                        <th>Suppr.</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for personnel in personnels %}
                         <tr>
-                            <td><b>{{ personnel }}</b></td>
+                            <td style="font-size: 18px;"><b>{{ personnel }}</b></td>
                             <td><b>{{ personnel.matricule }}</b></td>
                             <td><b>{{ personnel.numTel }}</b></td>
                             <td><b>{{ personnel.email }}</b></td>

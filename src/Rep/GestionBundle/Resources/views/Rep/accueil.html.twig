@@ -38,62 +38,64 @@
             </div>
 
         </div>
-        <div class="col-md-12 test">
-            <div class="panel-primary col-md-5">
-                <div class="panel panel-heading col-md-12" style="
-                     margin-left: -15px;
-                     margin-right: -25px;">
-                    <strong style="font-size: 18px"><u>Choisir ou dérouler la branche à manipuler</u></strong>
-                    <button type="button" class="btn btn-success pull-right"><span class="glyphicon glyphicon-refresh"></span>Actualiser</button>
-                </div>
-                <scroll class="panel-body" style="
-                        color: #04101b;
-                        font-size: 16px;">
-                    {{arbreDirection | raw}}
-                </scroll>
-                <div class="panel-footer col-md-12" style="
-                     margin-left: -15px;
-                     margin-right: -25px;
-                     font-size: 16px;">
-                    <a href="{{ path('list_all_personnel') }}"><button class="btn btn-primary"><span class="glyphicon glyphicon-user"><b> Gérer le personnel</b></span></button></a>
-                </div>
-            </div>
-            {% if aDetailler is defined %}
-                <nav class="hide">{{ aDetailler.id }}</nav>
-                {%  endif %}
-                {% block detail %}
-                <div class="col-md-7 panel-primary active">
+        {% block quota %}
+            <div class="col-md-12 test">
+                <div class="panel-primary col-md-5">
                     <div class="panel panel-heading col-md-12" style="
                          margin-left: -15px;
                          margin-right: -25px;">
-                        <strong style="font-size: 18px"><u>Détails sur la branche sélectionnée</u></strong>
-                        <button type="button" class="btn btn-primary active pull-right"><span class="glyphicon glyphicon-print"></span> Exporter les données</button>
+                        <strong style="font-size: 18px"><u>Choisir ou dérouler la branche à manipuler</u></strong>
+                        <button type="button" class="btn btn-success pull-right"><span class="glyphicon glyphicon-refresh"></span>Actualiser</button>
                     </div>
-                    <scroll class="well col-md-12" style="
+                    <scroll class="panel-body" style="
                             color: #04101b;
-                            font-size: 16px;
-                            margin-left: -15px;
-                            margin-right: -25px;
-                            margin-top: -15px;
-                            margin-bottom: 2px;">
-                        <center><h4>Vous êtes au niveau de: <b>Example de branche</b></h4></center>
-                        <div class="chef">
-
-                        </div>
-                        <div class="poste">
-
-                        </div>
-                        <div class="retour">
-
-                        </div>
+                            font-size: 16px;">
+                        {{arbreDirection | raw}}
                     </scroll>
                     <div class="panel-footer col-md-12" style="
                          margin-left: -15px;
-                         margin-right: -25px;">
-                        <b>Les informations ci-dessus sont modifiables. N'oubliez pas d'enregistrer en sortant sinon elle seront toutes perdues!</b>
+                         margin-right: -25px;
+                         font-size: 16px;">
+                        <a href="{{ path('list_all_personnel') }}"><button class="btn btn-primary"><span class="glyphicon glyphicon-user"><b> Gérer le personnel</b></span></button></a>
                     </div>
                 </div>
-            {% endblock %}
-        </div>
+                {% if aDetailler is defined %}
+                    <nav class="hide">{{ aDetailler.id }}</nav>
+                    {%  endif %}
+                    {% block detail %}
+                    <div class="col-md-7 panel-primary active">
+                        <div class="panel panel-heading col-md-12" style="
+                             margin-left: -15px;
+                             margin-right: -25px;">
+                            <strong style="font-size: 18px"><u>Détails sur la branche sélectionnée</u></strong>
+                            <button type="button" class="btn btn-primary active pull-right"><span class="glyphicon glyphicon-print"></span> Exporter les données</button>
+                        </div>
+                        <scroll class="well col-md-12" style="
+                                color: #04101b;
+                                font-size: 16px;
+                                margin-left: -15px;
+                                margin-right: -25px;
+                                margin-top: -15px;
+                                margin-bottom: 2px;">
+                            <center><h4>Vous êtes au niveau de: <b>Example de branche</b></h4></center>
+                            <div class="chef">
+
+                            </div>
+                            <div class="poste">
+
+                            </div>
+                            <div class="retour">
+
+                            </div>
+                        </scroll>
+                        <div class="panel-footer col-md-12" style="
+                             margin-left: -15px;
+                             margin-right: -25px;">
+                            <b>Les informations ci-dessus sont modifiables. N'oubliez pas d'enregistrer en sortant sinon elle seront toutes perdues!</b>
+                        </div>
+                    </div>
+                {% endblock %}
+            </div>
+        {% endblock %}
     </div>
 {% endblock %}

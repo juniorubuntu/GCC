@@ -215,3 +215,9 @@ add_branche:
     defaults: { _controller: RepGestionBundle:Direction:addBranche }
     requirements:
         id: \d+
+        
+export_data_branche:
+    pattern:  /branche/export-Donnees/{id}
+    defaults: { _controller: RepGestionBundle:Direction:exportDirectionData }
+    requirements:
+        id: \d+

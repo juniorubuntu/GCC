@@ -18,13 +18,31 @@ use Rep\GestionBundle\Form\Type;
 class DirectionController extends Controller {
 
     private $treeDir = '';
+    private $quotaData = '';
+    private $total = 0;
 
     public function getTreeDir() {
         return $this->treeDir;
     }
 
+    function getQuotaData() {
+        return $this->quotaData;
+    }
+
+    function setQuotaData($quotaData) {
+        $this->quotaData .= $quotaData;
+    }
+
     public function setTreeDir($treeDir) {
         $this->treeDir .= $treeDir;
+    }
+
+    function getTotal() {
+        return $this->total;
+    }
+
+    function setTotal($total) {
+        $this->total += $total;
     }
 
     public function ajouterAction() {
@@ -400,6 +418,57 @@ class DirectionController extends Controller {
 
     public function deleteCompteAction() {
         
+    }
+
+    function exportDirectionDataAction($id) {
+        $aDetailler = $this->findById($id);
+
+        $listPoste = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Poste')
+                ->findBy(array('direction' => $aDetailler));
+
+        $this->buildQuotaData($aDetailler);
+
+        $export = $this->getQuotaData();
+
+        $direction = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Direction')
+                ->findOneBy(array('directionPere' => NULL));
+        $this->generate_tree_list($direction);
+        return $this->render('RepGestionBundle:Rep:exportData.html.twig', array('arbreDirection' => $this->getTreeDir(),
+                    'aDetailler' => $aDetailler,
+                    'listPoste' => $listPoste,
+                    'export' => $export,
+                    'total' => $this->getTotal()));
+    }
+
+    function buildQuotaData(Direction $direction, $i = 1) {
+        
+        require_once '/GCC/PHPExcel/Classes/PHPExcel.php';
+        
+        $listPoste = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Poste')
+                ->findBy(array('direction' => $direction));
+
+        foreach ($listPoste as $poste) {
+            $this->setQuotaData(
+                    '<tr>
+                        <td><b>' . $i++ . '</b></td>
+                        <td><b>' . $poste->getOccupant() . '</b></td>
+                        <td><b>' . $poste->getOccupant()->getMatricule() . '</b></td>                                   
+                        <td><b>' . $poste->getOccupant()->getNumTel() . '</b></td>                                   
+                        <td style="color: blue"><b>' . $poste->getCategorie()->getQuota() . '</b></td>
+                        <td><b>' . $poste->getOccupant()->getDateRecru()->format('d-m-Y') . '</b></td>
+                        <td><b>' . $poste->getOccupant()->getRefDecision() . '</b></td>
+                        <td>' . $poste->getObservation() . '</td>
+                        <td><b>' . $direction . '</b></td>
+                    </tr>');
+            $this->setTotal($poste->getCategorie()->getQuota());
+        }
+        $allSousDir = $this->listSousDir($direction);
+        foreach ($allSousDir as $sousDir) {
+            $this->buildQuotaData($sousDir, $i);
+        }
     }
 
 }

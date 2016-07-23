@@ -3,14 +3,14 @@
 
 {% block detail %}
     {% set update = 0 %}
-    {% if branched is defined %}
+    {% if personnel is defined %}
         {% set update = 1 %}
     {% endif %}
     <div class="col-md-7 panel-primary active">
         <div class="panel panel-heading col-md-12" style="
              margin-left: -15px;
              margin-right: -25px;">
-            <strong style="font-size: 18px"><u>Ajout d'un nouveau personnel</u></strong>
+            <strong style="font-size: 18px"><u>{% if update == 1 %} Modification d'un personnel {% else %} Ajout d'un nouveau personnel {% endif %}</u></strong>
         </div>
         <form class="col-md-12 form-inline panel panel-primary panel-body"
               style="
@@ -19,38 +19,39 @@
             <div class="col-md-12 form-group nomCP"
                  style="margin-top: 5px;">
                 <label for="poste" class="col-md-4 control-label">Nom: <span style="color: red">*</span></label>
-                <b><input onfocus="editerFocus('nomCP', 'nom');" type="text" class="form-control" id="nomP" name="nomP" placeholder="Nom du personnel" style="font-size: 16px;"><span class="glyphicon glyphicon-remove form-control-feedback hide nom "></span></b>
+                <b><input {% if update == 1 %} value="{{personnel.nom}}" {% endif %} onfocus="editerFocus('nomCP', 'nom');" type="text" class="form-control" id="nomP" name="nomP" placeholder="Nom du personnel" style="font-size: 16px;"><span class="glyphicon glyphicon-remove form-control-feedback hide nom "></span></b>
             </div>
             <div class="col-md-12 form-group preCP" 
                  style="margin-top: 5px;">
                 <label for="poste" class="col-md-4 control-label">Prénom <span style="color: red">*</span></label>
-                <b><input onfocus="editerFocus('preCP', 'pren');" type="text" class="form-control" id="prenP" name="prenP" placeholder="Nom du prénom" style="font-size: 16px;"><span class="glyphicon glyphicon-remove form-control-feedback hide pren "></b>
+                <b><input {% if update == 1 %} value="{{personnel.prenom}}" {% endif %} onfocus="editerFocus('preCP', 'pren');" type="text" class="form-control" id="prenP" name="prenP" placeholder="Nom du prénom" style="font-size: 16px;"><span class="glyphicon glyphicon-remove form-control-feedback hide pren "></b>
             </div>
             <div class="col-md-12 form-group matCP" 
                  style="margin-top: 5px;">
                 <label for="poste" class="col-md-4 control-label">Matricule <span style="color: red">*</span></label>
-                <b><input onfocus="editerFocus('matCP', 'mat');" type="text" class="form-control" id="matP" name="matP" placeholder="Matricule" style="font-size: 16px;"><span class="glyphicon glyphicon-remove form-control-feedback hide mat "></b>
+                <b><input {% if update == 1 %} value="{{personnel.matricule}}" {% endif %} onfocus="editerFocus('matCP', 'mat');" type="text" class="form-control" id="matP" name="matP" placeholder="Matricule" style="font-size: 16px;"><span class="glyphicon glyphicon-remove form-control-feedback hide mat "></b>
             </div>
             <div class="col-md-12 form-group telCP"
                  style="margin-top: 5px;">
                 <label for="poste" class="col-md-4 control-label">Téléphone <span style="color: red">*</span></label>
-                <b><input onfocus="editerFocus('telCP', 'tel');" type="text" class="form-control" id="telP" name="telP" placeholder="Téléphone" style="font-size: 16px;"><span class="glyphicon glyphicon-remove form-control-feedback hide tel "></b>
+                <b><input {% if update == 1 %} value="{{personnel.numTel}}" {% endif %} onfocus="editerFocus('telCP', 'tel');" type="text" class="form-control" id="telP" name="telP" placeholder="Téléphone" style="font-size: 16px;"><span class="glyphicon glyphicon-remove form-control-feedback hide tel "></b>
             </div>
             <div class="col-md-12 emailCP"
                  style="margin-top: 5px;">
                 <label for="poste" class="col-md-4 control-label">Email <span style="color: red">*</span></label>
-                <b><input onfocus="editerFocus('emailCP', 'email');" type="text" class="form-control" name="emailP" id="emailP" placeholder="juniorubuntu@gmail.com"><span class="glyphicon glyphicon-remove form-control-feedback hide email "></b>
+                <b><input {% if update == 1 %} value="{{personnel.email}}" {% endif %} onfocus="editerFocus('emailCP', 'email');" type="text" class="form-control" name="emailP" id="emailP" placeholder="juniorubuntu@gmail.com"><span class="glyphicon glyphicon-remove form-control-feedback hide email "></b>
             </div>
             <div class="col-md-12 dateCP"
                  style="margin-top: 5px;">
                 <label for="poste" class="col-md-4 control-label">Date Recrutement <span style="color: red">*</span></label>
-                <b><input type="date" class="form-control date-choose hide" name="dateP" id="dateP" style="font-size: 16px;" onblur="cacheDate();"><span class="glyphicon glyphicon-remove form-control-feedback hide date "></b>
-                <b><input {% if update == 1 %} value="{{branched.dateCreation | date("m/d/Y") }}" {% endif %} type="text" placeholder="Date de recrutement" class="form-control date-choose-aff" onfocus="afficheDate(); editerFocus('dateCP', 'date');" id="dateP" style="font-size: 16px;"></b>
+                <b><input {% if update == 1 %} value="{{personnel.dateRecru | date("m/d/Y") }}" {% endif %} type="date" class="form-control date-choose hide" name="dateP" id="" style="font-size: 16px;" onblur="cacheDate();"><span class="glyphicon glyphicon-remove form-control-feedback hide date "></b>
+                <b><input {% if update == 1 %} value="{{personnel.dateRecru | date("m/d/Y") }}" {% endif %} type="text" placeholder="Date de recrutement" class="form-control date-choose-aff" onfocus="afficheDate();
+                        editerFocus('dateCP', 'date');" id="dateP" style="font-size: 16px;"></b>
             </div>
             <div class="col-md-12 deciCP"
                  style="margin-top: 5px;">
                 <label for="poste" class="col-md-4 control-label">Décison <span style="color: red">*</span></label>
-                <b><input onfocus="editerFocus('deciCP', 'deci');" type="text" class="form-control" id="deciP"  placeholder="Décision d'admission" style="font-size: 16px;"><span class="glyphicon glyphicon-remove form-control-feedback hide deci "></b>
+                <b><input {% if update == 1 %} value="{{personnel.refDecision}}" {% endif %} onfocus="editerFocus('deciCP', 'deci');" type="text" class="form-control" id="deciP"  placeholder="Décision d'admission" style="font-size: 16px;"><span class="glyphicon glyphicon-remove form-control-feedback hide deci "></b>
             </div>
         </form>
         <a href="{{ path('list_tree_direction') }}"><button type="button" class="btn btn-success active col-md-2 col-md-offset-6"><span class="glyphicon glyphicon-remove-circle">Annuler</span></button></a>

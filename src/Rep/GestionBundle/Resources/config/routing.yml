@@ -221,3 +221,8 @@ export_data_branche:
     defaults: { _controller: RepGestionBundle:Direction:exportDirectionData }
     requirements:
         id: \d+
+        
+        
+impression_data:
+    pattern: //branche/{id}/impression
+    defaults: { _controller: RepGestionBundle:Direction:buildExcel }

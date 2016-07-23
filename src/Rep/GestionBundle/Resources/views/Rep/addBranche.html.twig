@@ -16,8 +16,8 @@
         <div class="col-md-12 form-group dateCP"
              style="margin-top: 5px;">
             <label for="poste" class="col-md-4 control-label">Date Création <span style="color: red">*</span></label>
-            <b><input type="date" class="form-control date-choose hide" style="font-size: 16px;" id="dateB" onblur="cacheDate();"><span class="glyphicon glyphicon-remove form-control-feedback hide date "></b>
-            <b><input {% if update == 1 %} value="{{branched.dateCreation | date("m/d/Y") }}" {% endif %} type="text" placeholder="Date de création" class="form-control date-choose-aff" onfocus="afficheDate(); editerFocus('dateCP', 'date');" style="font-size: 16px;"></b>
+            <b><input {% if update == 1 %} value="{{branched.dateCreation | date("m/d/Y") }}" {% endif %} type="date" class="form-control date-choose hide" style="font-size: 16px;" id="dateB" onblur="cacheDate();"><span class="glyphicon glyphicon-remove form-control-feedback hide date "></b>
+            <b><input {% if update == 1 %} value="{{branched.dateCreation | date("m/d/Y") }}" {% endif %} type="text" placeholder="Date de création" class="form-control date-choose-aff" onfocus="afficheDate(); editerFocus('dateCP', 'date');" id="dateB" style="font-size: 16px;"></b>
         </div>
         <div class="col-md-12"
              style="margin-top: 5px;">

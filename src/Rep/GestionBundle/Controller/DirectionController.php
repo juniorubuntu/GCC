@@ -14,6 +14,7 @@ use Rep\GestionBundle\Entity\Direction;
 use Rep\GestionBundle\Entity\Poste;
 use Symfony\Component\Form\FormBuilder;
 use Rep\GestionBundle\Form\Type;
+use Rep\GestionBundle\Entity\ExcelExport;
 
 class DirectionController extends Controller {
 
@@ -309,7 +310,7 @@ class DirectionController extends Controller {
         $allSousDir = $this->listSousDir($direction);
         $nbre = count($allSousDir);
         if ($nbre >= 1) {
-            $this->setTreeDir('<ul style=" color: #efa35c; border-left: 1px solid rgba(222, 212, 205, 0.14);" id="id_' . $direction->getId() . '" class= "expd pere_' . $parent . '">'
+            $this->setTreeDir('<ul style=" color: #efa35c; border-left: 1px solid rgba(222, 212, 205, 0.14); margin-left: -16px;" id="id_' . $direction->getId() . '" class= "expd pere_' . $parent . '">'
                     . '<li type="button" style=" list-style: none; margin-left: -48px;">'
                     . '<span onclick="expanNode(' . $direction->getId() . ')" class="list_' . $direction->getId() . ' glyphicon glyphicon-minus-sign" style="margin-left: 25px;"> </span>'
                     . '<a href="http://localhost/GCC/web/app_dev.php/GCC/direction/detail/' . $direction->getId() . '">'
@@ -319,7 +320,7 @@ class DirectionController extends Controller {
                     . '</li>'
                     . '</a>');
         } else {
-            $this->setTreeDir('<ul style="color: #efa35c; border-left: 1px solid rgba(222, 212, 205, 0.14);" id="id_' . $direction->getId() . '" class= "expd pere_' . $parent . '">'
+            $this->setTreeDir('<ul style="color: #efa35c; border-left: 1px solid rgba(222, 212, 205, 0.14); margin-left: -16px;" id="id_' . $direction->getId() . '" class= "expd pere_' . $parent . '">'
                     . '<li type="button" style="list-style: none; margin-left: -48px;">'
                     . '<span onclick="expanNode(' . $direction->getId() . ')" class="list_' . $direction->getId() . ' glyphicon glyphicon-triangle-right" style="margin-left: 25px;"> </span>'
                     . '<a href="http://localhost/GCC/web/app_dev.php/GCC/direction/detail/' . $direction->getId() . '">'
@@ -443,9 +444,8 @@ class DirectionController extends Controller {
     }
 
     function buildQuotaData(Direction $direction, $i = 1) {
-        
-        require_once '/GCC/PHPExcel/Classes/PHPExcel.php';
-        
+
+
         $listPoste = $this->getDoctrine()
                 ->getRepository('RepGestionBundle:Poste')
                 ->findBy(array('direction' => $direction));
@@ -463,11 +463,114 @@ class DirectionController extends Controller {
                         <td>' . $poste->getObservation() . '</td>
                         <td><b>' . $direction . '</b></td>
                     </tr>');
+
             $this->setTotal($poste->getCategorie()->getQuota());
         }
         $allSousDir = $this->listSousDir($direction);
         foreach ($allSousDir as $sousDir) {
             $this->buildQuotaData($sousDir, $i);
+        }
+    }
+
+    private $somme = 0;
+    private $index = 2;
+
+    function buildExcelAction($id) {
+        $phpExcelObject = $this->get('phpexcel')->createPHPExcelObject();
+        $phpExcelObject->getProperties()->setCreator('Junior Ubuntu')
+                ->setLastModifiedBy('Atemgoua Brumel')
+                ->setTitle("Noms de la feuille");
+        $phpExcelObject->createSheet(0);
+        $phpExcelObject->setActiveSheetIndex(0);
+        $phpExcelObject->getActiveSheet()->setTitle('Noms de la feuille');
+
+
+        /// Perparation du fichier d'export .txt
+
+        $file = fopen('../export.txt', 'w');
+        $this->sortieFormate($file, $id);
+        fclose($file);
+
+        /// impression de l'entête
+
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('B' . ($this->index - 1), 'N°');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('C' . ($this->index - 1), 'Noms et prénoms');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('D' . ($this->index - 1), 'Matricules');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('E' . ($this->index - 1), 'Téléphones');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('F' . ($this->index - 1), 'Quotas');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('G' . ($this->index - 1), 'Date Pre. Attr.');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('H' . ($this->index - 1), 'Décisions');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('I' . ($this->index - 1), 'Observations');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('J' . ($this->index - 1), 'Direction');
+
+        $this->impressionData($this->somme, $phpExcelObject, $id, $this->index);
+
+        $phpExcelObject->getActiveSheet()->mergeCells(
+                'B' . $this->index . ':C'
+                . $this->index . ':D'
+                . $this->index . ':E'
+                . $this->index . ':F'
+                . $this->index . ':G'
+                . $this->index . ':H'
+                . $this->index . ':I'
+                . $this->index . ':J'
+                . $this->index);
+        $phpExcelObject->setActiveSheetIndex(0)
+                ->setCellValue('B' . $this->index, $this->somme);
+
+
+        $writer = $this->get('phpexcel')->createWriter($phpExcelObject, 'Excel5');
+        $writer->save('../report.xlsx');
+
+        return $this->render('RepGestionBundle::test.html.twig');
+    }
+
+    function impressionData($somme, $phpExcelObject, $id, $i) {
+
+        $direction = $this->findById($id);
+
+        $listPoste = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Poste')
+                ->findBy(array('direction' => $direction));
+
+
+        foreach ($listPoste as $poste) {
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('B' . $this->index, $this->index);
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('C' . $this->index, $poste->getOccupant());
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('D' . $this->index, $poste->getOccupant()->getMatricule());
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('E' . $this->index, $poste->getOccupant()->getNumTel());
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('F' . $this->index, $poste->getCategorie()->getQuota());
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('G' . $this->index, $poste->getOccupant()->getDateRecru()->format('d-m-Y'));
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('H' . $this->index, $poste->getOccupant()->getRefDecision());
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('I' . $this->index, $poste->getObservation());
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('J' . $this->index, $direction);
+
+            $this->somme += $poste->getCategorie()->getQuota();
+            $this->index += 1;
+        }
+        $allSousDir = $this->listSousDir($direction);
+
+        foreach ($allSousDir as $sousDir) {
+            $this->impressionData($somme, $phpExcelObject, $sousDir->getId(), ++$i);
+        }
+    }
+
+    function sortieFormate($file, $id) {
+        $direction = $this->findById($id);
+
+        $listPoste = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Poste')
+                ->findBy(array('direction' => $direction));
+        foreach ($listPoste as $poste) {
+            fwrite($file, $poste->getOccupant()->getNumTel()
+                    . '|' . $poste->getOccupant()->getNumTel()
+                    . '|' . ($poste->getCategorie()->getQuota() * 100)."\r\n");
+        }
+
+        $allSousDir = $this->listSousDir($direction);
+
+        foreach ($allSousDir as $sousDir) {
+            $this->sortieFormate($file, $sousDir->getId());
         }
     }
 

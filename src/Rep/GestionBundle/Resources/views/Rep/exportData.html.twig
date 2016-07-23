@@ -4,7 +4,7 @@
 {% block quota %}
     <div class="col-md-12 panel-primary active well">
         <div class="panel panel-heading col-md-12" style="">
-            <strong style="font-size: 18px"><u>Exportation des données</u></strong>
+            <center><strong style="font-size: 20px; color: black; font-family: constantia;">EXPORTATION DES DONNEES POUR LA REPARTITION DU CREDIT DE COMMUNICATION HEBDOMADAIRE DU PERSONNEL</strong></center>
         </div>
         <scroll class="col-md-12" style="
                 color: #04101b;
@@ -37,7 +37,7 @@
             <div class="retour">
                 <a href="{{ path('list_tree_direction') }}"><button type="button" class="btn btn-primary col-md-2"><span class="glyphicon glyphicon-arrow-left"> Retour à l'accueil</span></button></a>
                 <div class="col-md-2 col-md-offset-7">
-                    <a href="#"><b><img src="{{ asset('images/excel.png') }}" style="height: 35px; font-size: 16px"/>Excel</b></a>
+                    <a href="{{ path('impression_data', {'id': aDetailler.id}) }}"><b><img src="{{ asset('images/excel.png') }}" style="height: 35px; font-size: 16px"/>Excel</b></a>
                 </div>
                 <div class="col-md-1">
                     <a href="#"><b><img src="{{ asset('images/pdf.png') }}" style="height: 40px; font-size: 16px"/>Pdf</b></a>

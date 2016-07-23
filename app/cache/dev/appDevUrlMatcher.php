@@ -5,7 +5,7 @@ use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\RequestContext;
 
 /**
- * appDevUrlMatcher
+ * appDevUrlMatcher.
  *
  * This class has been auto-generated
  * by the Symfony Routing Component.
@@ -59,22 +59,9 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     return array (  '_controller' => 'web_profiler.controller.profiler:purgeAction',  '_route' => '_profiler_purge',);
                 }
 
-                if (0 === strpos($pathinfo, '/_profiler/i')) {
-                    // _profiler_info
-                    if (0 === strpos($pathinfo, '/_profiler/info') && preg_match('#^/_profiler/info/(?P<about>[^/]++)$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => '_profiler_info')), array (  '_controller' => 'web_profiler.controller.profiler:infoAction',));
-                    }
-
-                    // _profiler_import
-                    if ($pathinfo === '/_profiler/import') {
-                        return array (  '_controller' => 'web_profiler.controller.profiler:importAction',  '_route' => '_profiler_import',);
-                    }
-
-                }
-
-                // _profiler_export
-                if (0 === strpos($pathinfo, '/_profiler/export') && preg_match('#^/_profiler/export/(?P<token>[^/\\.]++)\\.txt$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => '_profiler_export')), array (  '_controller' => 'web_profiler.controller.profiler:exportAction',));
+                // _profiler_info
+                if (0 === strpos($pathinfo, '/_profiler/info') && preg_match('#^/_profiler/info/(?P<about>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => '_profiler_info')), array (  '_controller' => 'web_profiler.controller.profiler:infoAction',));
                 }
 
                 // _profiler_phpinfo
@@ -409,6 +396,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 // export_data_branche
                 if (0 === strpos($pathinfo, '/GCC/branche/export-Donnees') && preg_match('#^/GCC/branche/export\\-Donnees/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'export_data_branche')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::exportDirectionDataAction',));
+                }
+
+                // impression_data
+                if (preg_match('#^/GCC/branche/(?P<id>[^/]++)/impression$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'impression_data')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::buildExcelAction',));
                 }
 
             }

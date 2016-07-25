@@ -46,6 +46,10 @@ delete_admin:
 add_personnel:
     pattern:  /personnel/ajouter
     defaults: { _controller: RepGestionBundle:Direction:addPersonnel }
+    
+save_personnel:
+    pattern:  /personnel/save
+    defaults: { _controller: RepGestionBundle:Direction:savePersonnel }
 
 list_one_personnel:
     pattern:  /personnel/list/{id}

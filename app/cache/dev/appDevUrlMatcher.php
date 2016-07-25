@@ -184,6 +184,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::addPersonnelAction',  '_route' => 'add_personnel',);
                 }
 
+                // save_personnel
+                if ($pathinfo === '/GCC/personnel/save') {
+                    return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::savePersonnelAction',  '_route' => 'save_personnel',);
+                }
+
                 if (0 === strpos($pathinfo, '/GCC/personnel/list')) {
                     // list_one_personnel
                     if (preg_match('#^/GCC/personnel/list/(?P<id>\\d+)$#s', $pathinfo, $matches)) {

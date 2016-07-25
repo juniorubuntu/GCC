@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Rep\GestionBundle\Entity\Direction;
 use Rep\GestionBundle\Entity\Poste;
+use Rep\GestionBundle\Entity\Personnel;
 use Symfony\Component\Form\FormBuilder;
 use Rep\GestionBundle\Form\Type;
 use Rep\GestionBundle\Entity\ExcelExport;
@@ -211,6 +212,38 @@ class DirectionController extends Controller {
         $this->generate_tree_list($direction);
         return $this->render('RepGestionBundle:Rep:addPersonnel.html.twig', array(
                     'arbreDirection' => $this->getTreeDir()));
+    }
+
+    public function savePersonnelAction() {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $direction = $em->getRepository('RepGestionBundle:Direction')
+                ->findOneBy(array('directionPere' => NULL));
+
+        $this->generate_tree_list($direction);
+
+        if (isset($_POST['idP'])) {
+            $personnel = $em->getRepository('RepGestionBundle:Personnel')
+                    ->find($_POST['idP']);
+        }
+        $personnel->setNom($_POST['nomP']);
+        $personnel->setPrenom($_POST['prenP']);
+        $personnel->setMatricule($_POST['matP']);
+        $personnel->setNumTel($_POST['telP']);
+        $personnel->setRefDecision($_POST['deciP']);
+        $personnel->setEmail($_POST['emailP']);
+        $personnel->setDateRecru(new \DateTime($_POST['dateP']));
+
+        if (empty($_POST['nomP']) || empty($_POST['prenP']) || empty($_POST['matP']) || empty($_POST['telP']) || empty($_POST['deciP']) || empty($_POST['emailP'])) {
+
+            return $this->render('RepGestionBundle:Rep:addPersonnel.html.twig', array(
+                        'error' => 1,
+                        'personnel' => $personnel,
+                        'arbreDirection' => $this->getTreeDir()));
+        }
+        $em->flush();
+        return $this->redirect($this->generateUrl('list_all_personnel'));
     }
 
     public function addCategorieAction() {
@@ -436,6 +469,7 @@ class DirectionController extends Controller {
         $personnels = $this->getDoctrine()
                 ->getRepository('RepGestionBundle:Personnel')
                 ->findAll();
+        $personnels = array_reverse($personnels);
 
         $this->generate_tree_list($direction);
         return $this->render('RepGestionBundle:Rep:listPersonnel.html.twig', array(

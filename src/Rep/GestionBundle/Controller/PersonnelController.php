@@ -14,11 +14,6 @@ use Rep\GestionBundle\Entity\Personnel;
 
 class PersonnelController extends Controller {
 
-    public function ajouterAction() {
-
-        return new Response('<h1>Good!!!</h1>');
-    }
-
     public function listAction($id) {
         $personnel = $this->findById($id);
         return new Response('<pre>' . $personnel . '</pre>');
@@ -89,4 +84,5 @@ class PersonnelController extends Controller {
         $em->remove($personnel);
         $em->flush();
     }
+
 }

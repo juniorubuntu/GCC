@@ -5,6 +5,9 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}" type="text/css" />
         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-theme.css') }}" type="text/css" />
+        <script type="text/javascript" src="{{ asset('javascript/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+
         <title>{% block title %}GCC_Camtel{% endblock %}</title>
         <style>
             .test>div{
@@ -19,7 +22,7 @@
             {% endblock %}
         </div>
         <footer class="col-md-12"
-                style="position: fixed;
+                style="
                 bottom: 0;
                 height: 30px;
                 background: #3175b0;
@@ -35,6 +38,5 @@
         <script type="text/javascript" src="{{ asset('javascript/validationFormBranche.js') }}"></script>
         <script type="text/javascript" src="{{ asset('javascript/validationFormCategorie.js') }}"></script>
         <script type="text/javascript" src="{{ asset('javascript/validationFormCompte.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('javascript/jquery.min.js') }}"></script>
     </body>
 </html>

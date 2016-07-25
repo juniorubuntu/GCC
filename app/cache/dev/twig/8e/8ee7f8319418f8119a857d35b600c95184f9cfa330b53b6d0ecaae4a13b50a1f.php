@@ -46,10 +46,10 @@ class __TwigTemplate_5f2312b048575f3d9605d5b683250ea900692c24a8f83c0f5d21af65c3e
                 font-size: 16px;\">
             <div class=\"poste\">
                 <table class=\"col-md-12 table table-bordered\">
-                    <h2 class=\"col-md-12\">Récapitulatif des Quotas de : <b>";
+                    <center><h2 class=\"col-md-12\">Récapitulatif des Quotas de : <b>";
         // line 15
         echo twig_escape_filter($this->env, (isset($context["aDetailler"]) ? $context["aDetailler"] : $this->getContext($context, "aDetailler")), "html", null, true);
-        echo "</b></h2>
+        echo "</b></h2></center>
                     <thead class=\"panel panel-primary active panel-heading\">
                         <tr>
                             <th>N<u><sup>0</sup></u></th>
@@ -131,7 +131,7 @@ class __TwigTemplate_5f2312b048575f3d9605d5b683250ea900692c24a8f83c0f5d21af65c3e
 /*                 font-size: 16px;">*/
 /*             <div class="poste">*/
 /*                 <table class="col-md-12 table table-bordered">*/
-/*                     <h2 class="col-md-12">Récapitulatif des Quotas de : <b>{{ aDetailler }}</b></h2>*/
+/*                     <center><h2 class="col-md-12">Récapitulatif des Quotas de : <b>{{ aDetailler }}</b></h2></center>*/
 /*                     <thead class="panel panel-primary active panel-heading">*/
 /*                         <tr>*/
 /*                             <th>N<u><sup>0</sup></u></th>*/

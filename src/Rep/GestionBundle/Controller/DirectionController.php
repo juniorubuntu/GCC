@@ -21,6 +21,15 @@ class DirectionController extends Controller {
     private $treeDir = '';
     private $quotaData = '';
     private $total = 0;
+    private $treeDirBranche = '';
+
+    function getTreeDirBranche() {
+        return $this->treeDirBranche;
+    }
+
+    function setTreeDirBranche($treeDirBranche) {
+        $this->treeDirBranche .= $treeDirBranche;
+    }
 
     public function getTreeDir() {
         return $this->treeDir;
@@ -119,11 +128,14 @@ class DirectionController extends Controller {
         $direction = $this->getDoctrine()
                 ->getRepository('RepGestionBundle:Direction')
                 ->findOneBy(array('directionPere' => NULL));
+
         $this->generate_tree_list($direction);
+        $this->generate_tree_list_branche($direction);
         return $this->render('RepGestionBundle:Rep:detail.html.twig', array('arbreDirection' => $this->getTreeDir(),
                     'aDetailler' => $aDetailler,
                     'listPoste' => $listPoste,
-                    'listSousDir' => $sousDir));
+                    'listSousDir' => $sousDir,
+                    'arbreDirectionBranche' => $this->getTreeDirBranche()));
     }
 
     public function addPosteAction($id) {
@@ -335,6 +347,35 @@ class DirectionController extends Controller {
             $this->generate_tree_list($sousDir, $direction->getId());
         }
         $this->setTreeDir('</ul>');
+    }
+
+    public function generate_tree_list_branche($direction, $parent = NULL) {
+        $allSousDir = $this->listSousDir($direction);
+        $nbre = count($allSousDir);
+        if ($nbre >= 1) {
+            $this->setTreeDirBranche('<ul style=" color: #efa35c; border-left: 1px solid rgba(222, 212, 205, 0.14); margin-left: -16px;" id="id_' . $direction->getId() . '" class= "expd pereB_' . $parent . '">'
+                    . '<li type="button" style=" list-style: none; margin-left: -48px;">'
+                    . '<span onclick="expanNodeBranche(' . $direction->getId() . ')" class="list_' . $direction->getId() . ' glyphicon glyphicon-minus-sign" style="margin-left: 25px;"> </span>'
+                    . '<b>'
+                    . '<nav onclick="changeBranche(\'' . $direction . '\',\'' . $direction->getId() . '\',\'' . $parent . '\')" style= "border: solid 1px white; border-radius: 5px; display: inline-table; padding: 2px; margin-top: 2px; cursor: pointer; color:antiquewhite;">' . $direction . ''
+                    . '</nav>'
+                    . '</b>'
+                    . '</li>');
+        } else {
+            $this->setTreeDirBranche('<ul style="color: #efa35c; border-left: 1px solid rgba(222, 212, 205, 0.14); margin-left: -16px;" id="id_' . $direction->getId() . '" class= "expd pereB_' . $parent . '">'
+                    . '<li type="button" style="list-style: none; margin-left: -48px;">'
+                    . '<span onclick="expanNodeBranche(' . $direction->getId() . ')" class="list_' . $direction->getId() . ' glyphicon glyphicon-triangle-right" style="margin-left: 25px;"> </span>'
+                    . '<b>'
+                    . '<nav onclick="changeBranche(\'' . $direction . '\',\'' . $direction->getId() . '\',\'' . $parent . '\')" style= "border: solid 1px white; border-radius: 5px; display: inline-table; padding: 2px; margin-top: 2px; cursor: pointer; color: #100101;">' . $direction . ''
+                    . '</nav>'
+                    . '</b>'
+                    . '</li>');
+        }
+        $sousDir = new Direction();
+        foreach ($allSousDir as $sousDir) {
+            $this->generate_tree_list_branche($sousDir, $direction->getId());
+        }
+        $this->setTreeDirBranche('</ul>');
     }
 
     public function addCompteAction() {
@@ -564,7 +605,7 @@ class DirectionController extends Controller {
         foreach ($listPoste as $poste) {
             fwrite($file, $poste->getOccupant()->getNumTel()
                     . '|' . $poste->getOccupant()->getNumTel()
-                    . '|' . ($poste->getCategorie()->getQuota() * 100)."\r\n");
+                    . '|' . ($poste->getCategorie()->getQuota() * 100) . "\r\n");
         }
 
         $allSousDir = $this->listSousDir($direction);

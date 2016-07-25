@@ -34,8 +34,17 @@ class __TwigTemplate_4bf174c67a353172dda225ea74e0f53fc41f204313a767e5e38a2163a8a
         // line 7
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bootstrap/css/bootstrap-theme.css"), "html", null, true);
         echo "\" type=\"text/css\" />
-        <title>";
+        <script type=\"text/javascript\" src=\"";
         // line 8
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("javascript/jquery.min.js"), "html", null, true);
+        echo "\"></script>
+        <script type=\"text/javascript\" src=\"";
+        // line 9
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bootstrap/js/bootstrap.min.js"), "html", null, true);
+        echo "\"></script>
+
+        <title>";
+        // line 11
         $this->displayBlock('title', $context, $blocks);
         echo "</title>
         <style>
@@ -48,12 +57,12 @@ class __TwigTemplate_4bf174c67a353172dda225ea74e0f53fc41f204313a767e5e38a2163a8a
     <body style=\"background: #384546; height: auto\">
         <div style=\"height: 650px\">
             ";
-        // line 18
+        // line 21
         $this->displayBlock('body', $context, $blocks);
-        // line 20
+        // line 23
         echo "        </div>
         <footer class=\"col-md-12\"
-                style=\"position: fixed;
+                style=\"
                 bottom: 0;
                 height: 30px;
                 background: #3175b0;
@@ -62,52 +71,48 @@ class __TwigTemplate_4bf174c67a353172dda225ea74e0f53fc41f204313a767e5e38a2163a8a
                 padding: 0px;
                 font-size: 18px;\">
             Dévellopé par: ";
-        // line 30
+        // line 33
         echo twig_escape_filter($this->env, (isset($context["webmaster"]) ? $context["webmaster"] : $this->getContext($context, "webmaster")), "html", null, true);
         echo "; Tous droits réservés Camtel 2016, dirigé par: M. Bayonmbong Clément
         </footer>
         <script type=\"text/javascript\" src=\"";
-        // line 32
+        // line 35
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("javascript/animation.js"), "html", null, true);
         echo "\"></script>
         <script type=\"text/javascript\" src=\"";
-        // line 33
+        // line 36
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("javascript/validationFormPersonnel.js"), "html", null, true);
         echo "\"></script>
         <script type=\"text/javascript\" src=\"";
-        // line 34
+        // line 37
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("javascript/validationFormPoste.js"), "html", null, true);
         echo "\"></script>
         <script type=\"text/javascript\" src=\"";
-        // line 35
+        // line 38
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("javascript/validationFormBranche.js"), "html", null, true);
         echo "\"></script>
         <script type=\"text/javascript\" src=\"";
-        // line 36
+        // line 39
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("javascript/validationFormCategorie.js"), "html", null, true);
         echo "\"></script>
         <script type=\"text/javascript\" src=\"";
-        // line 37
+        // line 40
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("javascript/validationFormCompte.js"), "html", null, true);
-        echo "\"></script>
-        <script type=\"text/javascript\" src=\"";
-        // line 38
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("javascript/jquery.min.js"), "html", null, true);
         echo "\"></script>
     </body>
 </html>";
     }
 
-    // line 8
+    // line 11
     public function block_title($context, array $blocks = array())
     {
         echo "GCC_Camtel";
     }
 
-    // line 18
+    // line 21
     public function block_body($context, array $blocks = array())
     {
-        // line 19
+        // line 22
         echo "            ";
     }
 
@@ -123,7 +128,7 @@ class __TwigTemplate_4bf174c67a353172dda225ea74e0f53fc41f204313a767e5e38a2163a8a
 
     public function getDebugInfo()
     {
-        return array (  111 => 19,  108 => 18,  102 => 8,  95 => 38,  91 => 37,  87 => 36,  83 => 35,  79 => 34,  75 => 33,  71 => 32,  66 => 30,  54 => 20,  52 => 18,  39 => 8,  35 => 7,  31 => 6,  27 => 5,  21 => 1,);
+        return array (  116 => 22,  113 => 21,  107 => 11,  100 => 40,  96 => 39,  92 => 38,  88 => 37,  84 => 36,  80 => 35,  75 => 33,  63 => 23,  61 => 21,  48 => 11,  43 => 9,  39 => 8,  35 => 7,  31 => 6,  27 => 5,  21 => 1,);
     }
 }
 /* <!DOCTYPE html>*/
@@ -133,6 +138,9 @@ class __TwigTemplate_4bf174c67a353172dda225ea74e0f53fc41f204313a767e5e38a2163a8a
 /*         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />*/
 /*         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}" type="text/css" />*/
 /*         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-theme.css') }}" type="text/css" />*/
+/*         <script type="text/javascript" src="{{ asset('javascript/jquery.min.js') }}"></script>*/
+/*         <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>*/
+/* */
 /*         <title>{% block title %}GCC_Camtel{% endblock %}</title>*/
 /*         <style>*/
 /*             .test>div{*/
@@ -147,7 +155,7 @@ class __TwigTemplate_4bf174c67a353172dda225ea74e0f53fc41f204313a767e5e38a2163a8a
 /*             {% endblock %}*/
 /*         </div>*/
 /*         <footer class="col-md-12"*/
-/*                 style="position: fixed;*/
+/*                 style="*/
 /*                 bottom: 0;*/
 /*                 height: 30px;*/
 /*                 background: #3175b0;*/
@@ -163,6 +171,5 @@ class __TwigTemplate_4bf174c67a353172dda225ea74e0f53fc41f204313a767e5e38a2163a8a
 /*         <script type="text/javascript" src="{{ asset('javascript/validationFormBranche.js') }}"></script>*/
 /*         <script type="text/javascript" src="{{ asset('javascript/validationFormCategorie.js') }}"></script>*/
 /*         <script type="text/javascript" src="{{ asset('javascript/validationFormCompte.js') }}"></script>*/
-/*         <script type="text/javascript" src="{{ asset('javascript/jquery.min.js') }}"></script>*/
 /*     </body>*/
 /* </html>*/

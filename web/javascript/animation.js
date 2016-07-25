@@ -41,3 +41,42 @@ function afficheMenu() {
         $('.compte').addClass('ok');
     }
 }
+
+function detacheBranche() {
+    $("#myModal").modal('show');
+}
+
+function expanNodeBranche(id) {
+    if ($('.pereB_' + id + '').hasClass('expd')) {
+        $('.pereB_' + id + '').hide("slow");
+        $('.pereB_' + id + '').removeClass('expd');
+        changeGyphicon(0, id);
+    } else {
+        $('.pereB_' + id + '').show("slow");
+        $('.pereB_' + id + '').addClass('expd');
+        changeGyphicon(1, id);
+    }
+}
+
+function changeBranche(nom, id, pereId) {
+    var newLinkText = document.createTextNode('Nouvelle Branche: ' + nom);
+    var newbranch = document.getElementById('newBranch');
+    newbranch.replaceChild(newLinkText, newbranch.firstChild);
+}
+
+
+function alertDelete(sousDir) {
+    $("#deleteModal").modal('show');
+
+    var newLinkText = document.createTextNode(sousDir);
+    var newbranch = document.getElementById('toDelete');
+    newbranch.replaceChild(newLinkText, newbranch.firstChild);
+}
+
+function alertDeletePoste(poste) {
+    $("#deletePosteModal").modal('show');
+
+    var newLinkText = document.createTextNode(poste);
+    var newbranch = document.getElementById('posteToDelete');
+    newbranch.replaceChild(newLinkText, newbranch.firstChild);
+}

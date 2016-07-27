@@ -11,9 +11,9 @@
                 font-family: constantia;
                 font-size: 16px;">
             <div class="poste">
-                <table class="col-md-12 table table-bordered">
+                <table class="col-md-12 table table-bordered table-striped display cell-border row-border compact" id="listQuota">
                     <center><h2 class="col-md-12">Récapitulatif des Quotas de : <b>{{ aDetailler }}</b></h2></center>
-                    <thead class="panel panel-primary active panel-heading">
+                    <thead class="panel alert-info panel-primary active panel-heading">
                         <tr>
                             <th>N<u><sup>0</sup></u></th>
                     <th>Noms et prénoms</th>
@@ -28,11 +28,25 @@
                     </thead>
                     <tbody>
                         {{ export | raw }}
+                    <tfoot>
                         <tr>
                             <td colspan="9"><center><h2>Total: <span style="color: green; font-size: 45px"><b>{{total}}</b></span> FCFA</h2></center></td>
-                        </tr>
+                    </tr>
+                    </tfoot>
                     </tbody>
                 </table>
+                <script>
+                    $('#listQuota').DataTable({
+                        "pagingType": "full_numbers",
+                        "lengthMenu": [[10, 10], [10, 10]],
+                        dom: 'Bfrtip',
+                        lengthChange: true,
+                        buttons: ['excel', 'pdf', 'print'],
+                        "language": {
+                            "url": "{{ asset('DataTables/French.json') }}"
+                        }
+                    });
+                </script>
             </div>
             <div class="retour">
                 <a href="{{ path('list_tree_direction') }}"><button type="button" class="btn btn-primary col-md-2"><span class="glyphicon glyphicon-arrow-left"> Retour à l'accueil</span></button></a>

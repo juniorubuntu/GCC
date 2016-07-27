@@ -80,6 +80,10 @@ delete_personnel:
 add_categorie:
     pattern:  /categorie/ajouter/
     defaults: { _controller: RepGestionBundle:Direction:addCategorie }
+    
+save_categorie:
+    pattern:  /categorie/save
+    defaults: { _controller: RepGestionBundle:Direction:saveCategorie }
 
 list_one_categorie:
     pattern:  /categorie/list/{id}
@@ -89,11 +93,11 @@ list_one_categorie:
         
 list_all_categorie:
     pattern:  /categorie/listAll/
-    defaults: { _controller: RepGestionBundle:Categorie:listAll }
+    defaults: { _controller: RepGestionBundle:Direction:listAllCategorie }
     
 update_categorie:
     pattern:  /categorie/modifier/{id}
-    defaults: { _controller: RepGestionBundle:Categorie:update }
+    defaults: { _controller: RepGestionBundle:Direction:updateCategorie }
     requirements:
         id: \d+
         
@@ -141,6 +145,10 @@ add_poste:
     defaults: { _controller: RepGestionBundle:Direction:addPoste }
     requirements:
         id: \d+
+        
+save_poste:
+    pattern:  /poste/save
+    defaults: { _controller: RepGestionBundle:Direction:savePoste }
 
 list_one_poste:
     pattern:  /poste/list/{id}
@@ -150,7 +158,7 @@ list_one_poste:
         
 list_all_poste:
     pattern:  /poste/listAll/
-    defaults: { _controller: RepGestionBundle:Poste:listAll }
+    defaults: { _controller: RepGestionBundle:Personnel:listAll }
     
 update_poste:
     pattern:  /poste/modifier/{id}/{idPoste}

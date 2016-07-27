@@ -58,13 +58,11 @@
             </div>
             <div class="col-md-12" style="margin-top: 12px">
                 <a href="{{ path('list_all_personnel') }}"><button type="button" class="btn btn-success active col-md-2 col-md-offset-1"><span class="glyphicon glyphicon-remove-circle">Annuler</span></button></a>
-
                 {% if update == 1 %} 
                     <a><button type="submit" class="btn btn-primary col-md-2 col-md-offset-1"><span class="glyphicon glyphicon-plus-sign">Modifier</span></button></a>
                 {% else %}
                     <a><button type="submit" class="btn btn-primary col-md-2 col-md-offset-1"><span class="glyphicon glyphicon-plus-sign">Ajouter</span></button></a>
                 {% endif %}
-
             </div>
         </form>
         {% if error is defined %}

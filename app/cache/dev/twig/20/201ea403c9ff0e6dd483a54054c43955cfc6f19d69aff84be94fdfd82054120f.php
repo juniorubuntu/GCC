@@ -43,7 +43,7 @@ class __TwigTemplate_1ddab9f1b78a86edf6a6676bba3130f516ec8d8b97af5232d3ed25867f8
         ";
         // line 9
         $this->displayBlock('poste', $context, $blocks);
-        // line 46
+        // line 58
         echo "        <div class=\"panel panel-primary col-md-12\" style=\"color: red; margin-top: 20px\">
             <b><u>NB:</u> Les actions sur les informations ci-dessus sont irréversibles. Soyez prudent lors des sélections.</b>
         </div>
@@ -55,18 +55,17 @@ class __TwigTemplate_1ddab9f1b78a86edf6a6676bba3130f516ec8d8b97af5232d3ed25867f8
     public function block_poste($context, array $blocks = array())
     {
         // line 10
-        echo "            <table class=\"col-md-12 table table-bordered\" style=\"\">
+        echo "            <table class=\"col-md-12 table table-striped display cell-border row-border compact\" style=\"\" id=\"listPersonnel\">
                 <div class=\"form-group col-md-12\">
                     <u class=\"col-md-12\" style=\"
                        font-weight: bold;
                        font-size: 28px; \">Personnel travaillant à la Camtel</u>
-                    <input type=\"text\" class=\"has-success\" style=\"border-radius: 5px; font-size: 18px; height: 30px;\" placeholder=\"Rechercher\"/>
                     <a href=\"";
-        // line 16
+        // line 15
         echo $this->env->getExtension('routing')->getPath("list_tree_direction");
         echo "\"><button type=\"button\" class=\"btn btn-primary pull-right\"><span class=\"glyphicon glyphicon-arrow-left\"> Retour à l'accueil</span></button></a>
                 </div>
-                <thead class=\"panel panel-primary active panel-heading\">
+                <thead class=\"panel alert-info panel-primary active\">
                     <tr>
                         <th style=\"font-size: 18px;\">Noms et prénoms</th>
                         <th>Matricules</th>
@@ -80,42 +79,42 @@ class __TwigTemplate_1ddab9f1b78a86edf6a6676bba3130f516ec8d8b97af5232d3ed25867f8
                 </thead>
                 <tbody>
                     ";
-        // line 31
+        // line 30
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["personnels"]) ? $context["personnels"] : $this->getContext($context, "personnels")));
         foreach ($context['_seq'] as $context["_key"] => $context["personnel"]) {
-            // line 32
+            // line 31
             echo "                        <tr>
                             <td style=\"font-size: 18px;\"><b>";
-            // line 33
+            // line 32
             echo twig_escape_filter($this->env, $context["personnel"], "html", null, true);
             echo "</b></td>
                             <td><b>";
-            // line 34
+            // line 33
             echo twig_escape_filter($this->env, $this->getAttribute($context["personnel"], "matricule", array()), "html", null, true);
             echo "</b></td>
                             <td><b>";
-            // line 35
+            // line 34
             echo twig_escape_filter($this->env, $this->getAttribute($context["personnel"], "numTel", array()), "html", null, true);
             echo "</b></td>
                             <td><b>";
-            // line 36
+            // line 35
             echo twig_escape_filter($this->env, $this->getAttribute($context["personnel"], "email", array()), "html", null, true);
             echo "</b></td>
                             <td><b>";
-            // line 37
+            // line 36
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["personnel"], "dateRecru", array()), "m/d/Y"), "html", null, true);
             echo "</b></td>
                             <td><b>";
-            // line 38
+            // line 37
             echo twig_escape_filter($this->env, $this->getAttribute($context["personnel"], "refDecision", array()), "html", null, true);
             echo "</b></td>
                             <td><a href=\"";
-            // line 39
+            // line 38
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("update_personnel", array("id" => $this->getAttribute($context["personnel"], "id", array()))), "html", null, true);
             echo "\"><button type=\"button\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-edit\"></span></button></a></td>
                             <td><a href=\"";
-            // line 40
+            // line 39
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("delete_personnel", array("id" => $this->getAttribute($context["personnel"], "id", array()))), "html", null, true);
             echo "\"><button type=\"button\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-trash\"></span></button></a></td>
                         </tr>
@@ -124,9 +123,25 @@ class __TwigTemplate_1ddab9f1b78a86edf6a6676bba3130f516ec8d8b97af5232d3ed25867f8
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['personnel'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 43
+        // line 42
         echo "                </tbody>
             </table>
+            <script>
+                \$('#listPersonnel').DataTable({
+                    \"pagingType\": \"full_numbers\",
+                    \"lengthMenu\": [[10, 10], [10, 10]],
+                    dom: 'Bfrtip',
+                    lengthChange: true,
+                    buttons: ['excel', 'pdf', 'print'],
+                    \"language\": {
+                        \"url\": \"";
+        // line 52
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("DataTables/French.json"), "html", null, true);
+        echo "\"
+                    }
+
+                });
+            </script>
         ";
     }
 
@@ -142,7 +157,7 @@ class __TwigTemplate_1ddab9f1b78a86edf6a6676bba3130f516ec8d8b97af5232d3ed25867f8
 
     public function getDebugInfo()
     {
-        return array (  128 => 43,  119 => 40,  115 => 39,  111 => 38,  107 => 37,  103 => 36,  99 => 35,  95 => 34,  91 => 33,  88 => 32,  84 => 31,  66 => 16,  58 => 10,  55 => 9,  47 => 46,  45 => 9,  39 => 5,  36 => 4,  30 => 2,  11 => 1,);
+        return array (  139 => 52,  127 => 42,  118 => 39,  114 => 38,  110 => 37,  106 => 36,  102 => 35,  98 => 34,  94 => 33,  90 => 32,  87 => 31,  83 => 30,  65 => 15,  58 => 10,  55 => 9,  47 => 58,  45 => 9,  39 => 5,  36 => 4,  30 => 2,  11 => 1,);
     }
 }
 /* {% extends "RepGestionBundle:Rep:accueil.html.twig" %}*/
@@ -154,15 +169,14 @@ class __TwigTemplate_1ddab9f1b78a86edf6a6676bba3130f516ec8d8b97af5232d3ed25867f8
 /*             <strong style="font-size: 18px"><u>Gestion du Personnel</u></strong>*/
 /*         </div>*/
 /*         {% block poste %}*/
-/*             <table class="col-md-12 table table-bordered" style="">*/
+/*             <table class="col-md-12 table table-striped display cell-border row-border compact" style="" id="listPersonnel">*/
 /*                 <div class="form-group col-md-12">*/
 /*                     <u class="col-md-12" style="*/
 /*                        font-weight: bold;*/
 /*                        font-size: 28px; ">Personnel travaillant à la Camtel</u>*/
-/*                     <input type="text" class="has-success" style="border-radius: 5px; font-size: 18px; height: 30px;" placeholder="Rechercher"/>*/
 /*                     <a href="{{ path('list_tree_direction') }}"><button type="button" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-arrow-left"> Retour à l'accueil</span></button></a>*/
 /*                 </div>*/
-/*                 <thead class="panel panel-primary active panel-heading">*/
+/*                 <thead class="panel alert-info panel-primary active">*/
 /*                     <tr>*/
 /*                         <th style="font-size: 18px;">Noms et prénoms</th>*/
 /*                         <th>Matricules</th>*/
@@ -189,6 +203,19 @@ class __TwigTemplate_1ddab9f1b78a86edf6a6676bba3130f516ec8d8b97af5232d3ed25867f8
 /*                     {% endfor %}*/
 /*                 </tbody>*/
 /*             </table>*/
+/*             <script>*/
+/*                 $('#listPersonnel').DataTable({*/
+/*                     "pagingType": "full_numbers",*/
+/*                     "lengthMenu": [[10, 10], [10, 10]],*/
+/*                     dom: 'Bfrtip',*/
+/*                     lengthChange: true,*/
+/*                     buttons: ['excel', 'pdf', 'print'],*/
+/*                     "language": {*/
+/*                         "url": "{{ asset('DataTables/French.json') }}"*/
+/*                     }*/
+/* */
+/*                 });*/
+/*             </script>*/
 /*         {% endblock %}*/
 /*         <div class="panel panel-primary col-md-12" style="color: red; margin-top: 20px">*/
 /*             <b><u>NB:</u> Les actions sur les informations ci-dessus sont irréversibles. Soyez prudent lors des sélections.</b>*/

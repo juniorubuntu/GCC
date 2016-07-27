@@ -63,7 +63,7 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
                 ";
         // line 21
         $this->displayBlock('poste', $context, $blocks);
-        // line 49
+        // line 59
         echo "                <hr class=\"col-md-11\" style=\"
                     background: #1d2db9;
                     height: 2px;\">
@@ -72,9 +72,9 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
                     height: 2px;
                     margin-top: -1%;\">
                 ";
-        // line 56
+        // line 66
         $this->displayBlock('branche', $context, $blocks);
-        // line 80
+        // line 100
         echo "            </div>
             <div class=\"retour\">
 
@@ -95,15 +95,15 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
                                 color: #04101b;
                                 font-size: 16px;\">
                             ";
-        // line 99
+        // line 119
         if (array_key_exists("arbreDirectionBranche", $context)) {
-            // line 100
+            // line 120
             echo "                                ";
             echo (isset($context["arbreDirectionBranche"]) ? $context["arbreDirectionBranche"] : $this->getContext($context, "arbreDirectionBranche"));
             echo "
                             ";
         }
-        // line 102
+        // line 122
         echo "                            <b><nav class=\"form-control col-md-12\" id=\"newBranch\" style=\"
                                     background: #777777;
                                     color: #0d0e0e;
@@ -173,9 +173,9 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
     public function block_poste($context, array $blocks = array())
     {
         // line 22
-        echo "                    <table class=\"col-md-12 table table-bordered\">
+        echo "                    <table class=\"col-md-12 table table-striped table-bordered display cell-border row-border compact\" id=\"listPoste\">
                         <h2 class=\"col-md-12\">Postes et occupants</h2>
-                        <thead class=\"panel panel-primary active panel-heading\">
+                        <thead class=\"panel panel-primary alert-info active panel-heading\">
                             <tr>
                                 <th>Postes</th>
                                 <th>Occupants</th>
@@ -223,20 +223,33 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
         // line 45
         echo "                        </tbody>
                     </table>
+                    <script>
+                        \$('#listPoste').DataTable({
+                            \"pagingType\": \"full_numbers\",
+                            \"lengthMenu\": [[5, 10], [5, 10]],
+                            \"language\": {
+                                \"url\": \"";
+        // line 52
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("DataTables/French.json"), "html", null, true);
+        echo "\"
+                            }
+
+                        });
+                    </script>
                     <a href=\"";
-        // line 47
+        // line 57
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("add_poste", array("id" => $this->getAttribute((isset($context["aDetailler"]) ? $context["aDetailler"] : $this->getContext($context, "aDetailler")), "id", array()))), "html", null, true);
         echo "\"><button type=\"button\" class=\"btn btn-primary col-md-3\"><span class=\"glyphicon glyphicon-plus\">Ajouter un poste</span></button></a>
                 ";
     }
 
-    // line 56
+    // line 66
     public function block_branche($context, array $blocks = array())
     {
-        // line 57
-        echo "                    <table class=\"col-md-12 table table-bordered\">
+        // line 67
+        echo "                    <table class=\"col-md-12 table table-striped display cell-border row-border compact\" id=\"listBranche\">
                         <h2 class=\"col-md-12\">Démenbrements directs</h2>
-                        <thead class=\"panel panel-info active panel-heading\">
+                        <thead class=\"panel panel-info alert-info active panel-heading\">
                             <tr>
                                 <th>Démembrements</th>
                                 <th>Modifier</th>
@@ -246,23 +259,23 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
                         </thead>
                         <tbody>
                             ";
-        // line 68
+        // line 78
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["listSousDir"]) ? $context["listSousDir"] : $this->getContext($context, "listSousDir")));
         foreach ($context['_seq'] as $context["_key"] => $context["sousDir"]) {
-            // line 69
+            // line 79
             echo "                                <tr>
                                     <td><b>";
-            // line 70
+            // line 80
             echo twig_escape_filter($this->env, $context["sousDir"], "html", null, true);
             echo "</b></td>
                                     <td><a href=\"";
-            // line 71
+            // line 81
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("update_direction", array("id" => $this->getAttribute((isset($context["aDetailler"]) ? $context["aDetailler"] : $this->getContext($context, "aDetailler")), "id", array()), "idDir" => $this->getAttribute($context["sousDir"], "id", array()))), "html", null, true);
             echo "\"><button type=\"button\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-edit\"></span></button></a></td>
                                     <td><a><button type=\"button\" onclick=\"detacheBranche();\" class=\"btn btn-warning\"><span class=\"glyphicon glyphicon-minus\"></span></button></a></td>
                                     <td><a><button type=\"button\" onclick=\"alertDelete('";
-            // line 73
+            // line 83
             echo twig_escape_filter($this->env, $context["sousDir"], "html", null, true);
             echo "');\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-trash\"></span></button></a></td>
                                 </tr>
@@ -271,11 +284,24 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sousDir'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 76
+        // line 86
         echo "                        </tbody>
                     </table>
+                    <script>
+                        \$('#listBranche').DataTable({
+                            \"pagingType\": \"full_numbers\",
+                            \"lengthMenu\": [[5, 10], [5, 10]],
+                            \"language\": {
+                                \"url\": \"";
+        // line 93
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("DataTables/French.json"), "html", null, true);
+        echo "\"
+                            }
+
+                        });
+                    </script>
                     <a href=\"";
-        // line 78
+        // line 98
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("add_branche", array("id" => $this->getAttribute((isset($context["aDetailler"]) ? $context["aDetailler"] : $this->getContext($context, "aDetailler")), "id", array()))), "html", null, true);
         echo "\"><button type=\"button\" class=\"btn btn-primary col-md-4\"><span class=\"glyphicon glyphicon-plus\">Ajouter un démembrement</span></button></a>
                 ";
@@ -293,7 +319,7 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
 
     public function getDebugInfo()
     {
-        return array (  279 => 78,  275 => 76,  266 => 73,  261 => 71,  257 => 70,  254 => 69,  250 => 68,  237 => 57,  234 => 56,  228 => 47,  224 => 45,  214 => 41,  210 => 40,  206 => 39,  202 => 38,  198 => 37,  195 => 36,  191 => 35,  176 => 22,  173 => 21,  107 => 102,  101 => 100,  99 => 99,  78 => 80,  76 => 56,  67 => 49,  65 => 21,  60 => 19,  48 => 10,  41 => 5,  38 => 4,  31 => 2,  11 => 1,);
+        return array (  305 => 98,  297 => 93,  288 => 86,  279 => 83,  274 => 81,  270 => 80,  267 => 79,  263 => 78,  250 => 67,  247 => 66,  241 => 57,  233 => 52,  224 => 45,  214 => 41,  210 => 40,  206 => 39,  202 => 38,  198 => 37,  195 => 36,  191 => 35,  176 => 22,  173 => 21,  107 => 122,  101 => 120,  99 => 119,  78 => 100,  76 => 66,  67 => 59,  65 => 21,  60 => 19,  48 => 10,  41 => 5,  38 => 4,  31 => 2,  11 => 1,);
     }
 }
 /* {% extends "RepGestionBundle:Rep:accueil.html.twig" %}*/
@@ -317,9 +343,9 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
 /*             <marquee><h2><b>{{ aDetailler }}</b></h2></marquee>*/
 /*             <div class="poste">*/
 /*                 {% block poste %}*/
-/*                     <table class="col-md-12 table table-bordered">*/
+/*                     <table class="col-md-12 table table-striped table-bordered display cell-border row-border compact" id="listPoste">*/
 /*                         <h2 class="col-md-12">Postes et occupants</h2>*/
-/*                         <thead class="panel panel-primary active panel-heading">*/
+/*                         <thead class="panel panel-primary alert-info active panel-heading">*/
 /*                             <tr>*/
 /*                                 <th>Postes</th>*/
 /*                                 <th>Occupants</th>*/
@@ -342,6 +368,16 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
 /*                             {% endfor %}*/
 /*                         </tbody>*/
 /*                     </table>*/
+/*                     <script>*/
+/*                         $('#listPoste').DataTable({*/
+/*                             "pagingType": "full_numbers",*/
+/*                             "lengthMenu": [[5, 10], [5, 10]],*/
+/*                             "language": {*/
+/*                                 "url": "{{ asset('DataTables/French.json') }}"*/
+/*                             }*/
+/* */
+/*                         });*/
+/*                     </script>*/
 /*                     <a href="{{ path('add_poste', {'id': aDetailler.id}) }}"><button type="button" class="btn btn-primary col-md-3"><span class="glyphicon glyphicon-plus">Ajouter un poste</span></button></a>*/
 /*                 {% endblock %}*/
 /*                 <hr class="col-md-11" style="*/
@@ -352,9 +388,9 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
 /*                     height: 2px;*/
 /*                     margin-top: -1%;">*/
 /*                 {% block branche %}*/
-/*                     <table class="col-md-12 table table-bordered">*/
+/*                     <table class="col-md-12 table table-striped display cell-border row-border compact" id="listBranche">*/
 /*                         <h2 class="col-md-12">Démenbrements directs</h2>*/
-/*                         <thead class="panel panel-info active panel-heading">*/
+/*                         <thead class="panel panel-info alert-info active panel-heading">*/
 /*                             <tr>*/
 /*                                 <th>Démembrements</th>*/
 /*                                 <th>Modifier</th>*/
@@ -373,6 +409,16 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
 /*                             {% endfor %}*/
 /*                         </tbody>*/
 /*                     </table>*/
+/*                     <script>*/
+/*                         $('#listBranche').DataTable({*/
+/*                             "pagingType": "full_numbers",*/
+/*                             "lengthMenu": [[5, 10], [5, 10]],*/
+/*                             "language": {*/
+/*                                 "url": "{{ asset('DataTables/French.json') }}"*/
+/*                             }*/
+/* */
+/*                         });*/
+/*                     </script>*/
 /*                     <a href="{{ path('add_branche', {'id': aDetailler.id}) }}"><button type="button" class="btn btn-primary col-md-4"><span class="glyphicon glyphicon-plus">Ajouter un démembrement</span></button></a>*/
 /*                 {% endblock%}*/
 /*             </div>*/

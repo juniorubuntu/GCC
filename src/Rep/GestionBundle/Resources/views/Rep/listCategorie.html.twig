@@ -1,0 +1,50 @@
+{% extends "RepGestionBundle:Rep:accueil.html.twig" %}
+{% block title %}{{ parent() }} - Categories{% endblock %}
+
+{% block detail %}
+
+    <div class="col-md-7  well panel-primary active">
+        <div class="panel panel-heading col-md-12" style="
+             margin-left: -15px;
+             margin-right: -25px;">
+            <strong style="font-size: 18px"><u>Gestion des Catégories</u></strong>
+        </div>
+        {% block poste %}
+            <table class="col-md-12 table table-bordered row-border cell-border display" id="catego">
+                <h2 class="col-md-12">Liste des différentes catégories</h2>
+                <thead class="panel panel-primary alert-info active panel-heading">
+                    <tr>
+                        <th>Intitulés</th>
+                        <th>Quotas mensuel</th>
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for categorie in categories %}
+                        <tr>
+                            <td><b>{{ categorie }}</b></td>
+                            <td><b>{{ categorie.quota }}</b></td>
+                            <td><a href="{{ path('update_categorie', {'id': categorie.id}) }}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button></a></td>
+                            <td><a href="{{ path('delete_categorie', {'id': categorie.id}) }}"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <script>
+                $('#catego').DataTable({
+                    "pagingType": "full_numbers",
+                    "lengthMenu": [[5, 10], [5, 10]],
+                    "language": {
+                        "url": "{{ asset('DataTables/French.json') }}"
+                    }
+
+                });
+            </script>
+            <a href="{{ path('list_tree_direction') }}"><button type="button" class="btn btn-primary col-md-3"><span class="glyphicon glyphicon-arrow-left"> Retour à l'accueil</span></button></a>
+        {% endblock %}
+        <div class="panel panel-primary col-md-12" style="color: red; margin-top: 20px">
+            <b><u>NB:</u> Les actions sur les informations ci-dessus sont irréversibles. Soyez prudent lors des sélections.</b>
+        </div>
+    </div>
+{% endblock %}

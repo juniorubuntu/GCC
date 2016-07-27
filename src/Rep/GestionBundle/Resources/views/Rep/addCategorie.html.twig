@@ -2,28 +2,46 @@
 {% block title %}Ajout d'une Categorie{% endblock %}
 
 {% block detail %}
+    {% set update = 0 %}
+    {% if categorie is defined %}
+        {% set update = 1 %}
+    {% endif %}
     <div class="col-md-7 panel-primary active">
         <div class="panel panel-heading col-md-12" style="
              margin-left: -15px;
              margin-right: -25px;">
             <strong style="font-size: 18px"><u>Ajout d'une nouvelle catégorie</u></strong>
         </div>
-        <form class="col-md-12 form-inline panel panel-primary panel-body"
+        <form method="POST" action="{{ path('save_categorie') }}" class="col-md-12 form-inline panel panel-primary panel-body"
               style="
               margin-left: -15px;
               margin-right: -25px;">
+            {% if update == 1 %}
+                <input type="text" class="hide"  value="{{categorie.id}}" name="idC">
+            {% endif %}
             <div class="col-md-12 form-group nomCP"
                  style="margin-top: 5px;">
                 <label for="poste" class="col-md-4 control-label">Nom: <span style="color: red">*</span></label>
-                <b><input type="text" onfocus="editerFocus('nomCP', 'nom');" class="form-control" id="nomP" placeholder="Intitule de la categorie" style="font-size: 16px;"><span class="glyphicon glyphicon-remove form-control-feedback hide nom "></b>
+                <b><input {% if update == 1 %} value="{{categorie.nomCategorie}}" {% endif %} type="text" onfocus="editerFocus('nomCP', 'nom');" class="form-control" id="nomP" name="nomP" placeholder="Intitule de la categorie" style="font-size: 16px;"><span class="glyphicon glyphicon-remove form-control-feedback hide nom "></b>
             </div>
             <div class="col-md-12 form-group preCP"
                  style="margin-top: 5px;">
                 <label for="poste" class="col-md-4 control-label">Quota par mois <span style="color: red">*</span></label>
-                <b><input onfocus="editerFocus('preCP', 'pren');" type="text" class="form-control" id="prenP" placeholder="Quota du crédit par mois" style="font-size: 16px;"><span class="glyphicon glyphicon-remove form-control-feedback hide pren "></b>
+                <b><input {% if update == 1 %} value="{{categorie.quota}}" {% endif %} onfocus="editerFocus('preCP', 'pren');" type="text" class="form-control" id="prenP" name="prenP" placeholder="Quota du crédit par mois" style="font-size: 16px;"><span class="glyphicon glyphicon-remove form-control-feedback hide pren "></b>
+            </div>
+            <div class="col-md-12" style="margin-top: 12px">
+                <a href="{{ path('list_all_categorie') }}"><button type="button" class="btn btn-success active col-md-2 col-md-offset-6"><span class="glyphicon glyphicon-remove-circle">Annuler</span></button></a>
+                {% if update == 1 %} 
+                    <a><button type="submit" class="btn btn-primary col-md-2 col-md-offset-1"><span class="glyphicon glyphicon-plus-sign">Modifier</span></button></a>
+                {% else %}
+                    <a><button type="submit" class="btn btn-primary col-md-2 col-md-offset-1"><span class="glyphicon glyphicon-plus-sign">Ajouter</span></button></a>
+                {% endif %}
             </div>
         </form>
-        <a href="{{ path('list_tree_direction') }}"><button type="button" class="btn btn-success active col-md-2 col-md-offset-6"><span class="glyphicon glyphicon-remove-circle">Annuler</span></button></a>
-        <a><button onclick="validationCategorie();" type="button" class="btn btn-primary col-md-2 col-md-offset-1"><span class="glyphicon glyphicon-plus-sign">Ajouter</span></button></a>
+        {% if error is defined %}
+            <script>
+                validationCategorie();
+            </script>
+        {% endif %}
     </div>
 {% endblock %}

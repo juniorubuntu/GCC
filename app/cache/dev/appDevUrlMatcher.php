@@ -229,6 +229,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                         return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::addCategorieAction',  '_route' => 'add_categorie',);
                     }
 
+                    // save_categorie
+                    if ($pathinfo === '/GCC/categorie/save') {
+                        return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::saveCategorieAction',  '_route' => 'save_categorie',);
+                    }
+
                     if (0 === strpos($pathinfo, '/GCC/categorie/list')) {
                         // list_one_categorie
                         if (preg_match('#^/GCC/categorie/list/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
@@ -241,14 +246,14 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                                 return $this->redirect($pathinfo.'/', 'list_all_categorie');
                             }
 
-                            return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\CategorieController::listAllAction',  '_route' => 'list_all_categorie',);
+                            return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::listAllCategorieAction',  '_route' => 'list_all_categorie',);
                         }
 
                     }
 
                     // update_categorie
                     if (0 === strpos($pathinfo, '/GCC/categorie/modifier') && preg_match('#^/GCC/categorie/modifier/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'update_categorie')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\CategorieController::updateAction',));
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'update_categorie')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::updateCategorieAction',));
                     }
 
                     // delete_categorie
@@ -305,6 +310,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'add_poste')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::addPosteAction',));
                 }
 
+                // save_poste
+                if ($pathinfo === '/GCC/poste/save') {
+                    return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::savePosteAction',  '_route' => 'save_poste',);
+                }
+
                 if (0 === strpos($pathinfo, '/GCC/poste/list')) {
                     // list_one_poste
                     if (preg_match('#^/GCC/poste/list/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
@@ -317,7 +327,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                             return $this->redirect($pathinfo.'/', 'list_all_poste');
                         }
 
-                        return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\PosteController::listAllAction',  '_route' => 'list_all_poste',);
+                        return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\PersonnelController::listAllAction',  '_route' => 'list_all_poste',);
                     }
 
                 }

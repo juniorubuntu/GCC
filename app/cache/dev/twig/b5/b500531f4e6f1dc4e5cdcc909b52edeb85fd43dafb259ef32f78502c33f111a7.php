@@ -95,7 +95,7 @@ class __TwigTemplate_1091d4ecbbd35d9586604363d5c941f99039bcf167f853c69fd03ff01f4
         ";
         // line 41
         $this->displayBlock('quota', $context, $blocks);
-        // line 100
+        // line 101
         echo "    </div>
 ";
     }
@@ -128,29 +128,33 @@ class __TwigTemplate_1091d4ecbbd35d9586604363d5c941f99039bcf167f853c69fd03ff01f4
         // line 59
         echo $this->env->getExtension('routing')->getPath("list_all_personnel");
         echo "\"><button class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-user\"><b> Gérer le personnel</b></span></button></a>
+                        <a href=\"";
+        // line 60
+        echo $this->env->getExtension('routing')->getPath("list_all_categorie");
+        echo "\"><button class=\"btn btn-primary pull-right\"><span class=\"glyphicon glyphicon-align-center\"><b> Gestion des Categorie</b></span></button></a>
                     </div>
                 </div>
                 ";
-        // line 62
+        // line 63
         if (array_key_exists("aDetailler", $context)) {
-            // line 63
+            // line 64
             echo "                    <nav class=\"hide\">";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["aDetailler"]) ? $context["aDetailler"] : $this->getContext($context, "aDetailler")), "id", array()), "html", null, true);
             echo "</nav>
                     ";
         }
-        // line 65
+        // line 66
         echo "                    ";
         $this->displayBlock('detail', $context, $blocks);
-        // line 98
+        // line 99
         echo "            </div>
         ";
     }
 
-    // line 65
+    // line 66
     public function block_detail($context, array $blocks = array())
     {
-        // line 66
+        // line 67
         echo "                    <div class=\"col-md-7 panel-primary active\">
                         <div class=\"panel panel-heading col-md-12\" style=\"
                              margin-left: -15px;
@@ -197,7 +201,7 @@ class __TwigTemplate_1091d4ecbbd35d9586604363d5c941f99039bcf167f853c69fd03ff01f4
 
     public function getDebugInfo()
     {
-        return array (  154 => 66,  151 => 65,  146 => 98,  143 => 65,  137 => 63,  135 => 62,  129 => 59,  120 => 53,  107 => 42,  104 => 41,  99 => 100,  97 => 41,  88 => 35,  84 => 34,  80 => 33,  76 => 32,  55 => 14,  45 => 7,  41 => 5,  38 => 4,  31 => 2,  11 => 1,);
+        return array (  158 => 67,  155 => 66,  150 => 99,  147 => 66,  141 => 64,  139 => 63,  133 => 60,  129 => 59,  120 => 53,  107 => 42,  104 => 41,  99 => 101,  97 => 41,  88 => 35,  84 => 34,  80 => 33,  76 => 32,  55 => 14,  45 => 7,  41 => 5,  38 => 4,  31 => 2,  11 => 1,);
     }
 }
 /* {% extends "RepGestionBundle::layout.html.twig" %}*/
@@ -259,6 +263,7 @@ class __TwigTemplate_1091d4ecbbd35d9586604363d5c941f99039bcf167f853c69fd03ff01f4
 /*                          margin-right: -25px;*/
 /*                          font-size: 16px;">*/
 /*                         <a href="{{ path('list_all_personnel') }}"><button class="btn btn-primary"><span class="glyphicon glyphicon-user"><b> Gérer le personnel</b></span></button></a>*/
+/*                         <a href="{{ path('list_all_categorie') }}"><button class="btn btn-primary pull-right"><span class="glyphicon glyphicon-align-center"><b> Gestion des Categorie</b></span></button></a>*/
 /*                     </div>*/
 /*                 </div>*/
 /*                 {% if aDetailler is defined %}*/

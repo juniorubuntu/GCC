@@ -175,32 +175,30 @@ class __TwigTemplate_7e935977b674f7e5624e0c064ce29b5fda9d1b0713873a9fb6f319daaf6
         // line 60
         echo $this->env->getExtension('routing')->getPath("list_all_personnel");
         echo "\"><button type=\"button\" class=\"btn btn-success active col-md-2 col-md-offset-1\"><span class=\"glyphicon glyphicon-remove-circle\">Annuler</span></button></a>
-
                 ";
-        // line 62
+        // line 61
         if (((isset($context["update"]) ? $context["update"] : $this->getContext($context, "update")) == 1)) {
             echo " 
                     <a><button type=\"submit\" class=\"btn btn-primary col-md-2 col-md-offset-1\"><span class=\"glyphicon glyphicon-plus-sign\">Modifier</span></button></a>
                 ";
         } else {
-            // line 65
+            // line 64
             echo "                    <a><button type=\"submit\" class=\"btn btn-primary col-md-2 col-md-offset-1\"><span class=\"glyphicon glyphicon-plus-sign\">Ajouter</span></button></a>
                 ";
         }
-        // line 67
-        echo "
-            </div>
+        // line 66
+        echo "            </div>
         </form>
         ";
-        // line 70
+        // line 68
         if (array_key_exists("error", $context)) {
-            // line 71
+            // line 69
             echo "            <script>
                 validationFormPersonnel();
             </script>
         ";
         }
-        // line 75
+        // line 73
         echo "    </div>
 ";
     }
@@ -217,7 +215,7 @@ class __TwigTemplate_7e935977b674f7e5624e0c064ce29b5fda9d1b0713873a9fb6f319daaf6
 
     public function getDebugInfo()
     {
-        return array (  204 => 75,  198 => 71,  196 => 70,  191 => 67,  187 => 65,  181 => 62,  176 => 60,  166 => 57,  153 => 51,  145 => 50,  133 => 45,  121 => 40,  109 => 35,  97 => 30,  85 => 25,  80 => 22,  74 => 20,  72 => 19,  65 => 15,  56 => 13,  50 => 9,  47 => 8,  44 => 7,  41 => 6,  38 => 5,  35 => 4,  29 => 2,  11 => 1,);
+        return array (  202 => 73,  196 => 69,  194 => 68,  190 => 66,  186 => 64,  180 => 61,  176 => 60,  166 => 57,  153 => 51,  145 => 50,  133 => 45,  121 => 40,  109 => 35,  97 => 30,  85 => 25,  80 => 22,  74 => 20,  72 => 19,  65 => 15,  56 => 13,  50 => 9,  47 => 8,  44 => 7,  41 => 6,  38 => 5,  35 => 4,  29 => 2,  11 => 1,);
     }
 }
 /* {% extends "RepGestionBundle:Rep:detail.html.twig" %}*/
@@ -280,13 +278,11 @@ class __TwigTemplate_7e935977b674f7e5624e0c064ce29b5fda9d1b0713873a9fb6f319daaf6
 /*             </div>*/
 /*             <div class="col-md-12" style="margin-top: 12px">*/
 /*                 <a href="{{ path('list_all_personnel') }}"><button type="button" class="btn btn-success active col-md-2 col-md-offset-1"><span class="glyphicon glyphicon-remove-circle">Annuler</span></button></a>*/
-/* */
 /*                 {% if update == 1 %} */
 /*                     <a><button type="submit" class="btn btn-primary col-md-2 col-md-offset-1"><span class="glyphicon glyphicon-plus-sign">Modifier</span></button></a>*/
 /*                 {% else %}*/
 /*                     <a><button type="submit" class="btn btn-primary col-md-2 col-md-offset-1"><span class="glyphicon glyphicon-plus-sign">Ajouter</span></button></a>*/
 /*                 {% endif %}*/
-/* */
 /*             </div>*/
 /*         </form>*/
 /*         {% if error is defined %}*/

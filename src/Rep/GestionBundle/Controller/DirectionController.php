@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Rep\GestionBundle\Entity\Direction;
 use Rep\GestionBundle\Entity\Poste;
 use Rep\GestionBundle\Entity\Personnel;
+use Rep\GestionBundle\Entity\Categorie;
 use Symfony\Component\Form\FormBuilder;
 use Rep\GestionBundle\Form\Type;
 use Rep\GestionBundle\Entity\ExcelExport;
@@ -169,6 +170,75 @@ class DirectionController extends Controller {
                     'listOccupant' => $listOccupant));
     }
 
+    public function savePosteAction() {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $direction = $em->getRepository('RepGestionBundle:Direction')
+                ->findOneBy(array('directionPere' => NULL));
+
+        $this->generate_tree_list($direction);
+
+        $direction = $em->getRepository('RepGestionBundle:Direction')
+                ->find($_POST['DirId']);
+
+        $occupant = $em->getRepository('RepGestionBundle:Personnel')
+                ->find($_POST['matP']);
+
+        $categorie = $em->getRepository('RepGestionBundle:Categorie')
+                ->find($_POST['prenP']);
+
+        $poste = new Poste();
+
+        if (isset($_POST['idP']) && !empty($_POST['idP'])) {
+            $poste = $em->getRepository('RepGestionBundle:Poste')
+                    ->find($_POST['idP']);
+        }
+
+        $poste->setNomPoste($_POST['nomP']);
+        $poste->setOccupant($occupant);
+        $poste->setCategorie($categorie);
+        $poste->setObservation($_POST['observ']);
+        $poste->setDirection($direction);
+
+        if (!isset($_POST['nomP']) || !isset($_POST['prenP']) || !isset($_POST['matP']) || empty($_POST['nomP']) || empty($_POST['prenP']) || empty($_POST['matP'])) {
+
+            $listPoste = $this->getDoctrine()
+                    ->getRepository('RepGestionBundle:Poste')
+                    ->findBy(array('direction' => $direction));
+
+            $listSousDir = $this->getDoctrine()
+                    ->getRepository('RepGestionBundle:Direction')
+                    ->findBy(array('directionPere' => $direction));
+
+            $listOccupant = $this->getDoctrine()
+                    ->getRepository('RepGestionBundle:Personnel')
+                    ->findAll();
+
+            $listCategorie = $this->getDoctrine()
+                    ->getRepository('RepGestionBundle:Categorie')
+                    ->findAll();
+
+            return $this->render('RepGestionBundle:Rep:addPoste.html.twig', array(
+                        'error' => 1,
+                        'posted' => $poste,
+                        'aDetailler' => $direction,
+                        'arbreDirection' => $this->getTreeDir(),
+                        'listPoste' => $listPoste,
+                        'listCategorie' => $listCategorie,
+                        'listOccupant' => $listOccupant,
+                        'listSousDir' => $listSousDir));
+        }
+        if (!isset($_POST['idP'])) {
+            $em->persist($poste);
+        }
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('list_detail_direction', array(
+                            'id' => $_POST['DirId']
+        )));
+    }
+
     public function updatePosteAction($id, $idPoste) {
         $aDetailler = $this->findById($id);
 
@@ -223,6 +293,8 @@ class DirectionController extends Controller {
 
         $this->generate_tree_list($direction);
 
+        $personnel = new Personnel();
+
         if (isset($_POST['idP'])) {
             $personnel = $em->getRepository('RepGestionBundle:Personnel')
                     ->find($_POST['idP']);
@@ -242,6 +314,9 @@ class DirectionController extends Controller {
                         'personnel' => $personnel,
                         'arbreDirection' => $this->getTreeDir()));
         }
+        if (!isset($_POST['idP'])) {
+            $em->persist($personnel);
+        }
         $em->flush();
         return $this->redirect($this->generateUrl('list_all_personnel'));
     }
@@ -253,6 +328,37 @@ class DirectionController extends Controller {
         $this->generate_tree_list($direction);
         return $this->render('RepGestionBundle:Rep:addCategorie.html.twig', array(
                     'arbreDirection' => $this->getTreeDir()));
+    }
+
+    public function saveCategorieAction() {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $direction = $em->getRepository('RepGestionBundle:Direction')
+                ->findOneBy(array('directionPere' => NULL));
+
+        $this->generate_tree_list($direction);
+
+        $categorie = new Categorie();
+
+        if (isset($_POST['idC'])) {
+            $categorie = $em->getRepository('RepGestionBundle:Categorie')
+                    ->find($_POST['idC']);
+        }
+        $categorie->setNomCategorie($_POST['nomP']);
+        $categorie->setQuota($_POST['prenP']);
+
+        if (empty($_POST['nomP']) || empty($_POST['prenP'])) {
+            return $this->render('RepGestionBundle:Rep:addCategorie.html.twig', array(
+                        'error' => 1,
+                        'categorie' => $categorie,
+                        'arbreDirection' => $this->getTreeDir()));
+        }
+        if (!isset($_POST['idC'])) {
+            $em->persist($categorie);
+        }
+        $em->flush();
+        return $this->redirect($this->generateUrl('list_all_categorie'));
     }
 
     public function addBrancheAction($id) {
@@ -461,6 +567,21 @@ class DirectionController extends Controller {
                     'personnel' => $personnel));
     }
 
+    public function updateCategorieAction($id) {
+        $direction = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Direction')
+                ->findOneBy(array('directionPere' => NULL));
+
+        $categorie = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Categorie')
+                ->find($id);
+
+        $this->generate_tree_list($direction);
+        return $this->render('RepGestionBundle:Rep:addCategorie.html.twig', array(
+                    'arbreDirection' => $this->getTreeDir(),
+                    'categorie' => $categorie));
+    }
+
     public function listAllPersonnelAction() {
         $direction = $this->getDoctrine()
                 ->getRepository('RepGestionBundle:Direction')
@@ -490,6 +611,23 @@ class DirectionController extends Controller {
         return $this->render('RepGestionBundle:Rep:listCompte.html.twig', array(
                     'arbreDirection' => $this->getTreeDir(),
                     'comptes' => $comptes));
+    }
+
+    public function listAllCategorieAction() {
+        $direction = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Direction')
+                ->findOneBy(array('directionPere' => NULL));
+
+        $categories = $this->getDoctrine()
+                ->getRepository('RepGestionBundle:Categorie')
+                ->findAll();
+
+        $categories = array_reverse($categories);
+
+        $this->generate_tree_list($direction);
+        return $this->render('RepGestionBundle:Rep:listCategorie.html.twig', array(
+                    'arbreDirection' => $this->getTreeDir(),
+                    'categories' => $categories));
     }
 
     public function deleteCompteAction() {

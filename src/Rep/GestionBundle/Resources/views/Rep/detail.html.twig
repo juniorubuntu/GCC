@@ -19,9 +19,9 @@
             <marquee><h2><b>{{ aDetailler }}</b></h2></marquee>
             <div class="poste">
                 {% block poste %}
-                    <table class="col-md-12 table table-bordered">
+                    <table class="col-md-12 table table-striped table-bordered display cell-border row-border compact" id="listPoste">
                         <h2 class="col-md-12">Postes et occupants</h2>
-                        <thead class="panel panel-primary active panel-heading">
+                        <thead class="panel panel-primary alert-info active panel-heading">
                             <tr>
                                 <th>Postes</th>
                                 <th>Occupants</th>
@@ -44,6 +44,16 @@
                             {% endfor %}
                         </tbody>
                     </table>
+                    <script>
+                        $('#listPoste').DataTable({
+                            "pagingType": "full_numbers",
+                            "lengthMenu": [[5, 10], [5, 10]],
+                            "language": {
+                                "url": "{{ asset('DataTables/French.json') }}"
+                            }
+
+                        });
+                    </script>
                     <a href="{{ path('add_poste', {'id': aDetailler.id}) }}"><button type="button" class="btn btn-primary col-md-3"><span class="glyphicon glyphicon-plus">Ajouter un poste</span></button></a>
                 {% endblock %}
                 <hr class="col-md-11" style="
@@ -54,9 +64,9 @@
                     height: 2px;
                     margin-top: -1%;">
                 {% block branche %}
-                    <table class="col-md-12 table table-bordered">
+                    <table class="col-md-12 table table-striped display cell-border row-border compact" id="listBranche">
                         <h2 class="col-md-12">Démenbrements directs</h2>
-                        <thead class="panel panel-info active panel-heading">
+                        <thead class="panel panel-info alert-info active panel-heading">
                             <tr>
                                 <th>Démembrements</th>
                                 <th>Modifier</th>
@@ -75,6 +85,16 @@
                             {% endfor %}
                         </tbody>
                     </table>
+                    <script>
+                        $('#listBranche').DataTable({
+                            "pagingType": "full_numbers",
+                            "lengthMenu": [[5, 10], [5, 10]],
+                            "language": {
+                                "url": "{{ asset('DataTables/French.json') }}"
+                            }
+
+                        });
+                    </script>
                     <a href="{{ path('add_branche', {'id': aDetailler.id}) }}"><button type="button" class="btn btn-primary col-md-4"><span class="glyphicon glyphicon-plus">Ajouter un démembrement</span></button></a>
                 {% endblock%}
             </div>

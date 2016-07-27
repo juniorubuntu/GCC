@@ -212,7 +212,11 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
                                     <td><a><button onclick=\"alertDeletePoste('";
             // line 41
             echo twig_escape_filter($this->env, $context["poste"], "html", null, true);
-            echo "');\" type=\"button\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-trash\"></span></button></a></td>
+            echo "', ";
+            echo twig_escape_filter($this->env, $this->getAttribute($context["poste"], "id", array()), "html", null, true);
+            echo ", ";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["aDetailler"]) ? $context["aDetailler"] : $this->getContext($context, "aDetailler")), "id", array()), "html", null, true);
+            echo ");\" type=\"button\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-trash\"></span></button></a></td>
                                     <td><a><button type=\"button\" class=\"btn btn-warning\"><span class=\"glyphicon glyphicon-send\"></span></button></a></td>
                                 </tr>
                             ";
@@ -277,7 +281,11 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
                                     <td><a><button type=\"button\" onclick=\"alertDelete('";
             // line 83
             echo twig_escape_filter($this->env, $context["sousDir"], "html", null, true);
-            echo "');\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-trash\"></span></button></a></td>
+            echo "', ";
+            echo twig_escape_filter($this->env, $this->getAttribute($context["sousDir"], "id", array()), "html", null, true);
+            echo ", ";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["aDetailler"]) ? $context["aDetailler"] : $this->getContext($context, "aDetailler")), "id", array()), "html", null, true);
+            echo ");\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-trash\"></span></button></a></td>
                                 </tr>
                             ";
         }
@@ -319,7 +327,7 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
 
     public function getDebugInfo()
     {
-        return array (  305 => 98,  297 => 93,  288 => 86,  279 => 83,  274 => 81,  270 => 80,  267 => 79,  263 => 78,  250 => 67,  247 => 66,  241 => 57,  233 => 52,  224 => 45,  214 => 41,  210 => 40,  206 => 39,  202 => 38,  198 => 37,  195 => 36,  191 => 35,  176 => 22,  173 => 21,  107 => 122,  101 => 120,  99 => 119,  78 => 100,  76 => 66,  67 => 59,  65 => 21,  60 => 19,  48 => 10,  41 => 5,  38 => 4,  31 => 2,  11 => 1,);
+        return array (  313 => 98,  305 => 93,  296 => 86,  283 => 83,  278 => 81,  274 => 80,  271 => 79,  267 => 78,  254 => 67,  251 => 66,  245 => 57,  237 => 52,  228 => 45,  214 => 41,  210 => 40,  206 => 39,  202 => 38,  198 => 37,  195 => 36,  191 => 35,  176 => 22,  173 => 21,  107 => 122,  101 => 120,  99 => 119,  78 => 100,  76 => 66,  67 => 59,  65 => 21,  60 => 19,  48 => 10,  41 => 5,  38 => 4,  31 => 2,  11 => 1,);
     }
 }
 /* {% extends "RepGestionBundle:Rep:accueil.html.twig" %}*/
@@ -362,7 +370,7 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
 /*                                     <td><b>{{ poste.occupant }}</b></td>*/
 /*                                     <td style="color: blue"><b>{{ poste.categorie.quota }}</b></td>*/
 /*                                     <td><a href="{{ path('update_poste', {'id': aDetailler.id, 'idPoste': poste.id}) }}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button></a></td>*/
-/*                                     <td><a><button onclick="alertDeletePoste('{{ poste }}');" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a></td>*/
+/*                                     <td><a><button onclick="alertDeletePoste('{{ poste }}', {{poste.id}}, {{aDetailler.id}});" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a></td>*/
 /*                                     <td><a><button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-send"></span></button></a></td>*/
 /*                                 </tr>*/
 /*                             {% endfor %}*/
@@ -404,7 +412,7 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
 /*                                     <td><b>{{ sousDir }}</b></td>*/
 /*                                     <td><a href="{{ path('update_direction', {'id':aDetailler.id, 'idDir':sousDir.id }) }}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button></a></td>*/
 /*                                     <td><a><button type="button" onclick="detacheBranche();" class="btn btn-warning"><span class="glyphicon glyphicon-minus"></span></button></a></td>*/
-/*                                     <td><a><button type="button" onclick="alertDelete('{{ sousDir }}');" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a></td>*/
+/*                                     <td><a><button type="button" onclick="alertDelete('{{ sousDir }}', {{sousDir.id}}, {{aDetailler.id}});" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a></td>*/
 /*                                 </tr>*/
 /*                             {% endfor %}*/
 /*                         </tbody>*/

@@ -344,16 +344,21 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             }
 
-            if (0 === strpos($pathinfo, '/GCC/direction')) {
-                // add_direction
-                if (rtrim($pathinfo, '/') === '/GCC/direction/ajouter') {
-                    if (substr($pathinfo, -1) !== '/') {
-                        return $this->redirect($pathinfo.'/', 'add_direction');
-                    }
-
-                    return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::ajouterAction',  '_route' => 'add_direction',);
+            // add_direction
+            if (rtrim($pathinfo, '/') === '/GCC/direction/ajouter') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'add_direction');
                 }
 
+                return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::ajouterAction',  '_route' => 'add_direction',);
+            }
+
+            // save_branche
+            if ($pathinfo === '/GCC/branche/save') {
+                return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::saveBrancheAction',  '_route' => 'save_branche',);
+            }
+
+            if (0 === strpos($pathinfo, '/GCC/direction')) {
                 if (0 === strpos($pathinfo, '/GCC/direction/list')) {
                     // list_one_direction
                     if (preg_match('#^/GCC/direction/list/(?P<id>\\d+)$#s', $pathinfo, $matches)) {

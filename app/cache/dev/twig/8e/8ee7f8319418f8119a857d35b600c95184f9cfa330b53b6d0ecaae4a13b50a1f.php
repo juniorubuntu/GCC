@@ -45,23 +45,26 @@ class __TwigTemplate_5f2312b048575f3d9605d5b683250ea900692c24a8f83c0f5d21af65c3e
                 font-family: constantia;
                 font-size: 16px;\">
             <div class=\"poste\">
+                <a href=\"";
+        // line 14
+        echo $this->env->getExtension('routing')->getPath("list_tree_direction");
+        echo "\"><button type=\"button\" class=\"btn btn-primary col-md-2\"><span class=\"glyphicon glyphicon-arrow-left\"> Retour à l'accueil</span></button></a><br>
                 <table class=\"col-md-12 table table-bordered table-striped display cell-border row-border compact\" id=\"listQuota\">
                     <center><h2 class=\"col-md-12\">Récapitulatif des Quotas de : <b>";
-        // line 15
+        // line 16
         echo twig_escape_filter($this->env, (isset($context["aDetailler"]) ? $context["aDetailler"] : $this->getContext($context, "aDetailler")), "html", null, true);
         echo "</b></h2></center>
                     <thead class=\"panel alert-info panel-primary active panel-heading\">
                         <tr>
-                            <th>N<u><sup>0</sup></u></th>
-                    <th>Noms et prénoms</th>
-                    <th>Matricules</th>
-                    <th>Téléphones</th>
-                    <th>Quotas</th>
-                    <th>Première attribution</th>
-                    <th>Decision</th>
-                    <th>Observations</th>
-                    <th>Direction</th>
-                    </tr>
+                            <th style=\"width: 250px;\">Noms et prénoms</th>
+                            <th>Matricules</th>
+                            <th>Téléphones</th>
+                            <th>Quotas</th>
+                            <th>Première attribution</th>
+                            <th>Decision</th>
+                            <th>Observations</th>
+                            <th>Direction</th>
+                        </tr>
                     </thead>
                     <tbody>
                         ";
@@ -70,7 +73,7 @@ class __TwigTemplate_5f2312b048575f3d9605d5b683250ea900692c24a8f83c0f5d21af65c3e
         echo "
                     <tfoot>
                         <tr>
-                            <td colspan=\"9\"><center><h2>Total: <span style=\"color: green; font-size: 45px\"><b>";
+                            <td colspan=\"8\"><center><h2>Total: <span style=\"color: green; font-size: 45px\"><b>";
         // line 33
         echo twig_escape_filter($this->env, (isset($context["total"]) ? $context["total"] : $this->getContext($context, "total")), "html", null, true);
         echo "</b></span> FCFA</h2></center></td>
@@ -95,13 +98,9 @@ class __TwigTemplate_5f2312b048575f3d9605d5b683250ea900692c24a8f83c0f5d21af65c3e
                 </script>
             </div>
             <div class=\"retour\">
-                <a href=\"";
-        // line 52
-        echo $this->env->getExtension('routing')->getPath("list_tree_direction");
-        echo "\"><button type=\"button\" class=\"btn btn-primary col-md-2\"><span class=\"glyphicon glyphicon-arrow-left\"> Retour à l'accueil</span></button></a>
-                <div class=\"col-md-2 col-md-offset-7\">
+                <div class=\"col-md-2 col-md-offset-9\">
                     <a href=\"";
-        // line 54
+        // line 53
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("impression_data", array("id" => $this->getAttribute((isset($context["aDetailler"]) ? $context["aDetailler"] : $this->getContext($context, "aDetailler")), "id", array()))), "html", null, true);
         echo "\"><b><img src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/excel.png"), "html", null, true);
@@ -109,7 +108,7 @@ class __TwigTemplate_5f2312b048575f3d9605d5b683250ea900692c24a8f83c0f5d21af65c3e
                 </div>
                 <div class=\"col-md-1\">
                     <a href=\"#\"><b><img src=\"";
-        // line 57
+        // line 56
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/pdf.png"), "html", null, true);
         echo "\" style=\"height: 40px; font-size: 16px\"/>Pdf</b></a>
                 </div>
@@ -131,7 +130,7 @@ class __TwigTemplate_5f2312b048575f3d9605d5b683250ea900692c24a8f83c0f5d21af65c3e
 
     public function getDebugInfo()
     {
-        return array (  113 => 57,  105 => 54,  100 => 52,  91 => 46,  75 => 33,  69 => 30,  51 => 15,  39 => 5,  36 => 4,  29 => 2,  11 => 1,);
+        return array (  112 => 56,  104 => 53,  94 => 46,  78 => 33,  72 => 30,  55 => 16,  50 => 14,  39 => 5,  36 => 4,  29 => 2,  11 => 1,);
     }
 }
 /* {% extends "RepGestionBundle:Rep:accueil.html.twig" %}*/
@@ -147,26 +146,26 @@ class __TwigTemplate_5f2312b048575f3d9605d5b683250ea900692c24a8f83c0f5d21af65c3e
 /*                 font-family: constantia;*/
 /*                 font-size: 16px;">*/
 /*             <div class="poste">*/
+/*                 <a href="{{ path('list_tree_direction') }}"><button type="button" class="btn btn-primary col-md-2"><span class="glyphicon glyphicon-arrow-left"> Retour à l'accueil</span></button></a><br>*/
 /*                 <table class="col-md-12 table table-bordered table-striped display cell-border row-border compact" id="listQuota">*/
 /*                     <center><h2 class="col-md-12">Récapitulatif des Quotas de : <b>{{ aDetailler }}</b></h2></center>*/
 /*                     <thead class="panel alert-info panel-primary active panel-heading">*/
 /*                         <tr>*/
-/*                             <th>N<u><sup>0</sup></u></th>*/
-/*                     <th>Noms et prénoms</th>*/
-/*                     <th>Matricules</th>*/
-/*                     <th>Téléphones</th>*/
-/*                     <th>Quotas</th>*/
-/*                     <th>Première attribution</th>*/
-/*                     <th>Decision</th>*/
-/*                     <th>Observations</th>*/
-/*                     <th>Direction</th>*/
-/*                     </tr>*/
+/*                             <th style="width: 250px;">Noms et prénoms</th>*/
+/*                             <th>Matricules</th>*/
+/*                             <th>Téléphones</th>*/
+/*                             <th>Quotas</th>*/
+/*                             <th>Première attribution</th>*/
+/*                             <th>Decision</th>*/
+/*                             <th>Observations</th>*/
+/*                             <th>Direction</th>*/
+/*                         </tr>*/
 /*                     </thead>*/
 /*                     <tbody>*/
 /*                         {{ export | raw }}*/
 /*                     <tfoot>*/
 /*                         <tr>*/
-/*                             <td colspan="9"><center><h2>Total: <span style="color: green; font-size: 45px"><b>{{total}}</b></span> FCFA</h2></center></td>*/
+/*                             <td colspan="8"><center><h2>Total: <span style="color: green; font-size: 45px"><b>{{total}}</b></span> FCFA</h2></center></td>*/
 /*                     </tr>*/
 /*                     </tfoot>*/
 /*                     </tbody>*/
@@ -185,8 +184,7 @@ class __TwigTemplate_5f2312b048575f3d9605d5b683250ea900692c24a8f83c0f5d21af65c3e
 /*                 </script>*/
 /*             </div>*/
 /*             <div class="retour">*/
-/*                 <a href="{{ path('list_tree_direction') }}"><button type="button" class="btn btn-primary col-md-2"><span class="glyphicon glyphicon-arrow-left"> Retour à l'accueil</span></button></a>*/
-/*                 <div class="col-md-2 col-md-offset-7">*/
+/*                 <div class="col-md-2 col-md-offset-9">*/
 /*                     <a href="{{ path('impression_data', {'id': aDetailler.id}) }}"><b><img src="{{ asset('images/excel.png') }}" style="height: 35px; font-size: 16px"/>Excel</b></a>*/
 /*                 </div>*/
 /*                 <div class="col-md-1">*/

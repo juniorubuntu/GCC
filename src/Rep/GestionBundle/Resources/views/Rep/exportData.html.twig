@@ -11,26 +11,26 @@
                 font-family: constantia;
                 font-size: 16px;">
             <div class="poste">
+                <a href="{{ path('list_tree_direction') }}"><button type="button" class="btn btn-primary col-md-2"><span class="glyphicon glyphicon-arrow-left"> Retour à l'accueil</span></button></a><br>
                 <table class="col-md-12 table table-bordered table-striped display cell-border row-border compact" id="listQuota">
                     <center><h2 class="col-md-12">Récapitulatif des Quotas de : <b>{{ aDetailler }}</b></h2></center>
                     <thead class="panel alert-info panel-primary active panel-heading">
                         <tr>
-                            <th>N<u><sup>0</sup></u></th>
-                    <th>Noms et prénoms</th>
-                    <th>Matricules</th>
-                    <th>Téléphones</th>
-                    <th>Quotas</th>
-                    <th>Première attribution</th>
-                    <th>Decision</th>
-                    <th>Observations</th>
-                    <th>Direction</th>
-                    </tr>
+                            <th style="width: 250px;">Noms et prénoms</th>
+                            <th>Matricules</th>
+                            <th>Téléphones</th>
+                            <th>Quotas</th>
+                            <th>Première attribution</th>
+                            <th>Decision</th>
+                            <th>Observations</th>
+                            <th>Direction</th>
+                        </tr>
                     </thead>
                     <tbody>
                         {{ export | raw }}
                     <tfoot>
                         <tr>
-                            <td colspan="9"><center><h2>Total: <span style="color: green; font-size: 45px"><b>{{total}}</b></span> FCFA</h2></center></td>
+                            <td colspan="8"><center><h2>Total: <span style="color: green; font-size: 45px"><b>{{total}}</b></span> FCFA</h2></center></td>
                     </tr>
                     </tfoot>
                     </tbody>
@@ -49,8 +49,7 @@
                 </script>
             </div>
             <div class="retour">
-                <a href="{{ path('list_tree_direction') }}"><button type="button" class="btn btn-primary col-md-2"><span class="glyphicon glyphicon-arrow-left"> Retour à l'accueil</span></button></a>
-                <div class="col-md-2 col-md-offset-7">
+                <div class="col-md-2 col-md-offset-9">
                     <a href="{{ path('impression_data', {'id': aDetailler.id}) }}"><b><img src="{{ asset('images/excel.png') }}" style="height: 35px; font-size: 16px"/>Excel</b></a>
                 </div>
                 <div class="col-md-1">

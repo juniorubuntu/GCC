@@ -67,6 +67,68 @@ class DirectionController extends Controller {
         return new Response('<h1>Good!!!</h1>');
     }
 
+    function saveBrancheAction() {
+        $em = $this->getDoctrine()->getManager();
+
+        $direction = $em->getRepository('RepGestionBundle:Direction')
+                ->findOneBy(array('directionPere' => NULL));
+
+        $this->generate_tree_list($direction);
+
+        $direction = $em->getRepository('RepGestionBundle:Direction')
+                ->find($_POST['DirId']);
+
+
+        $branche = new Direction();
+
+        if (isset($_POST['idB']) && !empty($_POST['idB'])) {
+            $branche = $em->getRepository('RepGestionBundle:Direction')
+                    ->find($_POST['idB']);
+        }
+
+        $branche->setNomDir($_POST['nomB']);
+        $branche->setDirectionPere($direction);
+        $branche->setObservation($_POST['observ']);
+        $branche->setDateCreation(new \DateTime($_POST['dateB']));
+
+        if (empty($_POST['nomB']) || empty($_POST['dateB'])) {
+
+            $listPoste = $this->getDoctrine()
+                    ->getRepository('RepGestionBundle:Poste')
+                    ->findBy(array('direction' => $direction));
+
+            $listSousDir = $this->getDoctrine()
+                    ->getRepository('RepGestionBundle:Direction')
+                    ->findBy(array('directionPere' => $direction));
+
+            $listOccupant = $this->getDoctrine()
+                    ->getRepository('RepGestionBundle:Personnel')
+                    ->findAll();
+
+            $listCategorie = $this->getDoctrine()
+                    ->getRepository('RepGestionBundle:Categorie')
+                    ->findAll();
+
+            return $this->render('RepGestionBundle:Rep:addBranche.html.twig', array(
+                        'error' => 1,
+                        'branched' => $branche,
+                        'aDetailler' => $direction,
+                        'arbreDirection' => $this->getTreeDir(),
+                        'listPoste' => $listPoste,
+                        'listCategorie' => $listCategorie,
+                        'listOccupant' => $listOccupant,
+                        'listSousDir' => $listSousDir));
+        }
+        if (null == $branche->getId()) {
+            $em->persist($branche);
+        }
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('list_detail_direction', array(
+                            'id' => $_POST['DirId']
+        )));
+    }
+
     public function listAction($id) {
         $direction = $this->findById($id);
         return new Response('<pre>' . $direction . '</pre>');
@@ -201,7 +263,7 @@ class DirectionController extends Controller {
         $poste->setObservation($_POST['observ']);
         $poste->setDirection($direction);
 
-        if (!isset($_POST['nomP']) || !isset($_POST['prenP']) || !isset($_POST['matP']) || empty($_POST['nomP']) || empty($_POST['prenP']) || empty($_POST['matP'])) {
+        if (!isset($_POST['nomP']) || !isset($_POST['prenP']) || !isset($_POST['matP']) || empty($_POST['nomP']) || ($_POST['prenP'] == -1) || ($_POST['matP'] == -1)) {
 
             $listPoste = $this->getDoctrine()
                     ->getRepository('RepGestionBundle:Poste')
@@ -229,7 +291,7 @@ class DirectionController extends Controller {
                         'listOccupant' => $listOccupant,
                         'listSousDir' => $listSousDir));
         }
-        if (!isset($_POST['idP'])) {
+        if (!isset($_POST['idP']) || (null == $poste->getId())) {
             $em->persist($poste);
         }
         $em->flush();
@@ -666,7 +728,6 @@ class DirectionController extends Controller {
         foreach ($listPoste as $poste) {
             $this->setQuotaData(
                     '<tr>
-                        <td><b>' . $i++ . '</b></td>
                         <td><b>' . $poste->getOccupant() . '</b></td>
                         <td><b>' . $poste->getOccupant()->getMatricule() . '</b></td>                                   
                         <td><b>' . $poste->getOccupant()->getNumTel() . '</b></td>                                   

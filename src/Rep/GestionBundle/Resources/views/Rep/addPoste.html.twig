@@ -1,5 +1,5 @@
 {% extends "RepGestionBundle:Rep:detail.html.twig" %}
-{% block title %}Ajout d'un nouveau poste{% endblock %}
+{% block title %}Poste(Ajout | Modification) {% endblock %}
 
 {% block poste %}
     {% set update = 0 %}
@@ -8,7 +8,7 @@
     {% endif %}
     <h4 class="col-md-12"><b><u>{% if update == 1 %} Modification d'un poste {% else %}Ajout d'un nouveau poste {% endif %}</u></b></h4>
     <form action="{{ path('save_poste') }}" method="POST" class="col-md-12 form-inline panel panel-primary panel-body">
-        {% if update == 1 %}
+        {% if update == 1 and posted.categorie.id is defined  %}
             <input type="text" class="hide"  value="{{posted.id}}" name="idP">
         {% endif %}
         <div class="col-md-12 form-group nomCP" 
@@ -20,7 +20,18 @@
              style="margin-top: 5px;">
             <label for="categorie" class="col-md-4 control-label">Categorie <span style="color: red">*</span></label>
             <b><select onfocus="editerFocus('preCP', 'pren');" id="prenP" class="form-control" name="prenP" style="font-size: 16px;">
-                    <option {% if update == 1 %} value="{% if posted.categorie.id is defined %}{{posted.categorie.id}}"{% endif %} {% endif %} class="form-control" selected >{% if update == 1 %} {{posted.categorie }} {% else %}Choisir sa categorie {% endif %}</option>
+                    <option 
+                        {% if update == 1 and posted.categorie.id is defined %}
+                            value="{{posted.categorie.id}}"
+                        {% else %}
+                            value="-1"
+                        {% endif %} class="form-control" selected >
+                        {% if update == 1 and posted.categorie.id is defined %} 
+                            {{posted.categorie }} 
+                        {% else %}
+                            Choisir sa categorie 
+                        {% endif %}
+                    </option>
                     {% for categorie in listCategorie %}
                         <option value="{{categorie.id }}" class="form-control" style="font-size: 16px; font-weight: bold; color: black;">{{categorie}}</option>
                     {% endfor %}
@@ -31,7 +42,18 @@
              style="margin-top: 5px;">
             <label for="poste" class="col-md-4 control-label">Occupant <span style="color: red">*</span></label>
             <b><select onfocus="editerFocus('matCP', 'mat');" id="matP" class="form-control" name="matP" style="font-size: 16px;">
-                    <option {% if update == 1 %} value="{% if posted.occupant.id is defined %}{{posted.occupant.id}}"{% endif %} {% endif %} class="form-control" selected>{% if update == 1 %} {{posted.occupant }} {% else %} Choisir l'occupant {% endif %}</option>
+                    <option 
+                        {% if update == 1 and posted.occupant.id is defined %}
+                            value="{{posted.occupant.id}}"
+                        {% else %}
+                            value="-1" 
+                        {% endif %} class="form-control" selected>
+                        {% if update == 1 and posted.occupant.id is defined%} 
+                            {{posted.occupant }} 
+                        {% else %} 
+                            Choisir l'occupant 
+                        {% endif %}
+                    </option>
                     {% for occupant in listOccupant %}
                         <option value="{{occupant.id }}" class="form-control" style="font-size: 16px; font-weight: bold; color: black;">{{occupant}}</option>
                     {% endfor %}
@@ -53,14 +75,16 @@
             <nav type="" class="form-control" id="poste.id" style="font-size: 16px;"><b>{{aDetailler}}</b></nav>
             <input type="text" name="DirId" class="hide" value="{{aDetailler.id }}" />
         </div>
+        <label style="color: red;margin-top: 5px" class="hide err">Les champs avec * sont obligatoires.</label>
         <div class="col-md-12" style="margin-top: 12px">
-            <a href="{{ path('list_detail_direction', {'id': aDetailler.id}) }}"><button type="button" class="btn btn-success active col-md-2 col-md-offset-6"><span class="glyphicon glyphicon-remove-circle">Annuler</span></button></a>
-            <a><button type="submit" class="btn btn-primary col-md-2 col-md-offset-2"><span class="glyphicon glyphicon-plus-sign">{% if update == 1 and error is not defined %}Modifier {% else %}Ajouter {% endif %}</span></button></a>
+            <a href="{{ path('list_detail_direction', {'id': aDetailler.id}) }}"><button type="button" class="btn btn-success active col-md-2 col-md-offset-4"><span class="glyphicon glyphicon-remove-circle">Annuler</span></button></a>
+            <a><button type="submit" class="btn btn-primary col-md-2 col-md-offset-1"><span class="glyphicon glyphicon-plus-sign">{% if update == 1 and posted.occupant.id is defined %}Modifier {% else %}Ajouter {% endif %}</span></button></a>
         </div>
     </form>
     {% if error is defined %}
         <script>
             validationFormPoste();
+            $('.err').removeClass('hide');
         </script>
     {% endif %}
 {% endblock %}

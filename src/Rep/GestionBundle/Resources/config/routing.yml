@@ -182,6 +182,10 @@ delete_poste:
 add_direction:
     pattern:  /direction/ajouter/
     defaults: { _controller: RepGestionBundle:Direction:ajouter }
+    
+save_branche:
+    pattern:  /branche/save
+    defaults: { _controller: RepGestionBundle:Direction:saveBranche }
 
 list_one_direction:
     pattern:  /direction/list/{id}

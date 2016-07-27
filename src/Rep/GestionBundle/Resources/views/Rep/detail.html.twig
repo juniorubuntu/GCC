@@ -38,7 +38,7 @@
                                     <td><b>{{ poste.occupant }}</b></td>
                                     <td style="color: blue"><b>{{ poste.categorie.quota }}</b></td>
                                     <td><a href="{{ path('update_poste', {'id': aDetailler.id, 'idPoste': poste.id}) }}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button></a></td>
-                                    <td><a><button onclick="alertDeletePoste('{{ poste }}');" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a></td>
+                                    <td><a><button onclick="alertDeletePoste('{{ poste }}', {{poste.id}}, {{aDetailler.id}});" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a></td>
                                     <td><a><button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-send"></span></button></a></td>
                                 </tr>
                             {% endfor %}
@@ -80,7 +80,7 @@
                                     <td><b>{{ sousDir }}</b></td>
                                     <td><a href="{{ path('update_direction', {'id':aDetailler.id, 'idDir':sousDir.id }) }}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button></a></td>
                                     <td><a><button type="button" onclick="detacheBranche();" class="btn btn-warning"><span class="glyphicon glyphicon-minus"></span></button></a></td>
-                                    <td><a><button type="button" onclick="alertDelete('{{ sousDir }}');" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a></td>
+                                    <td><a><button type="button" onclick="alertDelete('{{ sousDir }}', {{sousDir.id}}, {{aDetailler.id}});" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a></td>
                                 </tr>
                             {% endfor %}
                         </tbody>

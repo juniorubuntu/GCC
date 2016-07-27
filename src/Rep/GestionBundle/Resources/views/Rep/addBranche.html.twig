@@ -1,23 +1,35 @@
 {% extends "RepGestionBundle:Rep:detail.html.twig" %}
-{% block title %}Ajout d'un nouveau démembrement{% endblock %}
+{% block title %}Branches(Ajout | Modif){% endblock %}
 
 {% block branche %}
     {% set update = 0 %}
     {% if branched is defined %}
         {% set update = 1 %}
     {% endif %}
-    <form class="col-md-12 form-inline panel panel-primary panel-body" onload="test()">
-        <h4 class="col-md-12"><b><u>{% if update == 1 %} Modification d'un démembrement {% else %}Ajout d'un nouveau démembrement {% endif %}</u></b></h4>
+    <form action="{{ path('save_branche') }}" method="POST" class="col-md-12 form-inline panel panel-primary panel-body">
+        <h4 class="col-md-12">
+            <b><u>
+                    {% if update == 1 %} 
+                        Modification d'un démembrement 
+                    {% else %}
+                        Ajout d'un nouveau démembrement 
+                    {% endif %}
+                </u></b>
+        </h4>
+        {% if update == 1 %}
+            <input type="text" class="hide"  value="{{branched.id}}" name="idB">
+        {% endif %}
         <div class="col-md-12 form-group nomCP"
              style="margin-top: 5px;">
             <label for="poste" class="col-md-4 control-label">Nom: <span style="color: red">*</span></label>
-            <b><input onfocus="editerFocus('nomCP', 'nom');" {% if update == 1 %} value="{{branched }}" {% endif %} type="text" class="form-control" id="nomP" placeholder="Nom du démembrement" style="font-size: 16px;"><span class="glyphicon glyphicon-remove form-control-feedback hide nom "></b>
+            <b><input onfocus="editerFocus('nomCP', 'nom');" {% if update == 1 %} value="{{branched }}" {% endif %} type="text" class="form-control" id="nomP" name="nomB" placeholder="Nom du démembrement" style="font-size: 16px;"><span class="glyphicon glyphicon-remove form-control-feedback hide nom "></b>
         </div>
         <div class="col-md-12 form-group dateCP"
              style="margin-top: 5px;">
             <label for="poste" class="col-md-4 control-label">Date Création <span style="color: red">*</span></label>
             <b><input {% if update == 1 %} value="{{branched.dateCreation | date("m/d/Y") }}" {% endif %} type="date" class="form-control date-choose hide" style="font-size: 16px;" id="dateB" onblur="cacheDate();"><span class="glyphicon glyphicon-remove form-control-feedback hide date "></b>
-            <b><input {% if update == 1 %} value="{{branched.dateCreation | date("m/d/Y") }}" {% endif %} type="text" placeholder="Date de création" class="form-control date-choose-aff" onfocus="afficheDate(); editerFocus('dateCP', 'date');" id="dateB" style="font-size: 16px;"></b>
+            <b><input {% if update == 1 %} value="{{branched.dateCreation | date("m/d/Y") }}" {% endif %} name="dateB" type="text" placeholder="Date de création" class="form-control date-choose-aff" onfocus="afficheDate();
+                    editerFocus('dateCP', 'date');" id="dateB" style="font-size: 16px;"></b>
         </div>
         <div class="col-md-12"
              style="margin-top: 5px;">
@@ -25,14 +37,26 @@
             <textarea type="" class="form-control" id="poste.id" placeholder="Observations" style="
                       margin: 0px; 
                       width: 240px; 
-                      height: 151px;">{% if update == 1 %} {{branched.observation }} {% else %} Observations{% endif %}</textarea>
+                      height: 151px;" name="observ">{% if update == 1 %} {{branched.observation }}{% endif %}</textarea>
         </div>
         <div class="col-md-12"
              style="margin-top: 5px;">
             <label for="poste" class="col-md-4">Rataché à: <span style="color: red">*</span></label>
             <nav type="" class="form-control" id="poste.id" style="font-size: 16px;"><b>{{aDetailler}}</b></nav>
+            <input type="text" name="DirId" class="hide" value="{{aDetailler.id }}" />
+        </div>
+        <div class="col-md-12" style="margin-top: 12px">
+            <a href="{{ path('list_detail_direction', {'id': aDetailler.id}) }}"><button type="button" class="btn btn-success active col-md-2 col-md-offset-4"><span class="glyphicon glyphicon-remove-circle">Annuler</span></button></a>
+            {% if update == 1 %} 
+                <a><button type="submit" class="btn btn-primary col-md-2 col-md-offset-1"><span class="glyphicon glyphicon-plus-sign">Modifier</span></button></a>
+            {% else %}
+                <a><button type="submit" class="btn btn-primary col-md-2 col-md-offset-1"><span class="glyphicon glyphicon-plus-sign">Ajouter</span></button></a>
+            {% endif %}
         </div>
     </form>
-    <a href="{{ path('list_detail_direction', {'id': aDetailler.id}) }}"><button type="button" class="btn btn-success active col-md-2 col-md-offset-6"><span class="glyphicon glyphicon-remove-circle">Annuler</span></button></a>
-    <a><button onclick="validationBranche();" type="button" class="btn btn-primary col-md-2 col-md-offset-2"><span class="glyphicon glyphicon-plus-sign">Ajouter</span></button></a>
+    {% if error is defined %}
+        <script>
+            validationBranche();
+        </script>
+    {% endif %}
 {% endblock %}

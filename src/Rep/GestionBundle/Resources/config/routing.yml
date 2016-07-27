@@ -168,10 +168,11 @@ update_poste:
         idPoste: \d+
         
 delete_poste:
-    pattern:  /poste/supprimer/{id}
+    pattern:  /poste/supprimer/{id}/{idPost}
     defaults: { _controller: RepGestionBundle:Poste:delete }
     requirements:
         id: \d+
+        idPost: \d+
         
         
         
@@ -214,11 +215,19 @@ update_direction:
         id: \d+
         idDir: \d+
         
+update_direction_pere:
+    pattern:  /direction/modifierPere/{id}/{idPere}
+    defaults: { _controller: RepGestionBundle:Direction:updatePere }
+    requirements:
+        id: \d+
+        idPere: \d+
+        
 delete_direction:
-    pattern:  /direction/supprimer/{id}
+    pattern:  /direction/supprimer/{id}/{idDir}
     defaults: { _controller: RepGestionBundle:Direction:delete }
     requirements:
         id: \d+
+        idDir: \d+
         
 list_sous_direction:
     pattern:  /direction/listSousDirection/{id}

@@ -63,7 +63,7 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
                 ";
         // line 21
         $this->displayBlock('poste', $context, $blocks);
-        // line 59
+        // line 83
         echo "                <hr class=\"col-md-11\" style=\"
                     background: #1d2db9;
                     height: 2px;\">
@@ -72,9 +72,9 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
                     height: 2px;
                     margin-top: -1%;\">
                 ";
-        // line 66
+        // line 90
         $this->displayBlock('branche', $context, $blocks);
-        // line 100
+        // line 149
         echo "            </div>
             <div class=\"retour\">
 
@@ -95,15 +95,15 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
                                 color: #04101b;
                                 font-size: 16px;\">
                             ";
-        // line 119
+        // line 168
         if (array_key_exists("arbreDirectionBranche", $context)) {
-            // line 120
+            // line 169
             echo "                                ";
             echo (isset($context["arbreDirectionBranche"]) ? $context["arbreDirectionBranche"] : $this->getContext($context, "arbreDirectionBranche"));
             echo "
                             ";
         }
-        // line 122
+        // line 171
         echo "                            <b><nav class=\"form-control col-md-12\" id=\"newBranch\" style=\"
                                     background: #777777;
                                     color: #0d0e0e;
@@ -114,48 +114,12 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
                     </div>
                     <div class=\"modal-footer\">
                         <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\"><span class=\"glyphicon glyphicon-remove-sign\">Annuler</span></button>
-                        <button type=\"button\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-ok-sign\">Valider</span></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id=\"deleteModal\" class=\"modal fade\">
-            <div class=\"modal-dialog\">
-                <div class=\"modal-content\">
-                    <div class=\"modal-header\">
-                        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
-                        <h2 class=\"modal-title\" style=\"color: red;\">Suppression d'une branche</h2>
-                    </div>
-                    <div class=\"modal-body\" style=\"background: #1c2223; color: wheat\">
-                        <center>
-                            <h4 class=\"\"><b style=\"color: red\">? </b> Etes vous sur de vouloir supprimer le démembrement <b style=\"color: red\"> ?</b></h4>
-                            <h3 id=\"toDelete\" style=\"color: white\"><b></b></h3>
-                        </center>
-                        <h4 class=\"\" style=\"color: red\">Cette suppression entrainera la suppression de toutes ses branches filles!</h4>
-                    </div>
-                    <div class=\"modal-footer\">
-                        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\"><span class=\"glyphicon glyphicon-remove-sign\">Annuler</span></button>
-                        <button type=\"button\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-ok-sign\">Poursuivre</span></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id=\"deletePosteModal\" class=\"modal fade\">
-            <div class=\"modal-dialog modal-sm\">
-                <div class=\"modal-content\">
-                    <div class=\"modal-header\">
-                        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
-                        <h3 class=\"modal-title\" style=\"color: red;\">Suppression d'un poste</h3>
-                    </div>
-                    <div class=\"modal-body\" style=\"background: #1c2223; color: wheat\">
-                        <center>
-                            <h4 class=\"\"><b style=\"color: red\">? </b> Voulez vous supprimer le poste <b style=\"color: red\"> ?</b></h4>
-                            <h3 id=\"posteToDelete\" style=\"color: white\"><b></b></h3>
-                        </center>
-                    </div>
-                    <div class=\"modal-footer\">
-                        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\"><span class=\"glyphicon glyphicon-remove-sign\">Annuler</span></button>
-                        <button type=\"button\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-ok-sign\">Valider</span></button>
+                        <a href=\"";
+        // line 181
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("update_direction_pere", array("id" => 1, "idPere" => 1)), "html", null, true);
+        echo "\">  
+                            <button type=\"button\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-ok-sign\">Valider</span></button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -209,14 +173,37 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
             // line 40
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("update_poste", array("id" => $this->getAttribute((isset($context["aDetailler"]) ? $context["aDetailler"] : $this->getContext($context, "aDetailler")), "id", array()), "idPoste" => $this->getAttribute($context["poste"], "id", array()))), "html", null, true);
             echo "\"><button type=\"button\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-edit\"></span></button></a></td>
-                                    <td><a><button onclick=\"alertDeletePoste('";
-            // line 41
+                                    <td>
+                                        <button onclick=\"alertDeletePoste('";
+            // line 42
             echo twig_escape_filter($this->env, $context["poste"], "html", null, true);
-            echo "', ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["poste"], "id", array()), "html", null, true);
-            echo ", ";
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["aDetailler"]) ? $context["aDetailler"] : $this->getContext($context, "aDetailler")), "id", array()), "html", null, true);
-            echo ");\" type=\"button\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-trash\"></span></button></a></td>
+            echo "');\" type=\"button\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-trash\"></span></button>
+                                        <div id=\"deletePosteModal\" class=\"modal fade\">
+                                            <div class=\"modal-dialog modal-sm\">
+                                                <div class=\"modal-content\">
+                                                    <div class=\"modal-header\">
+                                                        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
+                                                        <h3 class=\"modal-title\" style=\"color: red;\">Suppression d'un poste</h3>
+                                                    </div>
+                                                    <div class=\"modal-body\" style=\"background: #1c2223; color: wheat\">
+                                                        <center>
+                                                            <h4 class=\"\"><b style=\"color: red\">? </b> Voulez vous supprimer le poste <b style=\"color: red\"> ?</b></h4>
+                                                            <h3 id=\"posteToDelete\" style=\"color: white\"><b></b></h3>
+                                                        </center>
+                                                    </div>
+                                                    <div class=\"modal-footer\">
+                                                        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\"><span class=\"glyphicon glyphicon-remove-sign\">Annuler</span></button>
+                                                        <a href=\"";
+            // line 58
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("delete_poste", array("id" => $this->getAttribute((isset($context["aDetailler"]) ? $context["aDetailler"] : $this->getContext($context, "aDetailler")), "id", array()), "idPost" => $this->getAttribute($context["poste"], "id", array()))), "html", null, true);
+            echo "\">
+                                                            <button type=\"button\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-ok-sign\">Valider</span></button>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td><a><button type=\"button\" class=\"btn btn-warning\"><span class=\"glyphicon glyphicon-send\"></span></button></a></td>
                                 </tr>
                             ";
@@ -224,7 +211,7 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['poste'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 45
+        // line 69
         echo "                        </tbody>
                     </table>
                     <script>
@@ -233,7 +220,7 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
                             \"lengthMenu\": [[5, 10], [5, 10]],
                             \"language\": {
                                 \"url\": \"";
-        // line 52
+        // line 76
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("DataTables/French.json"), "html", null, true);
         echo "\"
                             }
@@ -241,16 +228,16 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
                         });
                     </script>
                     <a href=\"";
-        // line 57
+        // line 81
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("add_poste", array("id" => $this->getAttribute((isset($context["aDetailler"]) ? $context["aDetailler"] : $this->getContext($context, "aDetailler")), "id", array()))), "html", null, true);
         echo "\"><button type=\"button\" class=\"btn btn-primary col-md-3\"><span class=\"glyphicon glyphicon-plus\">Ajouter un poste</span></button></a>
                 ";
     }
 
-    // line 66
+    // line 90
     public function block_branche($context, array $blocks = array())
     {
-        // line 67
+        // line 91
         echo "                    <table class=\"col-md-12 table table-striped display cell-border row-border compact\" id=\"listBranche\">
                         <h2 class=\"col-md-12\">Démenbrements directs</h2>
                         <thead class=\"panel panel-info alert-info active panel-heading\">
@@ -263,36 +250,60 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
                         </thead>
                         <tbody>
                             ";
-        // line 78
+        // line 102
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["listSousDir"]) ? $context["listSousDir"] : $this->getContext($context, "listSousDir")));
         foreach ($context['_seq'] as $context["_key"] => $context["sousDir"]) {
-            // line 79
+            // line 103
             echo "                                <tr>
                                     <td><b>";
-            // line 80
+            // line 104
             echo twig_escape_filter($this->env, $context["sousDir"], "html", null, true);
             echo "</b></td>
                                     <td><a href=\"";
-            // line 81
+            // line 105
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("update_direction", array("id" => $this->getAttribute((isset($context["aDetailler"]) ? $context["aDetailler"] : $this->getContext($context, "aDetailler")), "id", array()), "idDir" => $this->getAttribute($context["sousDir"], "id", array()))), "html", null, true);
             echo "\"><button type=\"button\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-edit\"></span></button></a></td>
                                     <td><a><button type=\"button\" onclick=\"detacheBranche();\" class=\"btn btn-warning\"><span class=\"glyphicon glyphicon-minus\"></span></button></a></td>
-                                    <td><a><button type=\"button\" onclick=\"alertDelete('";
-            // line 83
+                                    <td>
+                                        <a><button type=\"button\" onclick=\"alertDelete('";
+            // line 108
             echo twig_escape_filter($this->env, $context["sousDir"], "html", null, true);
-            echo "', ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["sousDir"], "id", array()), "html", null, true);
-            echo ", ";
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["aDetailler"]) ? $context["aDetailler"] : $this->getContext($context, "aDetailler")), "id", array()), "html", null, true);
-            echo ");\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-trash\"></span></button></a></td>
+            echo "');\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-trash\"></span></button></a>
+                                        <div id=\"deleteModal\" class=\"modal fade\">
+                                            <div class=\"modal-dialog\">
+                                                <div class=\"modal-content\">
+                                                    <div class=\"modal-header\">
+                                                        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
+                                                        <h2 class=\"modal-title\" style=\"color: red;\">Suppression d'une branche</h2>
+                                                    </div>
+                                                    <div class=\"modal-body\" style=\"background: #1c2223; color: wheat\">
+                                                        <center>
+                                                            <h4 class=\"\"><b style=\"color: red\">? </b> Etes vous sur de vouloir supprimer le démembrement <b style=\"color: red\"> ?</b></h4>
+                                                            <h3 id=\"toDelete\" style=\"color: white\"><b></b></h3>
+                                                        </center>
+                                                        <h4 class=\"\" style=\"color: red\">Cette suppression entrainera la suppression de toutes ses branches filles!</h4>
+                                                    </div>
+                                                    <div class=\"modal-footer\">
+                                                        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\"><span class=\"glyphicon glyphicon-remove-sign\">Annuler</span></button>
+                                                        <a href=\"";
+            // line 125
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("delete_direction", array("id" => $this->getAttribute((isset($context["aDetailler"]) ? $context["aDetailler"] : $this->getContext($context, "aDetailler")), "id", array()), "idDir" => $this->getAttribute($context["sousDir"], "id", array()))), "html", null, true);
+            echo "\">
+                                                            <button type=\"button\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-ok-sign\">Poursuivre</span></button>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sousDir'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 86
+        // line 135
         echo "                        </tbody>
                     </table>
                     <script>
@@ -301,7 +312,7 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
                             \"lengthMenu\": [[5, 10], [5, 10]],
                             \"language\": {
                                 \"url\": \"";
-        // line 93
+        // line 142
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("DataTables/French.json"), "html", null, true);
         echo "\"
                             }
@@ -309,7 +320,7 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
                         });
                     </script>
                     <a href=\"";
-        // line 98
+        // line 147
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("add_branche", array("id" => $this->getAttribute((isset($context["aDetailler"]) ? $context["aDetailler"] : $this->getContext($context, "aDetailler")), "id", array()))), "html", null, true);
         echo "\"><button type=\"button\" class=\"btn btn-primary col-md-4\"><span class=\"glyphicon glyphicon-plus\">Ajouter un démembrement</span></button></a>
                 ";
@@ -327,7 +338,7 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
 
     public function getDebugInfo()
     {
-        return array (  313 => 98,  305 => 93,  296 => 86,  283 => 83,  278 => 81,  274 => 80,  271 => 79,  267 => 78,  254 => 67,  251 => 66,  245 => 57,  237 => 52,  228 => 45,  214 => 41,  210 => 40,  206 => 39,  202 => 38,  198 => 37,  195 => 36,  191 => 35,  176 => 22,  173 => 21,  107 => 122,  101 => 120,  99 => 119,  78 => 100,  76 => 66,  67 => 59,  65 => 21,  60 => 19,  48 => 10,  41 => 5,  38 => 4,  31 => 2,  11 => 1,);
+        return array (  324 => 147,  316 => 142,  307 => 135,  291 => 125,  271 => 108,  265 => 105,  261 => 104,  258 => 103,  254 => 102,  241 => 91,  238 => 90,  232 => 81,  224 => 76,  215 => 69,  198 => 58,  179 => 42,  174 => 40,  170 => 39,  166 => 38,  162 => 37,  159 => 36,  155 => 35,  140 => 22,  137 => 21,  119 => 181,  107 => 171,  101 => 169,  99 => 168,  78 => 149,  76 => 90,  67 => 83,  65 => 21,  60 => 19,  48 => 10,  41 => 5,  38 => 4,  31 => 2,  11 => 1,);
     }
 }
 /* {% extends "RepGestionBundle:Rep:accueil.html.twig" %}*/
@@ -370,7 +381,31 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
 /*                                     <td><b>{{ poste.occupant }}</b></td>*/
 /*                                     <td style="color: blue"><b>{{ poste.categorie.quota }}</b></td>*/
 /*                                     <td><a href="{{ path('update_poste', {'id': aDetailler.id, 'idPoste': poste.id}) }}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button></a></td>*/
-/*                                     <td><a><button onclick="alertDeletePoste('{{ poste }}', {{poste.id}}, {{aDetailler.id}});" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a></td>*/
+/*                                     <td>*/
+/*                                         <button onclick="alertDeletePoste('{{ poste }}');" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>*/
+/*                                         <div id="deletePosteModal" class="modal fade">*/
+/*                                             <div class="modal-dialog modal-sm">*/
+/*                                                 <div class="modal-content">*/
+/*                                                     <div class="modal-header">*/
+/*                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*/
+/*                                                         <h3 class="modal-title" style="color: red;">Suppression d'un poste</h3>*/
+/*                                                     </div>*/
+/*                                                     <div class="modal-body" style="background: #1c2223; color: wheat">*/
+/*                                                         <center>*/
+/*                                                             <h4 class=""><b style="color: red">? </b> Voulez vous supprimer le poste <b style="color: red"> ?</b></h4>*/
+/*                                                             <h3 id="posteToDelete" style="color: white"><b></b></h3>*/
+/*                                                         </center>*/
+/*                                                     </div>*/
+/*                                                     <div class="modal-footer">*/
+/*                                                         <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove-sign">Annuler</span></button>*/
+/*                                                         <a href="{{ path('delete_poste', {'id': aDetailler.id, 'idPost': poste.id}) }}">*/
+/*                                                             <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok-sign">Valider</span></button>*/
+/*                                                         </a>*/
+/*                                                     </div>*/
+/*                                                 </div>*/
+/*                                             </div>*/
+/*                                         </div>*/
+/*                                     </td>*/
 /*                                     <td><a><button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-send"></span></button></a></td>*/
 /*                                 </tr>*/
 /*                             {% endfor %}*/
@@ -412,7 +447,32 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
 /*                                     <td><b>{{ sousDir }}</b></td>*/
 /*                                     <td><a href="{{ path('update_direction', {'id':aDetailler.id, 'idDir':sousDir.id }) }}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button></a></td>*/
 /*                                     <td><a><button type="button" onclick="detacheBranche();" class="btn btn-warning"><span class="glyphicon glyphicon-minus"></span></button></a></td>*/
-/*                                     <td><a><button type="button" onclick="alertDelete('{{ sousDir }}', {{sousDir.id}}, {{aDetailler.id}});" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a></td>*/
+/*                                     <td>*/
+/*                                         <a><button type="button" onclick="alertDelete('{{ sousDir }}');" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>*/
+/*                                         <div id="deleteModal" class="modal fade">*/
+/*                                             <div class="modal-dialog">*/
+/*                                                 <div class="modal-content">*/
+/*                                                     <div class="modal-header">*/
+/*                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*/
+/*                                                         <h2 class="modal-title" style="color: red;">Suppression d'une branche</h2>*/
+/*                                                     </div>*/
+/*                                                     <div class="modal-body" style="background: #1c2223; color: wheat">*/
+/*                                                         <center>*/
+/*                                                             <h4 class=""><b style="color: red">? </b> Etes vous sur de vouloir supprimer le démembrement <b style="color: red"> ?</b></h4>*/
+/*                                                             <h3 id="toDelete" style="color: white"><b></b></h3>*/
+/*                                                         </center>*/
+/*                                                         <h4 class="" style="color: red">Cette suppression entrainera la suppression de toutes ses branches filles!</h4>*/
+/*                                                     </div>*/
+/*                                                     <div class="modal-footer">*/
+/*                                                         <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove-sign">Annuler</span></button>*/
+/*                                                         <a href="{{ path('delete_direction', {'id':aDetailler.id, 'idDir':sousDir.id }) }}">*/
+/*                                                             <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok-sign">Poursuivre</span></button>*/
+/*                                                         </a>*/
+/*                                                     </div>*/
+/*                                                 </div>*/
+/*                                             </div>*/
+/*                                         </div>*/
+/*                                     </td>*/
 /*                                 </tr>*/
 /*                             {% endfor %}*/
 /*                         </tbody>*/
@@ -461,48 +521,9 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
 /*                     </div>*/
 /*                     <div class="modal-footer">*/
 /*                         <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove-sign">Annuler</span></button>*/
-/*                         <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok-sign">Valider</span></button>*/
-/*                     </div>*/
-/*                 </div>*/
-/*             </div>*/
-/*         </div>*/
-/*         <div id="deleteModal" class="modal fade">*/
-/*             <div class="modal-dialog">*/
-/*                 <div class="modal-content">*/
-/*                     <div class="modal-header">*/
-/*                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*/
-/*                         <h2 class="modal-title" style="color: red;">Suppression d'une branche</h2>*/
-/*                     </div>*/
-/*                     <div class="modal-body" style="background: #1c2223; color: wheat">*/
-/*                         <center>*/
-/*                             <h4 class=""><b style="color: red">? </b> Etes vous sur de vouloir supprimer le démembrement <b style="color: red"> ?</b></h4>*/
-/*                             <h3 id="toDelete" style="color: white"><b></b></h3>*/
-/*                         </center>*/
-/*                         <h4 class="" style="color: red">Cette suppression entrainera la suppression de toutes ses branches filles!</h4>*/
-/*                     </div>*/
-/*                     <div class="modal-footer">*/
-/*                         <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove-sign">Annuler</span></button>*/
-/*                         <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok-sign">Poursuivre</span></button>*/
-/*                     </div>*/
-/*                 </div>*/
-/*             </div>*/
-/*         </div>*/
-/*         <div id="deletePosteModal" class="modal fade">*/
-/*             <div class="modal-dialog modal-sm">*/
-/*                 <div class="modal-content">*/
-/*                     <div class="modal-header">*/
-/*                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*/
-/*                         <h3 class="modal-title" style="color: red;">Suppression d'un poste</h3>*/
-/*                     </div>*/
-/*                     <div class="modal-body" style="background: #1c2223; color: wheat">*/
-/*                         <center>*/
-/*                             <h4 class=""><b style="color: red">? </b> Voulez vous supprimer le poste <b style="color: red"> ?</b></h4>*/
-/*                             <h3 id="posteToDelete" style="color: white"><b></b></h3>*/
-/*                         </center>*/
-/*                     </div>*/
-/*                     <div class="modal-footer">*/
-/*                         <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove-sign">Annuler</span></button>*/
-/*                         <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok-sign">Valider</span></button>*/
+/*                         <a href="{{ path('update_direction_pere', {'id': 1, 'idPere': 1}) }}">  */
+/*                             <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok-sign">Valider</span></button>*/
+/*                         </a>*/
 /*                     </div>*/
 /*                 </div>*/
 /*             </div>*/

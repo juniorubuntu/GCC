@@ -153,23 +153,27 @@ class DirectionController extends Controller {
         return new Response($reponse);
     }
 
-    public function updateAction($id) {
+    public function updatePereAction($id, $idPere) {
+        $direction = new Direction();
         $direction = $this->findById($id);
-        if (NULL != $direction) {
-            $direction->setNomDir("DRIMS");
-            $new = $this->update($direction);
-            return new Response('<h1>Operation reussi!!! ' . $new . ' </h1>');
+        $nouveauPere = $this->findById($idPere);
+        if ((NULL != $direction) && (NULL != $nouveauPere)) {
+            $direction->setDirectionPere($nouveauPere);
+            $this->update($direction);
         }
-        return new Response('<h1 style="color=red;">Direction non existant!!!</h1>');
+        return $this->redirect($this->generateUrl('list_detail_direction', array(
+                            'id' => $idPere
+        )));
     }
 
-    public function deleteAction($id) {
-        $direction = $this->findById($id);
+    public function deleteAction($id, $idDir) {
+        $direction = $this->findById($idDir);
         if (NULL != $direction) {
             $this->delete($direction);
-            return new Response('<h1>Operation reussi!!!</h1>');
         }
-        return new Response('<h1 style="color=red;">Direction non existant!!!</h1>');
+        return $this->redirect($this->generateUrl('list_detail_direction', array(
+                            'id' => $id
+        )));
     }
 
     public function builTreeAction() {
@@ -483,7 +487,6 @@ class DirectionController extends Controller {
 
     public function update(Direction $direction) {
         $em = $this->container->get('doctrine')->getManager();
-        $em->persist($direction);
         $em->flush();
         return $direction;
     }

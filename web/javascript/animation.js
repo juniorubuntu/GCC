@@ -65,7 +65,7 @@ function changeBranche(nom, id, pereId) {
 }
 
 
-function alertDelete(sousDir, id) {
+function alertDelete(sousDir) {
     $("#deleteModal").modal('show');
 
     var newLinkText = document.createTextNode(sousDir);
@@ -73,7 +73,7 @@ function alertDelete(sousDir, id) {
     newbranch.replaceChild(newLinkText, newbranch.firstChild);
 }
 
-function alertDeletePoste(poste, id) {
+function alertDeletePoste(poste) {
     $("#deletePosteModal").modal('show');
 
     var newLinkText = document.createTextNode(poste);

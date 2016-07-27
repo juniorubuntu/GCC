@@ -338,7 +338,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 }
 
                 // delete_poste
-                if (0 === strpos($pathinfo, '/GCC/poste/supprimer') && preg_match('#^/GCC/poste/supprimer/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                if (0 === strpos($pathinfo, '/GCC/poste/supprimer') && preg_match('#^/GCC/poste/supprimer/(?P<id>\\d+)/(?P<idPost>\\d+)$#s', $pathinfo, $matches)) {
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'delete_poste')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\PosteController::deleteAction',));
                 }
 
@@ -390,13 +390,21 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'list_detail_direction')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::detailAction',));
                 }
 
-                // update_direction
-                if (0 === strpos($pathinfo, '/GCC/direction/modifier') && preg_match('#^/GCC/direction/modifier/(?P<id>\\d+)/(?P<idDir>\\d+)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'update_direction')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::updateBrancheAction',));
+                if (0 === strpos($pathinfo, '/GCC/direction/modifier')) {
+                    // update_direction
+                    if (preg_match('#^/GCC/direction/modifier/(?P<id>\\d+)/(?P<idDir>\\d+)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'update_direction')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::updateBrancheAction',));
+                    }
+
+                    // update_direction_pere
+                    if (0 === strpos($pathinfo, '/GCC/direction/modifierPere') && preg_match('#^/GCC/direction/modifierPere/(?P<id>\\d+)/(?P<idPere>\\d+)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'update_direction_pere')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::updatePereAction',));
+                    }
+
                 }
 
                 // delete_direction
-                if (0 === strpos($pathinfo, '/GCC/direction/supprimer') && preg_match('#^/GCC/direction/supprimer/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                if (0 === strpos($pathinfo, '/GCC/direction/supprimer') && preg_match('#^/GCC/direction/supprimer/(?P<id>\\d+)/(?P<idDir>\\d+)$#s', $pathinfo, $matches)) {
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'delete_direction')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::deleteAction',));
                 }
 

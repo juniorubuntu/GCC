@@ -49,13 +49,14 @@ class PosteController extends Controller {
         return new Response('<h1 style="color=red;">Poste non existant!!!</h1>');
     }
 
-    public function deleteAction($id) {
-        $poste = $this->findById($id);
+    public function deleteAction($id, $idPost) {
+        $poste = $this->findById($idPost);
         if (NULL != $poste) {
             $this->delete($poste);
-            return new Response('<h1>Operation reussi!!!</h1>');
         }
-        return new Response('<h1 style="color=red;">Poste non existant!!!</h1>');
+        return $this->redirect($this->generateUrl('list_detail_direction', array(
+                            'id' => $id
+        )));
     }
 
     //

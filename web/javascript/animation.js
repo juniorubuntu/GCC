@@ -42,8 +42,9 @@ function afficheMenu() {
     }
 }
 
-function detacheBranche() {
+function detacheBranche(fils) {
     $("#myModal").modal('show');
+    document.getElementById('fils').value = fils;
 }
 
 function expanNodeBranche(id) {
@@ -62,6 +63,7 @@ function changeBranche(nom, id, pereId) {
     var newLinkText = document.createTextNode('Nouvelle Branche: ' + nom);
     var newbranch = document.getElementById('newBranch');
     newbranch.replaceChild(newLinkText, newbranch.firstChild);
+    document.getElementById('pere').value = id;
 }
 
 

@@ -113,13 +113,15 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
                         </scroll>
                     </div>
                     <div class=\"modal-footer\">
-                        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\"><span class=\"glyphicon glyphicon-remove-sign\">Annuler</span></button>
-                        <a href=\"";
-        // line 181
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("update_direction_pere", array("id" => 1, "idPere" => 1)), "html", null, true);
-        echo "\">  
-                            <button type=\"button\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-ok-sign\">Valider</span></button>
-                        </a>
+                        <form method=\"POST\" action=\"";
+        // line 180
+        echo $this->env->getExtension('routing')->getPath("update_direction_pere");
+        echo "\">
+                            <input type=\"text\" value=\"\" class=\"hide\" id=\"fils\" name=\"fils\"/>
+                            <input type=\"text\" class=\"hide\" value=\"\" id=\"pere\" name=\"pere\"/>
+                            <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\"><span class=\"glyphicon glyphicon-remove-sign\">Annuler</span></button>
+                            <button type=\"submit\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-ok-sign\">Valider</span></button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -264,7 +266,10 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
             // line 105
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("update_direction", array("id" => $this->getAttribute((isset($context["aDetailler"]) ? $context["aDetailler"] : $this->getContext($context, "aDetailler")), "id", array()), "idDir" => $this->getAttribute($context["sousDir"], "id", array()))), "html", null, true);
             echo "\"><button type=\"button\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-edit\"></span></button></a></td>
-                                    <td><a><button type=\"button\" onclick=\"detacheBranche();\" class=\"btn btn-warning\"><span class=\"glyphicon glyphicon-minus\"></span></button></a></td>
+                                    <td><a><button type=\"button\" onclick=\"detacheBranche(";
+            // line 106
+            echo twig_escape_filter($this->env, $this->getAttribute($context["sousDir"], "id", array()), "html", null, true);
+            echo ");\" class=\"btn btn-warning\"><span class=\"glyphicon glyphicon-minus\"></span></button></a></td>
                                     <td>
                                         <a><button type=\"button\" onclick=\"alertDelete('";
             // line 108
@@ -338,7 +343,7 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
 
     public function getDebugInfo()
     {
-        return array (  324 => 147,  316 => 142,  307 => 135,  291 => 125,  271 => 108,  265 => 105,  261 => 104,  258 => 103,  254 => 102,  241 => 91,  238 => 90,  232 => 81,  224 => 76,  215 => 69,  198 => 58,  179 => 42,  174 => 40,  170 => 39,  166 => 38,  162 => 37,  159 => 36,  155 => 35,  140 => 22,  137 => 21,  119 => 181,  107 => 171,  101 => 169,  99 => 168,  78 => 149,  76 => 90,  67 => 83,  65 => 21,  60 => 19,  48 => 10,  41 => 5,  38 => 4,  31 => 2,  11 => 1,);
+        return array (  329 => 147,  321 => 142,  312 => 135,  296 => 125,  276 => 108,  271 => 106,  267 => 105,  263 => 104,  260 => 103,  256 => 102,  243 => 91,  240 => 90,  234 => 81,  226 => 76,  217 => 69,  200 => 58,  181 => 42,  176 => 40,  172 => 39,  168 => 38,  164 => 37,  161 => 36,  157 => 35,  142 => 22,  139 => 21,  118 => 180,  107 => 171,  101 => 169,  99 => 168,  78 => 149,  76 => 90,  67 => 83,  65 => 21,  60 => 19,  48 => 10,  41 => 5,  38 => 4,  31 => 2,  11 => 1,);
     }
 }
 /* {% extends "RepGestionBundle:Rep:accueil.html.twig" %}*/
@@ -446,7 +451,7 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
 /*                                 <tr>*/
 /*                                     <td><b>{{ sousDir }}</b></td>*/
 /*                                     <td><a href="{{ path('update_direction', {'id':aDetailler.id, 'idDir':sousDir.id }) }}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button></a></td>*/
-/*                                     <td><a><button type="button" onclick="detacheBranche();" class="btn btn-warning"><span class="glyphicon glyphicon-minus"></span></button></a></td>*/
+/*                                     <td><a><button type="button" onclick="detacheBranche({{sousDir.id}});" class="btn btn-warning"><span class="glyphicon glyphicon-minus"></span></button></a></td>*/
 /*                                     <td>*/
 /*                                         <a><button type="button" onclick="alertDelete('{{ sousDir }}');" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>*/
 /*                                         <div id="deleteModal" class="modal fade">*/
@@ -520,10 +525,12 @@ class __TwigTemplate_847b138c3c61dfd0d9bc5586df243f6c9729d23c97a214387b72ac04c55
 /*                         </scroll>*/
 /*                     </div>*/
 /*                     <div class="modal-footer">*/
-/*                         <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove-sign">Annuler</span></button>*/
-/*                         <a href="{{ path('update_direction_pere', {'id': 1, 'idPere': 1}) }}">  */
-/*                             <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok-sign">Valider</span></button>*/
-/*                         </a>*/
+/*                         <form method="POST" action="{{ path('update_direction_pere') }}">*/
+/*                             <input type="text" value="" class="hide" id="fils" name="fils"/>*/
+/*                             <input type="text" class="hide" value="" id="pere" name="pere"/>*/
+/*                             <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove-sign">Annuler</span></button>*/
+/*                             <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok-sign">Valider</span></button>*/
+/*                         </form>*/
 /*                     </div>*/
 /*                 </div>*/
 /*             </div>*/

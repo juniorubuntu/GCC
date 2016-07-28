@@ -397,8 +397,12 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     }
 
                     // update_direction_pere
-                    if (0 === strpos($pathinfo, '/GCC/direction/modifierPere') && preg_match('#^/GCC/direction/modifierPere/(?P<id>\\d+)/(?P<idPere>\\d+)$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'update_direction_pere')), array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::updatePereAction',));
+                    if (rtrim($pathinfo, '/') === '/GCC/direction/modifierPere') {
+                        if (substr($pathinfo, -1) !== '/') {
+                            return $this->redirect($pathinfo.'/', 'update_direction_pere');
+                        }
+
+                        return array (  '_controller' => 'Rep\\GestionBundle\\Controller\\DirectionController::updatePereAction',  '_route' => 'update_direction_pere',);
                     }
 
                 }

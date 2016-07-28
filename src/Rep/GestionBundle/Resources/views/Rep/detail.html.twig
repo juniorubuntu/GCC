@@ -103,7 +103,7 @@
                                 <tr>
                                     <td><b>{{ sousDir }}</b></td>
                                     <td><a href="{{ path('update_direction', {'id':aDetailler.id, 'idDir':sousDir.id }) }}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button></a></td>
-                                    <td><a><button type="button" onclick="detacheBranche();" class="btn btn-warning"><span class="glyphicon glyphicon-minus"></span></button></a></td>
+                                    <td><a><button type="button" onclick="detacheBranche({{sousDir.id}});" class="btn btn-warning"><span class="glyphicon glyphicon-minus"></span></button></a></td>
                                     <td>
                                         <a><button type="button" onclick="alertDelete('{{ sousDir }}');" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
                                         <div id="deleteModal" class="modal fade">
@@ -177,10 +177,12 @@
                         </scroll>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove-sign">Annuler</span></button>
-                        <a href="{{ path('update_direction_pere', {'id': 1, 'idPere': 1}) }}">  
-                            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok-sign">Valider</span></button>
-                        </a>
+                        <form method="POST" action="{{ path('update_direction_pere') }}">
+                            <input type="text" value="" class="hide" id="fils" name="fils"/>
+                            <input type="text" class="hide" value="" id="pere" name="pere"/>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove-sign">Annuler</span></button>
+                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok-sign">Valider</span></button>
+                        </form>
                     </div>
                 </div>
             </div>

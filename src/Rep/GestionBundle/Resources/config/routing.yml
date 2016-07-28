@@ -216,11 +216,8 @@ update_direction:
         idDir: \d+
         
 update_direction_pere:
-    pattern:  /direction/modifierPere/{id}/{idPere}
+    pattern:  /direction/modifierPere/
     defaults: { _controller: RepGestionBundle:Direction:updatePere }
-    requirements:
-        id: \d+
-        idPere: \d+
         
 delete_direction:
     pattern:  /direction/supprimer/{id}/{idDir}

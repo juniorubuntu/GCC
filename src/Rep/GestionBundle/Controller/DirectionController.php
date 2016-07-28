@@ -153,7 +153,11 @@ class DirectionController extends Controller {
         return new Response($reponse);
     }
 
-    public function updatePereAction($id, $idPere) {
+    public function updatePereAction() {
+
+        $id = $_POST['fils'];
+        $idPere = $_POST['pere'];
+
         $direction = new Direction();
         $direction = $this->findById($id);
         $nouveauPere = $this->findById($idPere);
